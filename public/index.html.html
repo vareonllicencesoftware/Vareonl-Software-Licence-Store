@@ -3,100 +3,809 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Vareonl Software Store – Licensed Cybersecurity & Ethical Hacking Tools</title>
-
   <meta name="description" content="Vareonl Software Store provides licensed cybersecurity software, phishing simulation tools, incident response tools, ethical hacking utilities, and security licenses. Fast delivery, genuine licenses, and support.">
-
   <meta name="robots" content="index, follow">
-
   <link rel="canonical" href="https://vareonl-software-licence-store.vercel.app/">
-
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#020617;
-      --panel:#0f172a;
-      --card:#111827;
-  --accent:#06b6d4;
-  --accent2:#22d3ee;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-}
-*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
-body{margin:0;background:linear-gradient(180deg,#020617,#020617,#020617);color:var(--text);}
-header{text-align:center;padding:2rem 1rem;}
-header h1{margin:0;font-size:2.2rem}
-header p{color:var(--muted)}
-.container{max-width:1100px;margin:auto;padding:1.5rem}
-.greeting{background:var(--panel);padding:2rem 1.5rem;border-radius:14px;margin-bottom:2rem;border:1px solid rgba(255,255,255,.05)}
-#greet{display:block;margin-bottom:1rem;font-size:1.2rem;}
-.search-wrapper{position:relative;width:100%}
-.search{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
-input{flex:1;padding:.8rem;border-radius:10px;border:none;outline:none}
-button{padding:.8rem 1.2rem;border-radius:10px;border:none;background:var(--accent);color:#022c22;font-weight:600;cursor:pointer;position:relative;overflow:hidden;}
-button::after{content:"";position:absolute;top:0; left:0; width:100%; height:100%;background:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0));pointer-events:none;transform:translateX(-100%);transition:transform 0.5s ease;}
-button:hover::after{transform:translateX(100%);}
-button:hover{background:var(--accent2)}
-#list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
-.product{background:var(--card);border-radius:14px;padding:1.5rem;border:1px solid rgba(255,255,255,.05);opacity:0;transform:translateY(30px);transition:all 0.6s ease;}
-.product.visible{opacity:1;transform:translateY(0);}
-.product:hover{transform:scale(1.03);transition:all 0.3s ease}
-.product h3{margin-top:0}
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:1rem}
-.tier{background:rgba(255,255,255,.03);border-radius:12px;padding:.8rem;border:1px solid rgba(255,255,255,.05)}
-.badge{display:inline-block;padding:.25rem .6rem;border-radius:999px;font-size:.75rem;background:rgba(6,182,212,.15);color:var(--accent);margin-bottom:.5rem}
-.actions{margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap}
-.secondary{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--text)}
-footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.85rem}
-@media(max-width:800px){.tiers{grid-template-columns:1fr}}
-.suggestions{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:8px;margin-top:0.3rem;max-height:200px;overflow-y:auto;position:absolute;z-index:10;width:100%;}
-.suggestion{padding:0.5rem 0.8rem;cursor:pointer;}
-.suggestion:hover{background:rgba(6,182,212,.15);}
-</style>
+    :root {
+      --bg: #020818;
+      --panel: #070f24;
+      --card: #0a1628;
+      --accent: #00e5ff;
+      --accent2: #00b4d8;
+      --accent3: #7b2fff;
+      --text: #e2eaf8;
+      --muted: #6b82a8;
+      --border: rgba(0, 229, 255, 0.08);
+      --glow: rgba(0, 229, 255, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND GRID & GLOW ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(0,229,255,0.07) 0%, rgba(123,47,255,0.05) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 0 2rem;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      position: relative;
+    }
+
+    .logo-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .logo-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    .nav-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0,229,255,0.3);
+      color: var(--accent);
+      background: rgba(0,229,255,0.05);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-label::before, .hero-label::after {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      display: block;
+    }
+
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* ── SEARCH ── */
+    .search-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: visible;
+      z-index: 100;
+    }
+
+    .search-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.4;
+    }
+
+    .search-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    #greet {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .search-wrapper { position: relative; }
+
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .search-input-wrap:focus-within {
+      border-color: rgba(0,229,255,0.3);
+      box-shadow: 0 0 0 3px rgba(0,229,255,0.05);
+    }
+
+    .search-icon {
+      padding: 0 1rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    input#q {
+      flex: 1;
+      padding: 0.9rem 0.5rem;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    input#q::placeholder { color: var(--muted); }
+
+    .suggestions {
+      background: #0d1b35;
+      border: 1px solid rgba(0,229,255,0.12);
+      border-radius: 12px;
+      margin-top: 0.4rem;
+      max-height: 220px;
+      overflow-y: auto;
+      position: absolute;
+      z-index: 9999;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .suggestion {
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: all 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .suggestion:last-child { border-bottom: none; }
+    .suggestion:hover { background: rgba(0,229,255,0.06); color: var(--accent); padding-left: 1.3rem; }
+
+    /* ── PRODUCT GRID ── */
+    #list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .product {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .product:hover::before { opacity: 1; }
+
+    .product.visible { opacity: 1; transform: translateY(0); }
+
+    .product:hover {
+      border-color: rgba(0,229,255,0.2);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,229,255,0.05);
+      transform: translateY(-3px);
+    }
+
+    .product-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .product-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(123,47,255,0.1));
+      border: 1px solid rgba(0,229,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .product h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tier {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 0.75rem 0.6rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .tier:hover { border-color: rgba(0,229,255,0.15); }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .badge.basic { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.2); }
+    .badge.standard { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
+    .badge.premium { background: rgba(123,47,255,0.15); color: #a78bfa; border: 1px solid rgba(123,47,255,0.25); }
+
+    .tier p {
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .actions a { flex: 1; text-decoration: none; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #020818;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0,229,255,0.3);
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 5;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    footer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 10px; }
+
+    @media(max-width: 700px) {
+      .tiers { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 1.5rem 2.5rem; }
+      .stat-divider { display: none; }
+      nav { gap: 1rem; }
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #020818;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.8rem;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: ldrFadeUp 0.5s ease 0.1s forwards;
+    }
+
+    .loader-logo span { color: #00e5ff; }
+
+    .hex-ring {
+      width: 72px;
+      height: 72px;
+      position: relative;
+      opacity: 0;
+      animation: ldrFadeUp 0.5s ease 0.25s forwards;
+    }
+
+    .hex-ring svg {
+      width: 100%;
+      height: 100%;
+      animation: ldrSpin 2s linear infinite;
+    }
+
+    .hex-inner {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #00e5ff;
+      box-shadow: 0 0 16px #00e5ff, 0 0 32px rgba(0,229,255,0.4);
+      animation: ldrPulse 2s ease-in-out infinite;
+    }
+
+    .scan-wrap {
+      width: 200px;
+      opacity: 0;
+      animation: ldrFadeUp 0.5s ease 0.4s forwards;
+    }
+
+    .scan-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      color: #00e5ff;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .scan-track {
+      width: 100%;
+      height: 2px;
+      background: rgba(0,229,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .scan-bar {
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+      border-radius: 999px;
+      animation: ldrScan 1.3s ease-in-out infinite;
+    }
+
+    .loader-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: #6b82a8;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: ldrFadeUp 0.5s ease 0.55s forwards;
+    }
+
+    @keyframes ldrFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ldrSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes ldrPulse {
+      0%,100% { opacity:1; box-shadow: 0 0 16px #00e5ff, 0 0 32px rgba(0,229,255,0.4); }
+      50%      { opacity:0.3; box-shadow: 0 0 6px #00e5ff; }
+    }
+    @keyframes ldrScan {
+      0%   { margin-left: -40%; }
+      100% { margin-left: 100%; }
+    }
+  </style>
 </head>
 <body>
+
+<!-- ── LOADER ── -->
+<div id="loader">
+  <div class="loader-logo">Vareonl<span>.</span></div>
+  <div class="hex-ring">
+    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M36 4L66 21V51L36 68L6 51V21L36 4Z" stroke="#00e5ff" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.7"/>
+      <path d="M36 14L56 25.5V48.5L36 60L16 48.5V25.5L36 14Z" stroke="rgba(0,229,255,0.25)" stroke-width="1"/>
+    </svg>
+    <div class="hex-inner"></div>
+  </div>
+  <div class="scan-wrap">
+    <div class="scan-label"><span>Initializing</span><span>System</span></div>
+    <div class="scan-track"><div class="scan-bar"></div></div>
+  </div>
+  <div class="loader-tagline">Licensed Cybersecurity Tools</div>
+</div>
+
+<!-- ── NAV ── -->
 <header>
-<h1>Vareonl Software Store</h1>
-<p>Professional software packages</p>
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="9" fill="rgba(0,229,255,0.08)"/>
+          <path d="M18 7L29 13V23L18 29L7 23V13L18 7Z" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+          <path d="M18 12L24 15.5V22.5L18 26L12 22.5V15.5L18 12Z" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1"/>
+          <circle cx="18" cy="18" r="2.5" fill="#00e5ff"/>
+        </svg>
+      </div>
+      <div class="logo-text">Vareonl<span>.</span></div>
+    </div>
+    <div class="nav-badge">LICENSED &amp; VERIFIED</div>
+  </nav>
 </header>
-<div class="container">
-<div class="greeting">
-  <strong id="greet"></strong>
-  <div class="search-wrapper">
-    <input id="q" placeholder="Search any product or tool…">
-    <div id="suggestions" class="suggestions"></div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-label">Software Store</div>
+  <h1>Professional<br><em>Security Tools</em></h1>
+  <p>Licensed cybersecurity software, ethical hacking utilities, and security packages. Fast delivery, genuine licenses, full support.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">40+</span>
+      <span class="stat-label">Tools Available</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">3</span>
+      <span class="stat-label">License Tiers</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Support</span>
+    </div>
   </div>
 </div>
-<div id="list"></div>
+
+<!-- ── MAIN ── -->
+<div class="container">
+  <div class="search-section">
+    <div class="search-top">
+      <strong id="greet"></strong>
+    </div>
+    <div class="search-wrapper">
+      <div class="search-input-wrap">
+        <span class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <input id="q" placeholder="Search any product or tool…">
+      </div>
+      <div id="suggestions" class="suggestions"></div>
+    </div>
+  </div>
+
+  <div id="list"></div>
 </div>
+
+<!-- ── FOOTER ── -->
 <footer>
-© 2026 Vareonl Software Store · All tools are package-based & supported
+  <div class="footer-inner">
+    <div class="footer-logo">Vareonl<span>.</span></div>
+    <p>© 2026 Vareonl Software Store · All tools are package-based & supported</p>
+  </div>
 </footer>
+
 <script>
-const greetings=[
-"Welcome 👋 Explore our software packages below.",
-"Hello! Every product comes with Basic, Standard & Premium.",
-"Search freely — all requests are supported.",
-"You're in the right place. Browse or search any tool."
+const greetings = [
+  "// Welcome 👋 Explore our software packages below.",
+  "// Hello! Every product comes with Basic, Standard & Premium.",
+  "// Search freely — all requests are supported.",
+  "// You're in the right place. Browse or search any tool."
 ];
-document.getElementById("greet").innerText=greetings[Math.floor(Math.random()*greetings.length)];
-const products=[
-"Phishing & Incident Response","Phishing Simulation","Incident Playbook Engine","Blockchain Analysis","Crypto Access 2.0","Chainalysis Reactor","Elliptic Navigator","CipherTrace Inspector","Confirm AML Platform","BitScan Explorer","TRM Labs Suite","OXT Explorer","CoinPath Forensics","Blockseer Analytics","Blockchain Forensics SDKs & APIs","Crystal Blockchain","Chain Analysis Lite","Network Tools","SpyVport 8.5","TermConnectX","ServerRootPlus","NetBypass Pro","RootShell Master","VPNGhost 6.0","NetFlow Analyzer","Packet Capture Pro","Certificate Manager","DNS Monitor","CrackSuits Pro (Authorized Pentest Suite)","CloneChatX","Email Password Cracker","Remote Access Tools","MultiCrack Elite","Credential Strength Tester","IP Insights","Social Media Scanner","Password Checkers","Decompiler Tool","Data Encryptor","Malware Scanner","Brute Force Tool","Credential Stealers","Vulnerability Scan Suite","Web App Scanner"
+document.getElementById("greet").innerText = greetings[Math.floor(Math.random() * greetings.length)];
+
+const icons = ["🔐","🛡️","⚡","🔍","🌐","🔗","📡","🧠","💎","🔬","🛰️","⚙️"];
+
+const products = [
+  "Phishing & Incident Response","Phishing Simulation","Incident Playbook Engine","Blockchain Analysis","Crypto Access 2.0","Chainalysis Reactor","Elliptic Navigator","CipherTrace Inspector","Confirm AML Platform","BitScan Explorer","TRM Labs Suite","OXT Explorer","CoinPath Forensics","Blockseer Analytics","Blockchain Forensics SDKs & APIs","Crystal Blockchain","Chain Analysis Lite","Network Tools","SpyVport 8.5","TermConnectX","ServerRootPlus","NetBypass Pro","RootShell Master","VPNGhost 6.0","NetFlow Analyzer","Packet Capture Pro","Certificate Manager","DNS Monitor","CrackSuits Pro (Authorized Pentest Suite)","CloneChatX","Email Password Cracker","Remote Access Tools","MultiCrack Elite","Credential Strength Tester","IP Insights","Social Media Scanner","Password Checkers","Decompiler Tool","Data Encryptor","Malware Scanner","Brute Force Tool","Credential Stealers","Vulnerability Scan Suite","Web App Scanner"
 ];
-function createCard(name){return `<div class="product"><h3>${name}</h3><div class="tiers"><div class="tier"><span class="badge">Basic</span><p>Entry-level package with guided usage.</p></div><div class="tier"><span class="badge">Standard</span><p>Expanded features, broader coverage.</p></div><div class="tier"><span class="badge">Premium</span><p>Full capability package with customization.</p></div></div><div class="actions"><a href="https://t.me/vareonl" target="_blank"><button>Telegram</button></a><a href="https://wa.me/18124161451" target="_blank"><button class="secondary">WhatsApp</button></a></div></div>`;}
-function render(list){document.getElementById("list").innerHTML=list.map(createCard).join("");animate();}
-function animate(){document.querySelectorAll(".product").forEach((el,i)=>{setTimeout(()=>el.classList.add("visible"),i*50);});}
+
+function createCard(name) {
+  const icon = icons[Math.floor(Math.random() * icons.length)];
+  return `
+    <div class="product">
+      <div class="product-header">
+        <div class="product-icon">${icon}</div>
+        <h3>${name}</h3>
+      </div>
+      <div class="tiers">
+        <div class="tier">
+          <span class="badge basic">Basic</span>
+          <p>Entry-level package with guided usage.</p>
+        </div>
+        <div class="tier">
+          <span class="badge standard">Standard</span>
+          <p>Expanded features, broader coverage.</p>
+        </div>
+        <div class="tier">
+          <span class="badge premium">Premium</span>
+          <p>Full capability with customization.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="https://t.me/vareonl" target="_blank"><button class="btn-primary">Telegram</button></a>
+        <a href="https://wa.me/18124161451" target="_blank"><button class="btn-secondary">WhatsApp</button></a>
+      </div>
+    </div>`;
+}
+
+function render(list) {
+  document.getElementById("list").innerHTML = list.map(createCard).join("");
+  animate();
+}
+
+function animate() {
+  document.querySelectorAll(".product").forEach((el, i) => {
+    setTimeout(() => el.classList.add("visible"), i * 40);
+  });
+}
+
 render(products);
-const input=document.getElementById("q");
-const suggBox=document.getElementById("suggestions");
-input.addEventListener("input",function(){
-  const val=this.value.trim();
-  if(!val){suggBox.innerHTML="";return;}
-  let matches=products.filter(p=>p.toLowerCase().includes(val.toLowerCase()));
-  if(matches.length===0) matches=[val];
-  suggBox.innerHTML=matches.map(m=>`<div class="suggestion" onclick="selectSuggestion('${m.replace(/'/g,"\'")}')">${m}</div>`).join("");
+
+const input = document.getElementById("q");
+const suggBox = document.getElementById("suggestions");
+
+input.addEventListener("input", function() {
+  const val = this.value.trim();
+  if (!val) { suggBox.innerHTML = ""; render(products); return; }
+  let matches = products.filter(p => p.toLowerCase().includes(val.toLowerCase()));
+  if (matches.length === 0) matches = [val];
+  suggBox.innerHTML = matches.map(m => `<div class="suggestion" onclick="selectSuggestion('${m.replace(/'/g, "\\'")}')">${m}</div>`).join("");
+  render(matches);
 });
-function selectSuggestion(val){input.value=val;suggBox.innerHTML="";render([val]);}
+
+function selectSuggestion(val) {
+  input.value = val;
+  suggBox.innerHTML = "";
+  render([val]);
+}
+
+document.addEventListener("click", e => {
+  if (!e.target.closest(".search-wrapper")) suggBox.innerHTML = "";
+});
+
+// Hide loader after page is ready
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("loader").classList.add("hide");
+  }, 2000);
+});
 </script>
 </body>
 </html>
+
