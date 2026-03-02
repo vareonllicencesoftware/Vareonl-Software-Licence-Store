@@ -162,14 +162,51 @@ input#q::placeholder { color:var(--muted); }
 .tl-team{background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.25);}
 .tier p{font-size:0.68rem;color:var(--muted);line-height:1.4;margin-top:0.3rem;}
 
-/* CARD ACTIONS */
-.card-actions{display:flex;gap:0.6rem;margin-bottom:0.9rem;}
-.card-actions a{flex:1;text-decoration:none;}
+/* TIER SELECTABLE */
+.tier { cursor:pointer; }
+.tier.selected { border-color:var(--accent) !important; background:rgba(59,130,246,0.12) !important; }
+.tier-select-hint { font-family:'DM Mono',monospace; font-size:0.63rem; color:var(--muted); text-align:center; margin-bottom:0.5rem; letter-spacing:0.05em; }
+
+/* PRODUCT DETAILS */
+.product-details { margin-bottom:1rem; }
+.detail-row { display:flex; align-items:flex-start; gap:0.5rem; padding:0.28rem 0; border-bottom:1px solid rgba(255,255,255,0.03); }
+.detail-row:last-child { border-bottom:none; }
+.detail-icon { font-size:0.72rem; flex-shrink:0; margin-top:1px; }
+.detail-text { font-size:0.78rem; color:var(--muted); line-height:1.45; }
+
+/* BUY BUTTON */
+.cbtn-buy { background:var(--accent); color:#fff; width:100%; padding:0.7rem; border-radius:9px; font-family:'Outfit',sans-serif; font-size:0.88rem; font-weight:700; border:none; cursor:pointer; transition:all 0.2s; margin-bottom:0.9rem; display:flex; align-items:center; justify-content:center; gap:0.4rem; }
+.cbtn-buy:hover { background:#2563eb; box-shadow:0 3px 14px rgba(59,130,246,0.4); transform:translateY(-1px); }
+.cbtn-buy:disabled { opacity:0.35; cursor:not-allowed; transform:none; box-shadow:none; }
+
+/* CARD ACTIONS (kept for reference) */
 .cbtn{width:100%;padding:0.65rem 0.5rem;border-radius:9px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem;}
-.cbtn-primary{background:var(--accent);color:#fff;}
-.cbtn-primary:hover{background:#2563eb;box-shadow:0 3px 14px rgba(59,130,246,0.4);transform:translateY(-1px);}
-.cbtn-secondary{background:rgba(255,255,255,0.04);color:var(--text);border:1px solid rgba(255,255,255,0.08);}
-.cbtn-secondary:hover{background:rgba(255,255,255,0.07);}
+
+/* CONTACT MODAL */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); z-index:9000; display:flex; align-items:center; justify-content:center; padding:1rem; opacity:0; visibility:hidden; transition:all 0.25s; }
+.modal-overlay.open { opacity:1; visibility:visible; }
+.modal { background:#0d1526; border:1px solid rgba(59,130,246,0.2); border-radius:20px; padding:2rem; max-width:400px; width:100%; box-shadow:0 30px 80px rgba(0,0,0,0.7); transform:translateY(20px) scale(0.97); transition:transform 0.25s ease; }
+.modal-overlay.open .modal { transform:none; }
+.modal-header { text-align:center; margin-bottom:1.5rem; }
+.modal-icon { font-size:2rem; margin-bottom:0.5rem; }
+.modal-title { font-size:1.1rem; font-weight:800; color:#fff; margin-bottom:0.3rem; letter-spacing:-0.02em; }
+.modal-sub { font-size:0.83rem; color:var(--muted); line-height:1.5; }
+.modal-product { background:rgba(59,130,246,0.07); border:1px solid rgba(59,130,246,0.15); border-radius:10px; padding:0.75rem 1rem; margin-bottom:1.2rem; }
+.modal-product-name { font-size:0.88rem; font-weight:700; color:#fff; }
+.modal-product-tier { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--accent); margin-top:3px; letter-spacing:0.08em; }
+.modal-btns { display:flex; flex-direction:column; gap:0.65rem; }
+.modal-btn { display:flex; align-items:center; gap:0.9rem; padding:1rem 1.1rem; border-radius:12px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); cursor:pointer; transition:all 0.2s; text-decoration:none; }
+.modal-btn:hover { transform:translateX(4px); }
+.modal-btn.tg:hover { border-color:rgba(0,136,204,0.4); background:rgba(0,136,204,0.08); }
+.modal-btn.wa:hover { border-color:rgba(37,211,102,0.35); background:rgba(37,211,102,0.07); }
+.modal-btn-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; flex-shrink:0; }
+.tg-ico { background:rgba(0,136,204,0.15); border:1px solid rgba(0,136,204,0.25); }
+.wa-ico { background:rgba(37,211,102,0.12); border:1px solid rgba(37,211,102,0.2); }
+.modal-btn-info { flex:1; }
+.modal-btn-title { font-size:0.9rem; font-weight:700; color:#fff; }
+.modal-btn-sub { font-size:0.73rem; color:var(--muted); margin-top:1px; }
+.modal-close { margin-top:0.9rem; width:100%; padding:0.6rem; background:transparent; border:1px solid rgba(255,255,255,0.07); border-radius:10px; color:var(--muted); font-family:'Outfit',sans-serif; font-size:0.82rem; cursor:pointer; transition:all 0.2s; }
+.modal-close:hover { border-color:rgba(255,255,255,0.15); color:var(--text); }
 
 /* REVIEW TOGGLE */
 .review-toggle { width:100%; padding:0.5rem; background:transparent; border:1px solid rgba(255,255,255,0.07); border-radius:8px; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.08em; color:var(--muted); cursor:pointer; transition:all 0.2s; text-align:center; }
@@ -326,7 +363,7 @@ footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted
     <p class="hero-desc">Genuine licenses for IDEs, AI coding assistants, project management, design tools, and everything in between. Instant delivery, 24/7 support.</p>
     <div class="hero-actions">
       <a href="#products" class="btn btn-blue">Browse Tools ↓</a>
-      <a href="https://t.me/vareonl?text=Hello%20Vareonl%20Store%2C%20I%20want%20to%20purchase%20a%20product%2C%20please%20assist%20me." target="_blank" class="btn btn-ghost">💬 Contact Us</a>
+      <button onclick="openModal('General Enquiry','We\'re here to help you find the right tool')" class="btn btn-ghost">💬 Contact Us</button>
     </div>
     <div class="hero-stats">
       <div><div class="hstat-num">50+</div><div class="hstat-label">Tools</div></div>
@@ -424,13 +461,47 @@ footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted
   </div>
 </div>
 
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-icon">💬</div>
+      <div class="modal-title">Contact Vareonl Store</div>
+      <div class="modal-sub">Choose how you'd like to reach us</div>
+    </div>
+    <div class="modal-product" id="modalProductInfo">
+      <div class="modal-product-name" id="modalProductName">General Enquiry</div>
+      <div class="modal-product-tier" id="modalProductTier">Ready to help you</div>
+    </div>
+    <div class="modal-btns">
+      <a id="modalTgBtn" href="#" target="_blank" class="modal-btn tg">
+        <div class="modal-btn-icon tg-ico">✈️</div>
+        <div class="modal-btn-info">
+          <div class="modal-btn-title">Telegram</div>
+          <div class="modal-btn-sub">Telegram · Usually replies in minutes</div>
+        </div>
+        <span style="color:var(--muted);font-size:0.8rem">→</span>
+      </a>
+      <a id="modalWaBtn" href="#" target="_blank" class="modal-btn wa">
+        <div class="modal-btn-icon wa-ico">💚</div>
+        <div class="modal-btn-info">
+          <div class="modal-btn-title">WhatsApp</div>
+          <div class="modal-btn-sub">WhatsApp · Available 24/7</div>
+        </div>
+        <span style="color:var(--muted);font-size:0.8rem">→</span>
+      </a>
+    </div>
+    <button class="modal-close" onclick="closeModal()">✕ Cancel</button>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">Vareonl<span>.</span></div>
     <div class="footer-links">
-      <a href="https://t.me/vareonl?text=Hello%20Vareonl%20Store%2C%20I%20want%20to%20purchase%20a%20product%2C%20please%20assist%20me." target="_blank">Telegram</a>
-      <a href="https://wa.me/18124161451?text=Hello%20Vareonl%20Store%2C%20I%20want%20to%20purchase%20a%20product%2C%20please%20assist%20me." target="_blank">WhatsApp</a>
+      <a href="#" onclick="openModal('General Enquiry','We are here to help');return false;">Telegram</a>
+      <a href="#" onclick="openModal('General Enquiry','We are here to help');return false;">WhatsApp</a>
       <a href="#reviews">Reviews</a>
       <a href="#products">Store</a>
     </div>
@@ -660,9 +731,25 @@ function badgeHTML(b){
   return `<span class="card-badge ${map[b]}">${txt}</span>`;
 }
 
+function productDetails(p) {
+  const details = {
+    "IDE":["✅ Genuine activation key included","⚡ Instant delivery via Telegram or WhatsApp","🔄 1-click activation, no setup required","🛡️ Works on Windows, macOS & Linux","📞 24/7 support if activation fails"],
+    "AI Assistant":["✅ Full AI-powered code completion","⚡ Instant license delivery","🔄 Works in VS Code, JetBrains & more","🛡️ Genuine account or key — no sharing","📞 Support included if issues arise"],
+    "Design":["✅ Full professional features unlocked","⚡ License delivered instantly","🔄 Activate on your own account","🛡️ Genuine, not cracked or shared","📞 Setup support available 24/7"],
+    "Project Mgmt":["✅ Full plan features activated","⚡ Instant delivery after order","🔄 Easy account upgrade process","🛡️ Legitimate license — your account","📞 24/7 support via Telegram or WhatsApp"],
+    "DevOps":["✅ Full plan features unlocked","⚡ Fast delivery, no waiting","🔄 Activate on your existing account","🛡️ Genuine license, fully supported","📞 Help with setup included"],
+    "Productivity":["✅ All premium features included","⚡ License or account delivered fast","🔄 Simple activation process","🛡️ Genuine — not shared or cracked","📞 24/7 support on Telegram & WhatsApp"],
+    "Database":["✅ Full professional license","⚡ Instant delivery guaranteed","🔄 Activate in seconds","🛡️ Genuine JetBrains or vendor key","📞 Support if activation fails"],
+    "Testing":["✅ Full plan features unlocked","⚡ License delivered instantly","🔄 Easy team or personal setup","🛡️ Genuine license from vendor","📞 24/7 after-sale support"],
+  };
+  return (details[p.cat]||["✅ Full license included","⚡ Instant delivery","🛡️ Genuine & verified","📞 24/7 support"]).map(d=>`
+    <div class="detail-row"><span class="detail-icon">${d.split(' ')[0]}</span><span class="detail-text">${d.substring(d.indexOf(' ')+1)}</span></div>`).join('');
+}
+
 function createCard(p, idx) {
   const bg = iconBg[p.cat]||"linear-gradient(135deg,rgba(59,130,246,0.15),rgba(6,182,212,0.1))";
   const tiers = tierDesc(p.cat);
+  const tierNames = ['Basic','Pro','Team'];
   const revCount = p.reviews.length;
   const reviewsHTML = p.reviews.map(r=>`
     <div class="review-item">
@@ -689,15 +776,15 @@ function createCard(p, idx) {
       <div class="stars-mini">${starsHTML(p.rating)}</div>
       <span class="rating-text">${p.rating} · ${revCount} review${revCount!==1?'s':''}</span>
     </div>
-    <div class="tiers">
-      <div class="tier"><span class="tier-label tl-basic">Basic</span><p>${tiers[0]}</p></div>
-      <div class="tier"><span class="tier-label tl-pro">Pro</span><p>${tiers[1]}</p></div>
-      <div class="tier"><span class="tier-label tl-team">Team</span><p>${tiers[2]}</p></div>
+    <div class="product-details" id="pd-${idx}" style="display:none">${productDetails(p)}</div>
+    <button class="review-toggle" style="margin-bottom:0.7rem" onclick="toggleDetails(${idx})">▾ View product details</button>
+    <div class="tier-select-hint">👇 Select a package to buy</div>
+    <div class="tiers" id="tiers-${idx}">
+      <div class="tier" onclick="selectTier(${idx},0,'${tiers[0]}','${tierNames[0]}')" id="tier-${idx}-0"><span class="tier-label tl-basic">Basic</span><p>${tiers[0]}</p></div>
+      <div class="tier" onclick="selectTier(${idx},1,'${tiers[1]}','${tierNames[1]}')" id="tier-${idx}-1"><span class="tier-label tl-pro">Pro</span><p>${tiers[1]}</p></div>
+      <div class="tier" onclick="selectTier(${idx},2,'${tiers[2]}','${tierNames[2]}')" id="tier-${idx}-2"><span class="tier-label tl-team">Team</span><p>${tiers[2]}</p></div>
     </div>
-    <div class="card-actions">
-      <a href="https://t.me/vareonl?text=Hello%20Vareonl%20Store%2C%20I%20want%20to%20purchase%20${encodeURIComponent(p.name)}%2C%20please%20assist%20me." target="_blank"><button class="cbtn cbtn-primary">💬 Telegram</button></a>
-      <a href="https://wa.me/18124161451?text=Hello%20Vareonl%20Store%2C%20I%20want%20to%20purchase%20${encodeURIComponent(p.name)}%2C%20please%20assist%20me." target="_blank"><button class="cbtn cbtn-secondary">WhatsApp</button></a>
-    </div>
+    <button class="cbtn-buy" id="buybtn-${idx}" disabled onclick="buyProduct(${idx})">Select a package above</button>
     <button class="review-toggle" onclick="toggleReviews(${idx})">▾ Reviews (${revCount})</button>
     <div class="review-panel" id="rp-${idx}">
       <div class="review-list" id="rl-${idx}">${reviewsHTML}</div>
@@ -861,6 +948,54 @@ input.addEventListener('input', function(){
 });
 function pick(name){ input.value=name; query=name; suggEl.style.display='none'; render(); }
 document.addEventListener('click',e=>{ if(!e.target.closest('.search-wrap')) suggEl.style.display='none'; });
+
+// ── TOGGLE DETAILS ──
+function toggleDetails(idx) {
+  const panel = document.getElementById(`pd-${idx}`);
+  const btn = panel.nextElementSibling;
+  const open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? '▾ View product details' : '▴ Hide product details';
+}
+
+// ── TIER SELECTION ──
+const selectedTiers = {}; // idx -> {tierName, tierDesc}
+
+function selectTier(idx, tierIdx, tierDescText, tierName) {
+  [0,1,2].forEach(i => {
+    const el = document.getElementById(`tier-${idx}-${i}`);
+    if(el) el.classList.remove('selected');
+  });
+  document.getElementById(`tier-${idx}-${tierIdx}`).classList.add('selected');
+  selectedTiers[idx] = {tierName, tierDesc: tierDescText};
+  const btn = document.getElementById(`buybtn-${idx}`);
+  btn.disabled = false;
+  btn.textContent = `Purchase ${tierName}`;
+}
+
+function buyProduct(idx) {
+  const tier = selectedTiers[idx];
+  if(!tier) return;
+  openModal(products[idx].name, `${tier.tierName} Plan · ${tier.tierDesc}`);
+}
+
+// ── MODAL ──
+function openModal(productName, tierInfo) {
+  const msg = encodeURIComponent(`Hello Vareonl Store, I want to purchase ${productName}${tierInfo && tierInfo !== 'We\'re here to help you find the right tool' && tierInfo !== 'We are here to help' ? ' — ' + tierInfo : ''}. Please assist me.`);
+  document.getElementById('modalProductName').textContent = productName;
+  document.getElementById('modalProductTier').textContent = tierInfo || 'Ready to assist you';
+  document.getElementById('modalTgBtn').href = `https://t.me/vareonl?text=${msg}`;
+  document.getElementById('modalWaBtn').href = `https://wa.me/18124161451?text=${msg}`;
+  document.getElementById('contactModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('contactModal').classList.remove('open');
+}
+
+document.getElementById('contactModal').addEventListener('click', function(e) {
+  if(e.target === this) closeModal();
+});
 
 // ── INIT ──
 render();
