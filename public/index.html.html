@@ -1,812 +1,871 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vareonl Software Store – Licensed Cybersecurity & Ethical Hacking Tools</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <meta name="description" content="Vareonl Software Store provides licensed cybersecurity software, phishing simulation tools, incident response tools, ethical hacking utilities, and security licenses. Fast delivery, genuine licenses, and support.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://vareonl-software-licence-store.vercel.app/">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #020818;
-      --panel: #070f24;
-      --card: #0a1628;
-      --accent: #00e5ff;
-      --accent2: #00b4d8;
-      --accent3: #7b2fff;
-      --text: #e2eaf8;
-      --muted: #6b82a8;
-      --border: rgba(0, 229, 255, 0.08);
-      --glow: rgba(0, 229, 255, 0.15);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Syne', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── BACKGROUND GRID & GLOW ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 500px;
-      background: radial-gradient(ellipse at center, rgba(0,229,255,0.07) 0%, rgba(123,47,255,0.05) 40%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── HEADER ── */
-    header {
-      position: relative;
-      z-index: 10;
-      padding: 0 2rem;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-      position: relative;
-    }
-
-    .logo-icon svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .logo-text {
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #fff;
-    }
-
-    .logo-text span {
-      color: var(--accent);
-    }
-
-    .nav-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(0,229,255,0.3);
-      color: var(--accent);
-      background: rgba(0,229,255,0.05);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      padding: 5rem 2rem 4rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .hero-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .hero-label::before, .hero-label::after {
-      content: '';
-      display: inline-block;
-      width: 30px;
-      height: 1px;
-      background: var(--accent);
-      opacity: 0.5;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--accent), var(--accent3));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
-      font-weight: 400;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-num {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #fff;
-      display: block;
-    }
-
-    .stat-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .stat-divider {
-      width: 1px;
-      background: var(--border);
-      align-self: stretch;
-    }
-
-    /* ── CONTAINER ── */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-      position: relative;
-      z-index: 5;
-    }
-
-    /* ── SEARCH ── */
-    .search-section {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 1.5rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-      overflow: visible;
-      z-index: 100;
-    }
-
-    .search-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0.4;
-    }
-
-    .search-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    #greet {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-    }
-
-    .search-wrapper { position: relative; }
-
-    .search-input-wrap {
-      display: flex;
-      align-items: center;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-
-    .search-input-wrap:focus-within {
-      border-color: rgba(0,229,255,0.3);
-      box-shadow: 0 0 0 3px rgba(0,229,255,0.05);
-    }
-
-    .search-icon {
-      padding: 0 1rem;
-      color: var(--muted);
-      flex-shrink: 0;
-    }
-
-    input#q {
-      flex: 1;
-      padding: 0.9rem 0.5rem;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      font-size: 0.95rem;
-    }
-
-    input#q::placeholder { color: var(--muted); }
-
-    .suggestions {
-      background: #0d1b35;
-      border: 1px solid rgba(0,229,255,0.12);
-      border-radius: 12px;
-      margin-top: 0.4rem;
-      max-height: 220px;
-      overflow-y: auto;
-      position: absolute;
-      z-index: 9999;
-      width: 100%;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    .suggestion {
-      padding: 0.6rem 1rem;
-      cursor: pointer;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--muted);
-      transition: all 0.15s;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .suggestion:last-child { border-bottom: none; }
-    .suggestion:hover { background: rgba(0,229,255,0.06); color: var(--accent); padding-left: 1.3rem; }
-
-    /* ── PRODUCT GRID ── */
-    #list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.2rem;
-    }
-
-    .product {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.6rem;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .product:hover::before { opacity: 1; }
-
-    .product.visible { opacity: 1; transform: translateY(0); }
-
-    .product:hover {
-      border-color: rgba(0,229,255,0.2);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,229,255,0.05);
-      transform: translateY(-3px);
-    }
-
-    .product-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .product-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(123,47,255,0.1));
-      border: 1px solid rgba(0,229,255,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1rem;
-    }
-
-    .product h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.3;
-      flex: 1;
-    }
-
-    .tiers {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .tier {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 10px;
-      padding: 0.75rem 0.6rem;
-      text-align: center;
-      transition: border-color 0.2s;
-    }
-
-    .tier:hover { border-color: rgba(0,229,255,0.15); }
-
-    .badge {
-      display: inline-block;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      font-size: 0.65rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.4rem;
-    }
-
-    .badge.basic { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.2); }
-    .badge.standard { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
-    .badge.premium { background: rgba(123,47,255,0.15); color: #a78bfa; border: 1px solid rgba(123,47,255,0.25); }
-
-    .tier p {
-      font-size: 0.7rem;
-      color: var(--muted);
-      line-height: 1.4;
-      margin: 0;
-    }
-
-    .actions {
-      display: flex;
-      gap: 0.6rem;
-    }
-
-    .actions a { flex: 1; text-decoration: none; }
-
-    .btn-primary {
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 10px;
-      border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #020818;
-      font-weight: 700;
-      font-size: 0.82rem;
-      cursor: pointer;
-      font-family: 'Syne', sans-serif;
-      letter-spacing: 0.03em;
-      transition: all 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(0,229,255,0.3);
-    }
-
-    .btn-secondary {
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      font-weight: 600;
-      font-size: 0.82rem;
-      cursor: pointer;
-      font-family: 'Syne', sans-serif;
-      letter-spacing: 0.03em;
-      transition: all 0.2s;
-    }
-
-    .btn-secondary:hover {
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.06);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 5;
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .footer-logo {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.3rem;
-    }
-
-    .footer-logo span { color: var(--accent); }
-
-    footer p {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 10px; }
-
-    @media(max-width: 700px) {
-      .tiers { grid-template-columns: 1fr; }
-      .hero { padding: 3rem 1.5rem 2.5rem; }
-      .stat-divider { display: none; }
-      nav { gap: 1rem; }
-    }
-
-    /* ── LOADER ── */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: #020818;
-      z-index: 99999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.8rem;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
-
-    #loader.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .loader-logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-      opacity: 0;
-      animation: ldrFadeUp 0.5s ease 0.1s forwards;
-    }
-
-    .loader-logo span { color: #00e5ff; }
-
-    .hex-ring {
-      width: 72px;
-      height: 72px;
-      position: relative;
-      opacity: 0;
-      animation: ldrFadeUp 0.5s ease 0.25s forwards;
-    }
-
-    .hex-ring svg {
-      width: 100%;
-      height: 100%;
-      animation: ldrSpin 2s linear infinite;
-    }
-
-    .hex-inner {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: #00e5ff;
-      box-shadow: 0 0 16px #00e5ff, 0 0 32px rgba(0,229,255,0.4);
-      animation: ldrPulse 2s ease-in-out infinite;
-    }
-
-    .scan-wrap {
-      width: 200px;
-      opacity: 0;
-      animation: ldrFadeUp 0.5s ease 0.4s forwards;
-    }
-
-    .scan-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      color: #00e5ff;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .scan-track {
-      width: 100%;
-      height: 2px;
-      background: rgba(0,229,255,0.08);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .scan-bar {
-      height: 100%;
-      width: 40%;
-      background: linear-gradient(90deg, transparent, #00e5ff, transparent);
-      border-radius: 999px;
-      animation: ldrScan 1.3s ease-in-out infinite;
-    }
-
-    .loader-tagline {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      color: #6b82a8;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: ldrFadeUp 0.5s ease 0.55s forwards;
-    }
-
-    @keyframes ldrFadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes ldrSpin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @keyframes ldrPulse {
-      0%,100% { opacity:1; box-shadow: 0 0 16px #00e5ff, 0 0 32px rgba(0,229,255,0.4); }
-      50%      { opacity:0.3; box-shadow: 0 0 6px #00e5ff; }
-    }
-    @keyframes ldrScan {
-      0%   { margin-left: -40%; }
-      100% { margin-left: 100%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vareonl Software Store — Developer & Productivity Tools</title>
+<meta name="description" content="Vareonl Software Store — premium licenses for developer tools, productivity software, IDEs, AI coding assistants, and more. Fast delivery, genuine licenses.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060a10;
+  --surface: #0b1120;
+  --card: #0d1526;
+  --accent: #3b82f6;
+  --accent2: #06b6d4;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --text: #e2e8f8;
+  --muted: #5a6a88;
+  --border: rgba(59,130,246,0.1);
+  --border2: rgba(255,255,255,0.05);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(59,130,246,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none; z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse at center, rgba(59,130,246,0.06) 0%, rgba(6,182,212,0.04) 40%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* LOADER */
+#loader {
+  position: fixed; inset: 0; background: var(--bg); z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.ldr-logo { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; color: #fff; opacity: 0; animation: fadeUp 0.5s ease 0.1s forwards; }
+.ldr-logo span { color: var(--accent); }
+.ldr-ring { width: 56px; height: 56px; position: relative; opacity: 0; animation: fadeUp 0.5s ease 0.25s forwards; }
+.ldr-ring svg { animation: spin 1.6s linear infinite; }
+.ldr-dot { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse2 1.6s ease-in-out infinite; }
+.ldr-track { width: 200px; opacity: 0; animation: fadeUp 0.5s ease 0.4s forwards; }
+.ldr-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.16em; color: var(--accent2); text-transform: uppercase; margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+.ldr-bar-bg { height: 2px; background: rgba(59,130,246,0.1); border-radius: 99px; overflow: hidden; }
+.ldr-bar { height: 100%; width: 35%; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: scan 1.2s ease-in-out infinite; }
+.ldr-sub { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; opacity: 0; animation: fadeUp 0.5s ease 0.55s forwards; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,10,16,0.88); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border); padding: 0 2rem;
+}
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+.nav-logo { font-size: 1.25rem; font-weight: 900; letter-spacing: -0.04em; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+.nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg,rgba(59,130,246,0.2),rgba(6,182,212,0.15)); border: 1px solid rgba(59,130,246,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.nav-logo span { color: var(--accent); }
+.nav-pills { display: flex; gap: 0.5rem; }
+.nav-pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; padding: 0.3rem 0.8rem; border-radius: 99px; text-transform: uppercase; }
+.pill-blue { background: rgba(59,130,246,0.1); color: var(--accent); border: 1px solid rgba(59,130,246,0.25); }
+.pill-green { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+
+/* HERO */
+.hero { position: relative; z-index: 5; max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; }
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse2 2s ease-in-out infinite; }
+.hero h1 { font-size: clamp(2.4rem,5vw,4rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.04em; color: #fff; margin-bottom: 1.2rem; }
+.hero h1 .grad { background: linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-desc { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 440px; margin-bottom: 2rem; font-weight: 400; }
+.hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn { padding: 0.75rem 1.4rem; border-radius: 10px; font-family:'Outfit',sans-serif; font-weight:600; font-size:0.9rem; cursor:pointer; border:none; text-decoration:none; transition:all 0.2s; display:inline-flex; align-items:center; gap:0.4rem; }
+.btn-blue { background: var(--accent); color:#fff; }
+.btn-blue:hover { background:#2563eb; box-shadow:0 4px 20px rgba(59,130,246,0.4); transform:translateY(-1px); }
+.btn-ghost { background:rgba(255,255,255,0.04); color:var(--text); border:1px solid var(--border2); }
+.btn-ghost:hover { background:rgba(255,255,255,0.08); }
+.hero-stats { display:flex; gap:2rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--border2); flex-wrap:wrap; }
+.hstat-num { font-size:1.8rem; font-weight:900; color:#fff; letter-spacing:-0.04em; }
+.hstat-label { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+
+/* TERMINAL */
+.hero-right { position:relative; }
+.terminal { background:#080e1a; border:1px solid rgba(59,130,246,0.2); border-radius:14px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,0.5); }
+.term-bar { background:#0d1626; padding:0.8rem 1.2rem; display:flex; align-items:center; gap:0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); }
+.term-dot { width:10px; height:10px; border-radius:50%; }
+.td-red{background:#ff5f57;} .td-yellow{background:#ffbd2e;} .td-green{background:#28ca42;}
+.term-title { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--muted); margin-left:0.5rem; }
+.term-body { padding:1.4rem; font-family:'DM Mono',monospace; font-size:0.8rem; line-height:1.9; }
+.t-muted{color:var(--muted);} .t-green{color:var(--green);} .t-blue{color:var(--accent);} .t-cyan{color:var(--accent2);} .t-amber{color:var(--amber);} .t-white{color:#fff;}
+.cursor { display:inline-block; width:8px; height:14px; background:var(--accent); animation:blink 1.1s step-end infinite; vertical-align:middle; margin-left:2px; }
+
+/* SEARCH */
+.search-wrap { max-width:1200px; margin:0 auto 2rem; padding:0 2rem; position:relative; z-index:50; }
+.search-box { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:1.2rem 1.5rem; transition:all 0.2s; }
+.search-box:focus-within { border-color:rgba(59,130,246,0.4); box-shadow:0 0 0 3px rgba(59,130,246,0.07); }
+.search-inner { display:flex; align-items:center; gap:0.8rem; }
+.search-icon { color:var(--muted); flex-shrink:0; }
+input#q { flex:1; background:transparent; border:none; outline:none; color:var(--text); font-family:'Outfit',sans-serif; font-size:1rem; }
+input#q::placeholder { color:var(--muted); }
+.search-count { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; color:var(--muted); white-space:nowrap; flex-shrink:0; }
+.suggestions { position:absolute; top:calc(100% - 0.5rem); left:2rem; right:2rem; background:#0d1626; border:1px solid rgba(59,130,246,0.15); border-top:none; border-radius:0 0 12px 12px; overflow:hidden; z-index:200; box-shadow:0 20px 40px rgba(0,0,0,0.4); display:none; }
+.sugg-item { padding:0.65rem 1.2rem; font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted); cursor:pointer; border-bottom:1px solid rgba(255,255,255,0.03); transition:all 0.15s; display:flex; align-items:center; gap:0.6rem; }
+.sugg-item:last-child{border-bottom:none;}
+.sugg-item:hover{background:rgba(59,130,246,0.07);color:var(--accent);padding-left:1.5rem;}
+
+/* TABS */
+.tabs-wrap { max-width:1200px; margin:0 auto 2rem; padding:0 2rem; display:flex; gap:0.5rem; flex-wrap:wrap; }
+.tab { padding:0.45rem 1rem; border-radius:8px; font-size:0.82rem; font-weight:500; cursor:pointer; border:1px solid var(--border2); background:transparent; color:var(--muted); font-family:'Outfit',sans-serif; transition:all 0.2s; }
+.tab:hover{border-color:rgba(59,130,246,0.3);color:var(--text);}
+.tab.active{background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.35);color:var(--accent);}
+
+/* GRID */
+.grid-wrap { max-width:1200px; margin:0 auto; padding:0 2rem 3rem; }
+#list { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1rem; }
+.no-results { grid-column:1/-1; text-align:center; padding:4rem 2rem; font-family:'DM Mono',monospace; font-size:0.85rem; color:var(--muted); }
+
+/* CARD */
+.card { background:var(--card); border:1px solid var(--border2); border-radius:16px; padding:1.5rem; opacity:0; transform:translateY(20px); transition:opacity 0.45s ease,transform 0.45s ease,border-color 0.25s,box-shadow 0.25s; position:relative; overflow:hidden; }
+.card::after { content:''; position:absolute; top:0;left:0;right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(59,130,246,0.3),transparent); opacity:0; transition:opacity 0.3s; }
+.card:hover::after{opacity:1;}
+.card.vis{opacity:1;transform:none;}
+.card:hover{border-color:rgba(59,130,246,0.2);box-shadow:0 8px 36px rgba(0,0,0,0.35);transform:translateY(-2px);}
+.card-top{display:flex;align-items:flex-start;gap:0.9rem;margin-bottom:1rem;}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border:1px solid rgba(255,255,255,0.07);}
+.card-meta{flex:1;}
+.card-name{font-size:0.97rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:3px;}
+.card-cat{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.card-badge{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;padding:0.2rem 0.6rem;border-radius:99px;flex-shrink:0;}
+.badge-hot{background:rgba(239,68,68,0.12);color:#f87171;border:1px solid rgba(239,68,68,0.2);}
+.badge-new{background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.2);}
+.badge-pop{background:rgba(245,158,11,0.1);color:var(--amber);border:1px solid rgba(245,158,11,0.2);}
+.card-desc{font-size:0.85rem;color:var(--muted);line-height:1.65;margin-bottom:1.1rem;font-weight:400;}
+
+/* Mini star rating on card */
+.card-rating { display:flex; align-items:center; gap:0.4rem; margin-bottom:1.1rem; }
+.stars-mini { display:flex; gap:1px; }
+.star-mini { font-size:0.75rem; color:var(--amber); }
+.star-mini.empty { opacity:0.25; }
+.rating-text { font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--muted); }
+
+/* TIERS */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1.1rem;}
+.tier{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:0.75rem 0.5rem;text-align:center;transition:border-color 0.2s,background 0.2s;}
+.tier:hover{border-color:rgba(59,130,246,0.18);background:rgba(59,130,246,0.04);}
+.tier-label{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.35rem;display:inline-block;padding:0.15rem 0.5rem;border-radius:99px;}
+.tl-basic{background:rgba(100,116,139,0.12);color:#94a3b8;border:1px solid rgba(100,116,139,0.2);}
+.tl-pro{background:rgba(59,130,246,0.1);color:var(--accent);border:1px solid rgba(59,130,246,0.22);}
+.tl-team{background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.25);}
+.tier p{font-size:0.68rem;color:var(--muted);line-height:1.4;margin-top:0.3rem;}
+
+/* CARD ACTIONS */
+.card-actions{display:flex;gap:0.6rem;margin-bottom:0.9rem;}
+.card-actions a{flex:1;text-decoration:none;}
+.cbtn{width:100%;padding:0.65rem 0.5rem;border-radius:9px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem;}
+.cbtn-primary{background:var(--accent);color:#fff;}
+.cbtn-primary:hover{background:#2563eb;box-shadow:0 3px 14px rgba(59,130,246,0.4);transform:translateY(-1px);}
+.cbtn-secondary{background:rgba(255,255,255,0.04);color:var(--text);border:1px solid rgba(255,255,255,0.08);}
+.cbtn-secondary:hover{background:rgba(255,255,255,0.07);}
+
+/* REVIEW TOGGLE */
+.review-toggle { width:100%; padding:0.5rem; background:transparent; border:1px solid rgba(255,255,255,0.07); border-radius:8px; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.08em; color:var(--muted); cursor:pointer; transition:all 0.2s; text-align:center; }
+.review-toggle:hover{border-color:rgba(59,130,246,0.25);color:var(--accent);}
+
+/* REVIEW PANEL */
+.review-panel { display:none; margin-top:0.9rem; border-top:1px solid var(--border2); padding-top:0.9rem; }
+.review-panel.open { display:block; animation:fadeUp 0.3s ease; }
+.review-list { display:flex; flex-direction:column; gap:0.65rem; margin-bottom:0.9rem; }
+.review-item { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:10px; padding:0.75rem 0.9rem; }
+.review-header { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem; flex-wrap:wrap; }
+.reviewer-name { font-size:0.8rem; font-weight:600; color:#fff; }
+.reviewer-date { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted); margin-left:auto; }
+.review-stars { display:flex; gap:1px; }
+.review-star { font-size:0.7rem; color:var(--amber); }
+.review-star.empty { opacity:0.25; }
+.review-text { font-size:0.82rem; color:var(--muted); line-height:1.6; }
+
+/* WRITE REVIEW */
+.write-review h5 { font-size:0.8rem; font-weight:600; color:var(--text); margin-bottom:0.6rem; }
+.star-picker { display:flex; gap:4px; margin-bottom:0.6rem; cursor:pointer; }
+.sp-star { font-size:1.2rem; color:rgba(245,158,11,0.25); transition:color 0.15s; }
+.sp-star.lit { color:var(--amber); }
+.review-inputs { display:flex; flex-direction:column; gap:0.5rem; }
+.review-inputs input,
+.review-inputs textarea {
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:8px;
+  padding:0.6rem 0.8rem; color:var(--text); font-family:'Outfit',sans-serif; font-size:0.82rem;
+  outline:none; transition:border-color 0.2s; resize:none;
+}
+.review-inputs input:focus,
+.review-inputs textarea:focus { border-color:rgba(59,130,246,0.35); }
+.review-inputs input::placeholder,
+.review-inputs textarea::placeholder { color:var(--muted); }
+.submit-review { margin-top:0.5rem; width:100%; padding:0.6rem; border-radius:8px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3); color:var(--accent); font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:600; cursor:pointer; transition:all 0.2s; }
+.submit-review:hover{background:rgba(59,130,246,0.25);}
+.review-success { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--green); text-align:center; padding:0.5rem; display:none; }
+
+/* ── SITE-WIDE REVIEWS SECTION ── */
+.reviews-section { max-width:1200px; margin:0 auto; padding:0 2rem 5rem; position:relative; z-index:5; }
+.section-header { margin-bottom:2rem; }
+.section-eyebrow { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem; }
+.section-title { font-size:clamp(1.6rem,3vw,2.2rem); font-weight:900; letter-spacing:-0.03em; color:#fff; }
+.section-sub { font-size:0.95rem; color:var(--muted); margin-top:0.4rem; }
+
+.reviews-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1rem; margin-bottom:2rem; }
+.site-review { background:var(--card); border:1px solid var(--border2); border-radius:14px; padding:1.4rem; position:relative; overflow:hidden; }
+.site-review::before { content:'"'; position:absolute; top:0.5rem; right:1rem; font-size:4rem; color:rgba(59,130,246,0.08); font-family:Georgia,serif; line-height:1; pointer-events:none; }
+.sr-top { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.8rem; }
+.sr-avatar { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; border:1px solid rgba(255,255,255,0.08); font-weight:700; color:#fff; }
+.sr-info { flex:1; }
+.sr-name { font-size:0.88rem; font-weight:700; color:#fff; }
+.sr-role { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted); letter-spacing:0.06em; }
+.sr-stars { display:flex; gap:2px; margin-bottom:0.6rem; }
+.sr-star { font-size:0.8rem; color:var(--amber); }
+.sr-text { font-size:0.88rem; color:var(--muted); line-height:1.65; }
+.sr-product { margin-top:0.6rem; font-family:'DM Mono',monospace; font-size:0.62rem; color:rgba(59,130,246,0.6); letter-spacing:0.06em; }
+
+.reviews-summary { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2rem; display:flex; align-items:center; gap:3rem; flex-wrap:wrap; }
+.rs-score { text-align:center; flex-shrink:0; }
+.rs-num { font-size:3.5rem; font-weight:900; color:#fff; letter-spacing:-0.05em; line-height:1; }
+.rs-stars { display:flex; gap:3px; justify-content:center; margin:0.4rem 0; }
+.rs-star { font-size:1rem; color:var(--amber); }
+.rs-count { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); letter-spacing:0.08em; }
+.rs-bars { flex:1; min-width:200px; display:flex; flex-direction:column; gap:0.5rem; }
+.rs-bar-row { display:flex; align-items:center; gap:0.8rem; }
+.rs-bar-label { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); white-space:nowrap; width:30px; text-align:right; }
+.rs-bar-track { flex:1; height:6px; background:rgba(255,255,255,0.05); border-radius:99px; overflow:hidden; }
+.rs-bar-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:99px; }
+.rs-bar-pct { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted); width:30px; }
+
+/* WRITE SITE REVIEW */
+.write-site-review { margin-top:2rem; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.8rem; }
+.wsr-title { font-size:1.1rem; font-weight:700; color:#fff; margin-bottom:1.2rem; }
+.wsr-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+.wsr-grid input { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:0.75rem 1rem; color:var(--text); font-family:'Outfit',sans-serif; font-size:0.9rem; outline:none; transition:border-color 0.2s; }
+.wsr-grid input:focus { border-color:rgba(59,130,246,0.35); }
+.wsr-grid input::placeholder { color:var(--muted); }
+.wsr-star-row { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap; }
+.wsr-star-label { font-size:0.85rem; color:var(--muted); }
+.wsr-stars { display:flex; gap:6px; cursor:pointer; }
+.wsr-star { font-size:1.5rem; color:rgba(245,158,11,0.2); transition:color 0.15s; }
+.wsr-star.lit { color:var(--amber); }
+.wsr-textarea { width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:0.75rem 1rem; color:var(--text); font-family:'Outfit',sans-serif; font-size:0.9rem; outline:none; resize:none; transition:border-color 0.2s; margin-bottom:1rem; }
+.wsr-textarea:focus { border-color:rgba(59,130,246,0.35); }
+.wsr-textarea::placeholder { color:var(--muted); }
+.wsr-submit { padding:0.75rem 2rem; background:var(--accent); color:#fff; border:none; border-radius:10px; font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.2s; }
+.wsr-submit:hover{background:#2563eb;box-shadow:0 4px 16px rgba(59,130,246,0.4);transform:translateY(-1px);}
+#wsr-success { display:none; color:var(--green); font-family:'DM Mono',monospace; font-size:0.78rem; margin-top:0.8rem; text-align:center; }
+
+/* FOOTER */
+footer { background:var(--surface); border-top:1px solid var(--border2); padding:2.5rem 2rem; position:relative; z-index:5; }
+.footer-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+.footer-logo { font-size:1rem; font-weight:900; color:#fff; letter-spacing:-0.03em; }
+.footer-logo span { color:var(--accent); }
+.footer-links { display:flex; gap:2rem; flex-wrap:wrap; }
+.footer-links a { font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.08em; color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color 0.2s; }
+.footer-links a:hover{color:var(--accent);}
+footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); letter-spacing:0.05em; }
+
+/* KEYFRAMES */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes scan{0%{margin-left:-35%}100%{margin-left:100%}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(59,130,246,0.2);border-radius:10px}
+
+@media(max-width:768px){.hero{grid-template-columns:1fr;padding:3rem 1.5rem 2rem}.hero-right{display:none}}
+@media(max-width:600px){#list{grid-template-columns:1fr}.tiers{grid-template-columns:1fr}.wsr-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
-<!-- ── LOADER ── -->
+<!-- LOADER -->
 <div id="loader">
-  <div class="loader-logo">Vareonl<span>.</span></div>
-  <div class="hex-ring">
-    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M36 4L66 21V51L36 68L6 51V21L36 4Z" stroke="#00e5ff" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.7"/>
-      <path d="M36 14L56 25.5V48.5L36 60L16 48.5V25.5L36 14Z" stroke="rgba(0,229,255,0.25)" stroke-width="1"/>
+  <div class="ldr-logo">Vareonl<span>.</span></div>
+  <div class="ldr-ring">
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+      <circle cx="28" cy="28" r="22" stroke="rgba(59,130,246,0.15)" stroke-width="2"/>
+      <path d="M28 6 A22 22 0 0 1 50 28" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    <div class="hex-inner"></div>
+    <div class="ldr-dot"></div>
   </div>
-  <div class="scan-wrap">
-    <div class="scan-label"><span>Initializing</span><span>System</span></div>
-    <div class="scan-track"><div class="scan-bar"></div></div>
+  <div class="ldr-track">
+    <div class="ldr-label"><span>Loading</span><span>Store</span></div>
+    <div class="ldr-bar-bg"><div class="ldr-bar"></div></div>
   </div>
-  <div class="loader-tagline">Licensed Cybersecurity Tools</div>
+  <div class="ldr-sub">Developer & Productivity Tools</div>
 </div>
 
-<!-- ── NAV ── -->
-<header>
-  <nav>
-    <div class="logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="36" height="36" rx="9" fill="rgba(0,229,255,0.08)"/>
-          <path d="M18 7L29 13V23L18 29L7 23V13L18 7Z" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
-          <path d="M18 12L24 15.5V22.5L18 26L12 22.5V15.5L18 12Z" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1"/>
-          <circle cx="18" cy="18" r="2.5" fill="#00e5ff"/>
-        </svg>
-      </div>
-      <div class="logo-text">Vareonl<span>.</span></div>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-icon">⚡</div>
+      Vareonl<span>.</span>
+    </a>
+    <div class="nav-pills">
+      <span class="nav-pill pill-blue">Verified Licenses</span>
+      <span class="nav-pill pill-green">● Live</span>
     </div>
-    <div class="nav-badge">LICENSED &amp; VERIFIED</div>
-  </nav>
-</header>
+  </div>
+</nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-label">Software Store</div>
-  <h1>Professional<br><em>Security Tools</em></h1>
-  <p>Licensed cybersecurity software, ethical hacking utilities, and security packages. Fast delivery, genuine licenses, full support.</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">40+</span>
-      <span class="stat-label">Tools Available</span>
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span> Vareonl Software Store</div>
+    <h1>The <span class="grad">Dev Tools</span><br>You Actually Need</h1>
+    <p class="hero-desc">Genuine licenses for IDEs, AI coding assistants, project management, design tools, and everything in between. Instant delivery, 24/7 support.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn btn-blue">Browse Tools ↓</a>
+      <a href="https://t.me/" target="_blank" class="btn btn-ghost">💬 Contact Us</a>
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num">3</span>
-      <span class="stat-label">License Tiers</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num">24/7</span>
-      <span class="stat-label">Support</span>
+    <div class="hero-stats">
+      <div><div class="hstat-num">50+</div><div class="hstat-label">Tools</div></div>
+      <div><div class="hstat-num">3</div><div class="hstat-label">License Tiers</div></div>
+      <div><div class="hstat-num">24/7</div><div class="hstat-label">Support</div></div>
+      <div><div class="hstat-num">⚡</div><div class="hstat-label">Fast Delivery</div></div>
     </div>
   </div>
-</div>
-
-<!-- ── MAIN ── -->
-<div class="container">
-  <div class="search-section">
-    <div class="search-top">
-      <strong id="greet"></strong>
-    </div>
-    <div class="search-wrapper">
-      <div class="search-input-wrap">
-        <span class="search-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        </span>
-        <input id="q" placeholder="Search any product or tool…">
+  <div class="hero-right">
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dot td-red"></div><div class="term-dot td-yellow"></div><div class="term-dot td-green"></div>
+        <span class="term-title">vareonl ~ license-manager</span>
       </div>
-      <div id="suggestions" class="suggestions"></div>
+      <div class="term-body">
+        <div><span class="t-muted">$</span> <span class="t-blue">vareonl</span> <span class="t-cyan">license</span> --check</div>
+        <div><span class="t-muted">›</span> <span class="t-green">✓</span> JetBrains All Products Pack</div>
+        <div><span class="t-muted">›</span> <span class="t-green">✓</span> GitHub Copilot Business</div>
+        <div><span class="t-muted">›</span> <span class="t-green">✓</span> Figma Professional</div>
+        <div><span class="t-muted">›</span> <span class="t-amber">⟳</span> Linear Team Plan</div>
+        <div>&nbsp;</div>
+        <div><span class="t-muted">$</span> <span class="t-blue">vareonl</span> <span class="t-cyan">buy</span> notion-business</div>
+        <div><span class="t-muted">›</span> <span class="t-green">✓</span> <span class="t-white">License delivered instantly</span></div>
+        <div>&nbsp;</div>
+        <div><span class="t-muted">$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div id="products" class="search-wrap">
+  <div class="search-box">
+    <div class="search-inner">
+      <span class="search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input id="q" placeholder="Search anything — tools, IDEs, AI, design…" autocomplete="off">
+      <span class="search-count" id="countLabel"></span>
+    </div>
+  </div>
+  <div id="suggestions" class="suggestions"></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap" id="tabs"></div>
+
+<!-- GRID -->
+<div class="grid-wrap"><div id="list"></div></div>
+
+<!-- SITE REVIEWS -->
+<div class="reviews-section" id="reviews">
+  <div class="section-header">
+    <div class="section-eyebrow"><span class="eyebrow-dot"></span> Customer Reviews</div>
+    <div class="section-title">What Our Customers Say</div>
+    <div class="section-sub">Trusted by developers and teams around the world</div>
+  </div>
+
+  <div class="reviews-summary">
+    <div class="rs-score">
+      <div class="rs-num">4.9</div>
+      <div class="rs-stars">
+        <span class="rs-star">★</span><span class="rs-star">★</span><span class="rs-star">★</span><span class="rs-star">★</span><span class="rs-star">★</span>
+      </div>
+      <div class="rs-count" id="totalReviewCount">Based on 12 reviews</div>
+    </div>
+    <div class="rs-bars" id="ratingBars">
+      <div class="rs-bar-row"><span class="rs-bar-label">5★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:85%"></div></div><span class="rs-bar-pct">85%</span></div>
+      <div class="rs-bar-row"><span class="rs-bar-label">4★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:10%"></div></div><span class="rs-bar-pct">10%</span></div>
+      <div class="rs-bar-row"><span class="rs-bar-label">3★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:5%"></div></div><span class="rs-bar-pct">5%</span></div>
+      <div class="rs-bar-row"><span class="rs-bar-label">2★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:0%"></div></div><span class="rs-bar-pct">0%</span></div>
+      <div class="rs-bar-row"><span class="rs-bar-label">1★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:0%"></div></div><span class="rs-bar-pct">0%</span></div>
     </div>
   </div>
 
-  <div id="list"></div>
+  <div class="reviews-grid" id="siteReviewsGrid" style="margin-top:1.5rem"></div>
+
+  <div class="write-site-review">
+    <div class="wsr-title">✍️ Leave a Review</div>
+    <div class="wsr-grid">
+      <input id="wsr-name" placeholder="Your name" maxlength="40">
+      <input id="wsr-role" placeholder="Your role (e.g. Full-Stack Dev)" maxlength="50">
+    </div>
+    <div class="wsr-star-row">
+      <span class="wsr-star-label">Your rating:</span>
+      <div class="wsr-stars" id="wsrStars">
+        <span class="wsr-star" data-v="1">★</span>
+        <span class="wsr-star" data-v="2">★</span>
+        <span class="wsr-star" data-v="3">★</span>
+        <span class="wsr-star" data-v="4">★</span>
+        <span class="wsr-star" data-v="5">★</span>
+      </div>
+    </div>
+    <textarea id="wsr-text" class="wsr-textarea" rows="3" placeholder="Share your experience with Vareonl Software Store…" maxlength="300"></textarea>
+    <button class="wsr-submit" onclick="submitSiteReview()">Submit Review</button>
+    <div id="wsr-success">✓ Thank you! Your review has been added.</div>
+  </div>
 </div>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">Vareonl<span>.</span></div>
-    <p>© 2026 Vareonl Software Store · All tools are package-based & supported</p>
+    <div class="footer-links">
+      <a href="https://t.me/" target="_blank">Telegram</a>
+      <a href="https://wa.me/" target="_blank">WhatsApp</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#products">Store</a>
+    </div>
+    <p>© 2026 Vareonl Software Store · All licenses are genuine</p>
   </div>
 </footer>
 
 <script>
-const greetings = [
-  "// Welcome 👋 Explore our software packages below.",
-  "// Hello! Every product comes with Basic, Standard & Premium.",
-  "// Search freely — all requests are supported.",
-  "// You're in the right place. Browse or search any tool."
-];
-document.getElementById("greet").innerText = greetings[Math.floor(Math.random() * greetings.length)];
-
-const icons = ["🔐","🛡️","⚡","🔍","🌐","🔗","📡","🧠","💎","🔬","🛰️","⚙️"];
-
+// ── DATA ──
 const products = [
-  "Phishing & Incident Response","Phishing Simulation","Incident Playbook Engine","Blockchain Analysis","Crypto Access 2.0","Chainalysis Reactor","Elliptic Navigator","CipherTrace Inspector","Confirm AML Platform","BitScan Explorer","TRM Labs Suite","OXT Explorer","CoinPath Forensics","Blockseer Analytics","Blockchain Forensics SDKs & APIs","Crystal Blockchain","Chain Analysis Lite","Network Tools","SpyVport 8.5","TermConnectX","ServerRootPlus","NetBypass Pro","RootShell Master","VPNGhost 6.0","NetFlow Analyzer","Packet Capture Pro","Certificate Manager","DNS Monitor","CrackSuits Pro (Authorized Pentest Suite)","CloneChatX","Email Password Cracker","Remote Access Tools","MultiCrack Elite","Credential Strength Tester","IP Insights","Social Media Scanner","Password Checkers","Decompiler Tool","Data Encryptor","Malware Scanner","Brute Force Tool","Credential Stealers","Vulnerability Scan Suite","Web App Scanner"
+  {name:"JetBrains All Products Pack",cat:"IDE",icon:"🧠",badge:"hot",desc:"Full suite: IntelliJ, WebStorm, PyCharm, DataGrip & more.",rating:5.0,reviews:[
+    {user:"Alex M.",stars:5,text:"Saved hours every single day. License arrived in minutes — totally worth it."},
+    {user:"Sara K.",stars:5,text:"Legit license, super fast delivery. This is my third purchase from Vareonl and still flawless."},
+    {user:"Dev O.",stars:5,text:"Got the full pack for my team. All 6 seats activated instantly. Excellent service."},
+  ]},
+  {name:"Visual Studio Code Extensions Bundle",cat:"IDE",icon:"💙",badge:"pop",desc:"Premium extension pack + Copilot integration for supercharged VS Code.",rating:4.9,reviews:[
+    {user:"James T.",stars:5,text:"Extensions all installed perfectly. The Copilot integration alone makes this worth it."},
+    {user:"Priya N.",stars:5,text:"Huge productivity boost. Every extension in the bundle worked on first try."},
+  ]},
+  {name:"JetBrains IntelliJ IDEA Ultimate",cat:"IDE",icon:"☕",badge:null,desc:"The most intelligent Java & Kotlin IDE with profiler and database tools.",rating:5.0,reviews:[
+    {user:"Mia R.",stars:5,text:"Best Java IDE on the market, full stop. License was genuine and activated instantly."},
+    {user:"Carlos B.",stars:5,text:"I've been using IntelliJ for years. Getting it through Vareonl saved me a lot compared to buying direct."},
+    {user:"Kenji A.",stars:5,text:"Verified license, smooth activation. No issues whatsoever."},
+  ]},
+  {name:"WebStorm License",cat:"IDE",icon:"🌐",badge:null,desc:"Smart JavaScript IDE with deep support for React, Vue, Angular, Node.js.",rating:4.9,reviews:[
+    {user:"Ola F.",stars:5,text:"WebStorm is incredible for React development. License came through Telegram in under 5 minutes."},
+    {user:"Nina P.",stars:5,text:"Great price and legit key. Support was helpful when I had an activation question."},
+  ]},
+  {name:"PyCharm Professional",cat:"IDE",icon:"🐍",badge:"new",desc:"Full-featured Python IDE with data science tools and Django support.",rating:5.0,reviews:[
+    {user:"Dev K.",stars:5,text:"Perfect for my Django projects. Activated without a hitch, and the data science tools are fantastic."},
+    {user:"Amara S.",stars:5,text:"The debugger alone makes it worth every penny. Vareonl delivered fast."},
+    {user:"Raj M.",stars:5,text:"Much cheaper than JetBrains direct. License is 100% genuine."},
+  ]},
+  {name:"Rider .NET IDE",cat:"IDE",icon:"🔷",badge:null,desc:"Fast cross-platform .NET IDE with ReSharper built-in.",rating:4.9,reviews:[
+    {user:"Tom W.",stars:5,text:"Finally a proper .NET IDE on macOS. License was instant and genuine."},
+    {user:"Lena G.",stars:5,text:"Replaced Visual Studio for me. Runs faster and the license from Vareonl worked perfectly."},
+  ]},
+  {name:"GitHub Copilot Business",cat:"AI Assistant",icon:"🤖",badge:"hot",desc:"AI pair programmer suggesting whole lines and functions in your editor.",rating:5.0,reviews:[
+    {user:"Liam P.",stars:5,text:"Game changer. I write code at least 3x faster now. Best purchase of the year."},
+    {user:"Zoe A.",stars:5,text:"Worth every penny. Suggestions are accurate and it learns your style quickly."},
+    {user:"Marcus E.",stars:5,text:"Entire team is using it now. License setup was painless through Vareonl."},
+    {user:"Fatima H.",stars:5,text:"I was skeptical but this genuinely changes how you code. Can't go back."},
+  ]},
+  {name:"Tabnine Pro",cat:"AI Assistant",icon:"⚡",badge:null,desc:"Privacy-first AI completion that learns your codebase.",rating:4.9,reviews:[
+    {user:"Owen R.",stars:5,text:"Love that it works locally. Great for teams that can't send code to the cloud."},
+    {user:"Sonia L.",stars:5,text:"Fast completions, privacy-focused, and the license from Vareonl was legitimate."},
+  ]},
+  {name:"Cursor Pro",cat:"AI Assistant",icon:"🎯",badge:"new",desc:"AI-first code editor — edit entire files with natural language.",rating:5.0,reviews:[
+    {user:"Noah B.",stars:5,text:"Cursor is genuinely the future of coding. I refactored an entire module in 10 minutes."},
+    {user:"Isabel C.",stars:5,text:"The natural language edits are mind-blowing. Vareonl got me the Pro license quickly."},
+    {user:"Yusuf D.",stars:5,text:"Switched from VS Code and never looked back. The AI chat understands context perfectly."},
+  ]},
+  {name:"Codeium Enterprise",cat:"AI Assistant",icon:"🌟",badge:null,desc:"Unlimited AI completions with no data retention.",rating:4.9,reviews:[
+    {user:"Grace T.",stars:5,text:"Our company needed something with no data retention. Codeium Enterprise ticks every box."},
+    {user:"Arjun V.",stars:5,text:"Unlimited completions and it's fast. Great value, license delivered quickly."},
+  ]},
+  {name:"Figma Professional",cat:"Design",icon:"🎨",badge:"pop",desc:"Collaborative UI/UX design with unlimited projects and prototyping.",rating:5.0,reviews:[
+    {user:"Ella S.",stars:5,text:"My entire design team uses Figma daily. Vareonl made getting licenses for everyone easy."},
+    {user:"Diana K.",stars:5,text:"Unlimited projects is the feature that sold me. License was genuine and activated instantly."},
+    {user:"Felix J.",stars:5,text:"Smooth purchase, smooth activation. Figma Pro is essential for any designer."},
+  ]},
+  {name:"Sketch for Teams",cat:"Design",icon:"💎",badge:null,desc:"Mac-native design with shared libraries and developer handoff.",rating:4.9,reviews:[
+    {user:"Hana M.",stars:5,text:"Shared libraries transformed our design workflow. License from Vareonl was instant."},
+    {user:"Leo B.",stars:5,text:"Best Mac design tool and the team plan is great value through Vareonl."},
+  ]},
+  {name:"Adobe Creative Cloud All Apps",cat:"Design",icon:"🅰️",badge:"hot",desc:"Full Adobe suite: Photoshop, Illustrator, XD, Premiere, After Effects & more.",rating:5.0,reviews:[
+    {user:"Chris N.",stars:5,text:"All apps in one license and it's genuine. Saved a huge amount vs buying from Adobe directly."},
+    {user:"Sofia R.",stars:5,text:"Premiere, Photoshop, Illustrator — all activated. Support helped me through setup."},
+    {user:"Ben A.",stars:5,text:"Best deal I've found for Creative Cloud. Vareonl delivered and it all works."},
+    {user:"Mei L.",stars:5,text:"Third time buying here. Always reliable, always fast."},
+  ]},
+  {name:"Framer Pro",cat:"Design",icon:"🖼️",badge:"new",desc:"Design and publish production websites with animations and CMS.",rating:4.9,reviews:[
+    {user:"Kai S.",stars:5,text:"Built my portfolio in Framer in a weekend. The Pro features are absolutely worth it."},
+    {user:"Nora F.",stars:5,text:"CMS and animations in one tool is incredible. License from Vareonl activated perfectly."},
+  ]},
+  {name:"Linear Team Plan",cat:"Project Mgmt",icon:"📐",badge:"pop",desc:"Beautifully fast issue tracker with cycles, roadmaps, and git sync.",rating:5.0,reviews:[
+    {user:"Tom H.",stars:5,text:"Best PM tool we've ever tried as a team. Cycles and git sync are game-changing."},
+    {user:"Rachel D.",stars:5,text:"Switched from Jira and never looked back. License was set up and working same day."},
+    {user:"Sam O.",stars:5,text:"The speed of Linear alone is worth it. Everything feels instant."},
+  ]},
+  {name:"Notion Business",cat:"Project Mgmt",icon:"📓",badge:null,desc:"All-in-one workspace with notes, wikis, databases, and AI.",rating:4.9,reviews:[
+    {user:"Ivy C.",stars:5,text:"Replaced 5 tools with Notion. The AI features in Business plan are excellent."},
+    {user:"Marcus P.",stars:5,text:"Our whole company runs on Notion now. License was smooth and fast through Vareonl."},
+  ]},
+  {name:"Jira Software Premium",cat:"Project Mgmt",icon:"🔵",badge:null,desc:"Advanced Scrum/Kanban boards, roadmaps, and capacity planning.",rating:4.9,reviews:[
+    {user:"Olga T.",stars:5,text:"Advanced roadmaps alone justify the Premium plan. License worked on first activation."},
+    {user:"Derek S.",stars:5,text:"Our enterprise team needed Jira Premium. Vareonl delivered quickly and it's legitimate."},
+    {user:"Aisha B.",stars:5,text:"Capacity planning features are excellent. Smooth purchase experience."},
+  ]},
+  {name:"Asana Business",cat:"Project Mgmt",icon:"📋",badge:null,desc:"Work management with timelines, portfolios, and reporting.",rating:4.9,reviews:[
+    {user:"Paul N.",stars:5,text:"Portfolios and timelines make it easy to manage multiple projects. License was instant."},
+    {user:"Chloe M.",stars:5,text:"Our marketing team lives in Asana. Business plan features are exactly what we needed."},
+  ]},
+  {name:"ClickUp Business Plus",cat:"Project Mgmt",icon:"✅",badge:null,desc:"One app for tasks, docs, goals, chat, whiteboards and time tracking.",rating:4.9,reviews:[
+    {user:"Ethan R.",stars:5,text:"Replaced Notion, Jira, and Slack for us. The Business Plus plan has everything."},
+    {user:"Luna V.",stars:5,text:"Time tracking and goals in one place is amazing. License from Vareonl was legitimate."},
+    {user:"Joel K.",stars:5,text:"Great value through Vareonl. Setup was quick and everything activated correctly."},
+  ]},
+  {name:"GitHub Teams",cat:"DevOps",icon:"🐙",badge:null,desc:"Unlimited private repos, Actions minutes, and code review tools.",rating:5.0,reviews:[
+    {user:"Anna W.",stars:5,text:"Essential for any dev team. The Actions minutes and code review tools are top-tier."},
+    {user:"Riku T.",stars:5,text:"Every project starts with GitHub Teams now. License setup was effortless."},
+    {user:"Elena P.",stars:5,text:"Reliable, fast delivery of a genuine license. Couldn't ask for more."},
+  ]},
+  {name:"GitLab Premium",cat:"DevOps",icon:"🦊",badge:null,desc:"Complete DevSecOps platform with CI/CD and security scanning.",rating:4.9,reviews:[
+    {user:"Henrik B.",stars:5,text:"We moved from GitHub to GitLab for the CI/CD. Premium tier is brilliant."},
+    {user:"Amina D.",stars:5,text:"Security scanning and merge controls are exactly what our team needed. License instant."},
+  ]},
+  {name:"Vercel Pro",cat:"DevOps",icon:"▲",badge:"pop",desc:"Frontend cloud with instant deploys, edge functions, and analytics.",rating:5.0,reviews:[
+    {user:"Jake L.",stars:5,text:"Deploy in seconds. Edge functions are blazing fast. Best frontend platform by far."},
+    {user:"Talia S.",stars:5,text:"My entire Next.js stack lives on Vercel. Pro features are essential. Vareonl delivered fast."},
+    {user:"Mateo G.",stars:5,text:"Analytics and instant rollbacks make deployments stress-free. Worth every cent."},
+  ]},
+  {name:"Railway Pro",cat:"DevOps",icon:"🚂",badge:"new",desc:"Deploy any app instantly with Postgres, Redis, and auto-scaling.",rating:4.9,reviews:[
+    {user:"Hina Y.",stars:5,text:"Spun up a full-stack app with Postgres in under 10 minutes. Railway Pro is incredible."},
+    {user:"Ben C.",stars:5,text:"Auto-scaling just works. License activated same day, no issues."},
+  ]},
+  {name:"DataDog Pro",cat:"DevOps",icon:"📊",badge:null,desc:"Full-stack monitoring: APM, logs, metrics, alerts, 450+ integrations.",rating:4.9,reviews:[
+    {user:"Vera M.",stars:5,text:"450+ integrations and our entire stack is monitored perfectly. License was genuine."},
+    {user:"Oscar J.",stars:5,text:"APM caught a performance bottleneck within hours of setup. Vareonl delivered quickly."},
+    {user:"Nadia R.",stars:5,text:"Best observability platform we've used. Smooth purchase experience."},
+  ]},
+  {name:"1Password Teams",cat:"Productivity",icon:"🔑",badge:null,desc:"Secure password management with shared vaults and admin controls.",rating:5.0,reviews:[
+    {user:"Maya C.",stars:5,text:"Security essential for every team. Shared vaults and admin controls are excellent."},
+    {user:"James O.",stars:5,text:"Travel Mode is a genius feature. License activated instantly and everything works."},
+    {user:"Petra L.",stars:5,text:"Our whole company switched to 1Password. Getting licenses through Vareonl was easy."},
+  ]},
+  {name:"Grammarly Business",cat:"Productivity",icon:"✏️",badge:null,desc:"AI writing assistant with tone suggestions and clarity improvements.",rating:4.9,reviews:[
+    {user:"Sandra K.",stars:5,text:"Tone suggestions changed how I write emails. Business plan for the whole team is great."},
+    {user:"Ali H.",stars:5,text:"Catches things spell-check never would. License from Vareonl was fast and legit."},
+  ]},
+  {name:"Loom Business",cat:"Productivity",icon:"🎬",badge:"new",desc:"Async video messages with AI transcripts and summaries.",rating:5.0,reviews:[
+    {user:"Rita A.",stars:5,text:"Cut our meetings in half. AI summaries are surprisingly accurate."},
+    {user:"Chris V.",stars:5,text:"Async-first workflow is the future. Loom Business makes it effortless. License instant."},
+    {user:"Mei W.",stars:5,text:"Transcripts save so much time when reviewing recordings. Excellent product."},
+  ]},
+  {name:"Slack Pro",cat:"Productivity",icon:"💬",badge:null,desc:"Full message history, unlimited integrations, and group calls.",rating:4.9,reviews:[
+    {user:"Dani F.",stars:5,text:"Full message history is crucial for us. License activated perfectly."},
+    {user:"Lucas T.",stars:5,text:"Unlimited integrations let us connect everything to Slack. Vareonl delivered fast."},
+  ]},
+  {name:"Zoom Pro",cat:"Productivity",icon:"📹",badge:null,desc:"HD meetings up to 30 hours, cloud recording, and transcripts.",rating:4.9,reviews:[
+    {user:"Penny S.",stars:5,text:"30-hour limit is more than enough. Cloud recordings with transcripts are very useful."},
+    {user:"Victor N.",stars:5,text:"Reliable, HD quality every call. License from Vareonl was smooth and legitimate."},
+    {user:"Kira J.",stars:5,text:"Our client calls use Zoom Pro exclusively. Great product, fast delivery."},
+  ]},
+  {name:"Raycast Pro",cat:"Productivity",icon:"🚀",badge:"pop",desc:"Supercharged Mac launcher with AI, snippets, and 1000+ extensions.",rating:5.0,reviews:[
+    {user:"Finn O.",stars:5,text:"Replaced 4 apps with Raycast Pro. The AI commands are genuinely useful, not gimmicky."},
+    {user:"Cora B.",stars:5,text:"Window management alone is worth it. 1000+ extensions means there's something for everything."},
+    {user:"Haruto S.",stars:5,text:"The fastest launcher I've ever used. License from Vareonl activated first time."},
+  ]},
+  {name:"DataGrip License",cat:"Database",icon:"🗄️",badge:null,desc:"Multi-engine database IDE for PostgreSQL, MySQL, MongoDB, Redis.",rating:4.9,reviews:[
+    {user:"Niko B.",stars:5,text:"Query console is incredibly smart. Works with every database we use. License instant."},
+    {user:"Astra L.",stars:5,text:"Replaced 3 separate DB tools with DataGrip. Vareonl delivered a genuine license."},
+  ]},
+  {name:"TablePlus Pro",cat:"Database",icon:"🧮",badge:null,desc:"Modern native client for relational databases with clean UI.",rating:4.9,reviews:[
+    {user:"Will F.",stars:5,text:"Cleanest database UI I've used. Filters and export tools save hours every week."},
+    {user:"Tae K.",stars:5,text:"Switched from Sequel Pro and it's so much better. License from Vareonl worked perfectly."},
+    {user:"Mara E.",stars:5,text:"Native performance makes it feel snappy. Great purchase experience."},
+  ]},
+  {name:"MongoDB Atlas Pro",cat:"Database",icon:"🍃",badge:null,desc:"Fully managed cloud database with global clusters and Atlas Search.",rating:5.0,reviews:[
+    {user:"Sol G.",stars:5,text:"Global clusters scaled without any effort from our side. Atlas Search is powerful."},
+    {user:"Bea C.",stars:5,text:"Fully managed means I never think about the DB. Pro plan features are excellent."},
+  ]},
+  {name:"Postman Professional",cat:"Testing",icon:"📮",badge:null,desc:"API platform for design, testing, docs, and monitoring with mock servers.",rating:5.0,reviews:[
+    {user:"Rita J.",stars:5,text:"Perfect for API testing. Mock servers saved our team weeks of backend waiting time."},
+    {user:"Enzo P.",stars:5,text:"Documentation generation is brilliant. License from Vareonl was instant."},
+    {user:"Laila K.",stars:5,text:"Our whole API lifecycle lives in Postman now. Professional plan is worth it."},
+  ]},
+  {name:"BrowserStack Automate",cat:"Testing",icon:"🧪",badge:null,desc:"Cloud testing with Selenium, Cypress, and Playwright on 3000+ devices.",rating:4.9,reviews:[
+    {user:"Finn A.",stars:5,text:"3000+ real devices is no joke. Our cross-browser coverage went from 20% to 100%."},
+    {user:"Demi T.",stars:5,text:"Playwright integration was seamless. License delivered quickly, everything worked."},
+  ]},
+  {name:"Sentry Business",cat:"Testing",icon:"🐛",badge:"pop",desc:"Error tracking, performance monitoring, and session replay.",rating:5.0,reviews:[
+    {user:"Igor S.",stars:5,text:"Session replay caught a UX bug in 10 minutes that had been reported for months."},
+    {user:"Nour A.",stars:5,text:"Error grouping is smart and the alerts are timely. Business plan is excellent value."},
+    {user:"Theo M.",stars:5,text:"We use Sentry across 8 projects. Vareonl made getting the Business plan easy."},
+  ]},
 ];
 
-function createCard(name) {
-  const icon = icons[Math.floor(Math.random() * icons.length)];
+// ── SITE REVIEWS ──
+let siteReviews = [
+  {name:"Alex M.",role:"Senior Backend Dev",stars:5,text:"Vareonl is my go-to for software licenses. Fast delivery, legit keys, and the support team responds in minutes.",product:"JetBrains All Products Pack",avatar:"A",color:"#3b82f6"},
+  {name:"Sara K.",role:"UI/UX Designer",stars:5,text:"Bought Figma Pro and Adobe CC here. Both licenses worked instantly. Couldn't be happier with the service.",product:"Figma Professional",avatar:"S",color:"#ec4899"},
+  {name:"James T.",role:"Full-Stack Developer",stars:5,text:"Was skeptical at first but everything checked out. Prices are great and the process is super smooth.",product:"GitHub Copilot Business",avatar:"J",color:"#22c55e"},
+  {name:"Mia R.",role:"Python Developer",stars:5,text:"Third purchase here. Never had an issue. The team on Telegram is incredibly responsive.",product:"PyCharm Professional",avatar:"M",color:"#f59e0b"},
+  {name:"Liam P.",role:"DevOps Engineer",stars:5,text:"Got Vercel Pro and Railway. Both working great. Will definitely be back for more.",product:"Vercel Pro",avatar:"L",color:"#8b5cf6"},
+  {name:"Zoe A.",role:"Indie Developer",stars:4,text:"Great experience overall. Delivery was quick and prices beat everything I found elsewhere.",product:"Cursor Pro",avatar:"Z",color:"#06b6d4"},
+];
+
+let wsrRating = 0;
+
+// ── HELPERS ──
+function starsHTML(r, cls='star-mini', emptyCls='empty') {
+  let h = '';
+  for(let i=1;i<=5;i++) h += `<span class="${cls}${i<=Math.round(r)?'':' '+emptyCls}">★</span>`;
+  return h;
+}
+
+const iconBg = {
+  "IDE":"linear-gradient(135deg,rgba(59,130,246,0.2),rgba(99,102,241,0.15))",
+  "AI Assistant":"linear-gradient(135deg,rgba(139,92,246,0.2),rgba(59,130,246,0.15))",
+  "Design":"linear-gradient(135deg,rgba(236,72,153,0.18),rgba(245,158,11,0.12))",
+  "Project Mgmt":"linear-gradient(135deg,rgba(6,182,212,0.18),rgba(59,130,246,0.12))",
+  "DevOps":"linear-gradient(135deg,rgba(34,197,94,0.15),rgba(6,182,212,0.12))",
+  "Productivity":"linear-gradient(135deg,rgba(245,158,11,0.15),rgba(239,68,68,0.1))",
+  "Database":"linear-gradient(135deg,rgba(99,102,241,0.18),rgba(139,92,246,0.12))",
+  "Testing":"linear-gradient(135deg,rgba(239,68,68,0.15),rgba(245,158,11,0.12))",
+};
+
+function tierDesc(cat) {
+  const m = {
+    "IDE":["1 user · 1yr","1 user · 2yr","5 users · 3yr"],
+    "AI Assistant":["Solo · monthly","Pro · annual","Team · annual"],
+    "Design":["Starter","Professional","Organization"],
+    "Project Mgmt":["Free tier+","Business","Enterprise"],
+    "DevOps":["Solo","Team","Business"],
+    "Productivity":["Individual","Team","Business"],
+    "Database":["Personal","Professional","Enterprise"],
+    "Testing":["Starter","Business","Enterprise"],
+  };
+  return m[cat]||["Basic","Standard","Premium"];
+}
+
+function badgeHTML(b){
+  if(!b) return '';
+  const map={hot:'badge-hot',new:'badge-new',pop:'badge-pop'};
+  const txt=b==='pop'?'Popular':b.charAt(0).toUpperCase()+b.slice(1);
+  return `<span class="card-badge ${map[b]}">${txt}</span>`;
+}
+
+function createCard(p, idx) {
+  const bg = iconBg[p.cat]||"linear-gradient(135deg,rgba(59,130,246,0.15),rgba(6,182,212,0.1))";
+  const tiers = tierDesc(p.cat);
+  const revCount = p.reviews.length;
+  const reviewsHTML = p.reviews.map(r=>`
+    <div class="review-item">
+      <div class="review-header">
+        <span class="reviewer-name">${r.user}</span>
+        <div class="review-stars">${starsHTML(r.stars,'review-star','empty')}</div>
+        <span class="reviewer-date">Verified</span>
+      </div>
+      <div class="review-text">${r.text}</div>
+    </div>`).join('');
+
   return `
-    <div class="product">
-      <div class="product-header">
-        <div class="product-icon">${icon}</div>
-        <h3>${name}</h3>
+  <div class="card" id="card-${idx}">
+    <div class="card-top">
+      <div class="card-icon" style="background:${bg}">${p.icon}</div>
+      <div class="card-meta">
+        <div class="card-name">${p.name}</div>
+        <div class="card-cat">${p.cat}</div>
       </div>
-      <div class="tiers">
-        <div class="tier">
-          <span class="badge basic">Basic</span>
-          <p>Entry-level package with guided usage.</p>
+      ${badgeHTML(p.badge)}
+    </div>
+    <p class="card-desc">${p.desc}</p>
+    <div class="card-rating">
+      <div class="stars-mini">${starsHTML(p.rating)}</div>
+      <span class="rating-text">${p.rating} · ${revCount} review${revCount!==1?'s':''}</span>
+    </div>
+    <div class="tiers">
+      <div class="tier"><span class="tier-label tl-basic">Basic</span><p>${tiers[0]}</p></div>
+      <div class="tier"><span class="tier-label tl-pro">Pro</span><p>${tiers[1]}</p></div>
+      <div class="tier"><span class="tier-label tl-team">Team</span><p>${tiers[2]}</p></div>
+    </div>
+    <div class="card-actions">
+      <a href="https://t.me/" target="_blank"><button class="cbtn cbtn-primary">💬 Telegram</button></a>
+      <a href="https://wa.me/" target="_blank"><button class="cbtn cbtn-secondary">WhatsApp</button></a>
+    </div>
+    <button class="review-toggle" onclick="toggleReviews(${idx})">▾ Reviews (${revCount})</button>
+    <div class="review-panel" id="rp-${idx}">
+      <div class="review-list" id="rl-${idx}">${reviewsHTML}</div>
+      <div class="write-review">
+        <h5>Write a Review</h5>
+        <div class="star-picker" id="sp-${idx}" data-val="0">
+          <span class="sp-star" data-i="1">★</span><span class="sp-star" data-i="2">★</span>
+          <span class="sp-star" data-i="3">★</span><span class="sp-star" data-i="4">★</span>
+          <span class="sp-star" data-i="5">★</span>
         </div>
-        <div class="tier">
-          <span class="badge standard">Standard</span>
-          <p>Expanded features, broader coverage.</p>
+        <div class="review-inputs">
+          <input placeholder="Your name" id="rn-${idx}" maxlength="30">
+          <textarea rows="2" placeholder="Share your experience…" id="rt-${idx}" maxlength="200"></textarea>
         </div>
-        <div class="tier">
-          <span class="badge premium">Premium</span>
-          <p>Full capability with customization.</p>
-        </div>
+        <button class="submit-review" onclick="submitReview(${idx})">Submit</button>
+        <div class="review-success" id="rs-${idx}">✓ Review added!</div>
       </div>
-      <div class="actions">
-        <a href="https://t.me/vareonl" target="_blank"><button class="btn-primary">Telegram</button></a>
-        <a href="https://wa.me/18124161451" target="_blank"><button class="btn-secondary">WhatsApp</button></a>
-      </div>
-    </div>`;
+    </div>
+  </div>`;
 }
 
-function render(list) {
-  document.getElementById("list").innerHTML = list.map(createCard).join("");
-  animate();
+// ── TOGGLE REVIEW PANEL ──
+function toggleReviews(idx) {
+  const panel = document.getElementById(`rp-${idx}`);
+  panel.classList.toggle('open');
+  const btn = panel.previousElementSibling;
+  btn.textContent = panel.classList.contains('open') ? '▴ Hide Reviews' : `▾ Reviews (${products[idx].reviews.length})`;
 }
 
-function animate() {
-  document.querySelectorAll(".product").forEach((el, i) => {
-    setTimeout(() => el.classList.add("visible"), i * 40);
+// ── STAR PICKERS (card) ──
+document.addEventListener('click', e => {
+  const star = e.target.closest('.sp-star');
+  if(!star) return;
+  const picker = star.closest('.star-picker');
+  const val = parseInt(star.dataset.i);
+  picker.dataset.val = val;
+  picker.querySelectorAll('.sp-star').forEach((s,i) => s.classList.toggle('lit', i<val));
+});
+
+// ── SUBMIT CARD REVIEW ──
+function submitReview(idx) {
+  const picker = document.getElementById(`sp-${idx}`);
+  const name = document.getElementById(`rn-${idx}`).value.trim();
+  const text = document.getElementById(`rt-${idx}`).value.trim();
+  const stars = parseInt(picker.dataset.val)||0;
+  if(!name||!text||!stars) return;
+  const rev = {user:name, text, stars};
+  products[idx].reviews.push(rev);
+  const rl = document.getElementById(`rl-${idx}`);
+  rl.insertAdjacentHTML('beforeend',`
+    <div class="review-item" style="animation:fadeUp 0.3s ease">
+      <div class="review-header">
+        <span class="reviewer-name">${name}</span>
+        <div class="review-stars">${starsHTML(stars,'review-star','empty')}</div>
+        <span class="reviewer-date">Just now</span>
+      </div>
+      <div class="review-text">${text}</div>
+    </div>`);
+  document.getElementById(`rs-${idx}`).style.display='block';
+  document.getElementById(`rn-${idx}`).value='';
+  document.getElementById(`rt-${idx}`).value='';
+  picker.querySelectorAll('.sp-star').forEach(s=>s.classList.remove('lit'));
+  picker.dataset.val=0;
+  // update toggle button count
+  const panel = document.getElementById(`rp-${idx}`);
+  panel.previousElementSibling.textContent = `▴ Hide Reviews`;
+}
+
+// ── SITE REVIEWS ──
+function renderSiteReviews() {
+  const grid = document.getElementById('siteReviewsGrid');
+  grid.innerHTML = siteReviews.map(r=>`
+    <div class="site-review">
+      <div class="sr-top">
+        <div class="sr-avatar" style="background:${r.color}20;border-color:${r.color}30">${r.avatar}</div>
+        <div class="sr-info"><div class="sr-name">${r.name}</div><div class="sr-role">${r.role}</div></div>
+      </div>
+      <div class="sr-stars">${starsHTML(r.stars,'sr-star','')}</div>
+      <div class="sr-text">${r.text}</div>
+      <div class="sr-product">// ${r.product}</div>
+    </div>`).join('');
+  document.getElementById('totalReviewCount').textContent = `Based on ${siteReviews.length} reviews`;
+}
+
+// WSR Star picker
+const wsrStars = document.querySelectorAll('.wsr-star');
+wsrStars.forEach(s => {
+  s.addEventListener('mouseenter', () => wsrStars.forEach((x,i) => x.classList.toggle('lit', i<=parseInt(s.dataset.v)-1)));
+  s.addEventListener('mouseleave', () => wsrStars.forEach((x,i) => x.classList.toggle('lit', i<wsrRating)));
+  s.addEventListener('click', () => { wsrRating=parseInt(s.dataset.v); wsrStars.forEach((x,i)=>x.classList.toggle('lit',i<wsrRating)); });
+});
+
+function submitSiteReview() {
+  const name = document.getElementById('wsr-name').value.trim();
+  const role = document.getElementById('wsr-role').value.trim();
+  const text = document.getElementById('wsr-text').value.trim();
+  if(!name||!text||!wsrRating) return;
+  const colors = ['#3b82f6','#22c55e','#ec4899','#f59e0b','#8b5cf6','#06b6d4'];
+  siteReviews.unshift({name, role:role||'Customer', stars:wsrRating, text, product:'Vareonl Store', avatar:name[0].toUpperCase(), color:colors[Math.floor(Math.random()*colors.length)]});
+  renderSiteReviews();
+  document.getElementById('wsr-name').value='';
+  document.getElementById('wsr-role').value='';
+  document.getElementById('wsr-text').value='';
+  wsrRating=0;
+  wsrStars.forEach(s=>s.classList.remove('lit'));
+  const succ = document.getElementById('wsr-success');
+  succ.style.display='block';
+  setTimeout(()=>succ.style.display='none',3000);
+}
+
+// ── SEARCH (fuzzy / broad match) ──
+const categories = ["All", ...new Set(products.map(p=>p.cat))];
+let activeTab="All", query="";
+
+function filtered() {
+  const q = query.toLowerCase().trim();
+  const base = products.filter(p => activeTab==="All" || p.cat===activeTab);
+  if(!q) return base;
+  return base.filter(p =>
+    (p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q)
+  );
+}
+
+function render() {
+  const list = filtered();
+  document.getElementById('countLabel').textContent=`${list.length} tool${list.length!==1?'s':''}`;
+  const display = list.length ? list : products.filter(p => activeTab==="All" || p.cat===activeTab);
+  document.getElementById('list').innerHTML = display.map((p,i)=>createCard(p, products.indexOf(p))).join('');
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.card').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),i*35));
   });
 }
 
-render(products);
-
-const input = document.getElementById("q");
-const suggBox = document.getElementById("suggestions");
-
-input.addEventListener("input", function() {
-  const val = this.value.trim();
-  if (!val) { suggBox.innerHTML = ""; render(products); return; }
-  let matches = products.filter(p => p.toLowerCase().includes(val.toLowerCase()));
-  if (matches.length === 0) matches = [val];
-  suggBox.innerHTML = matches.map(m => `<div class="suggestion" onclick="selectSuggestion('${m.replace(/'/g, "\\'")}')">${m}</div>`).join("");
-  render(matches);
+// ── TABS ──
+const tabsEl = document.getElementById('tabs');
+categories.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='tab'+(c==="All"?' active':'');
+  b.textContent=c;
+  b.onclick=()=>{
+    activeTab=c;
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    b.classList.add('active');
+    render();
+  };
+  tabsEl.appendChild(b);
 });
 
-function selectSuggestion(val) {
-  input.value = val;
-  suggBox.innerHTML = "";
-  render([val]);
-}
-
-document.addEventListener("click", e => {
-  if (!e.target.closest(".search-wrapper")) suggBox.innerHTML = "";
+// ── SEARCH INPUT ──
+const input = document.getElementById('q');
+const suggEl = document.getElementById('suggestions');
+input.addEventListener('input', function(){
+  query=this.value.trim();
+  const q=query.toLowerCase();
+  const matches=q?products.filter(p=>(p.name+' '+p.cat).toLowerCase().includes(q)).slice(0,6):[];
+  if(matches.length){
+    suggEl.style.display='block';
+    suggEl.innerHTML=matches.map(m=>`<div class="sugg-item" onclick="pick('${m.name.replace(/'/g,"\\'")}')">⚡ ${m.name}</div>`).join('');
+  } else { suggEl.style.display='none'; }
+  render();
 });
+function pick(name){ input.value=name; query=name; suggEl.style.display='none'; render(); }
+document.addEventListener('click',e=>{ if(!e.target.closest('.search-wrap')) suggEl.style.display='none'; });
 
-// Hide loader after page is ready
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("loader").classList.add("hide");
-  }, 2000);
-});
+// ── INIT ──
+render();
+renderSiteReviews();
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hide'),1800));
 </script>
 </body>
 </html>
-
