@@ -109,6 +109,8 @@ nav {
 .search-box:focus-within { border-color:rgba(59,130,246,0.4); box-shadow:0 0 0 3px rgba(59,130,246,0.07); }
 .search-inner { display:flex; align-items:center; gap:0.8rem; }
 .search-icon { color:var(--muted); flex-shrink:0; }
+.search-btn { padding:0.45rem 1.1rem; background:var(--accent); color:#fff; border:none; border-radius:8px; font-family:'Outfit',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer; flex-shrink:0; transition:all 0.2s; }
+.search-btn:hover { background:#2563eb; }
 input#q { flex:1; background:transparent; border:none; outline:none; color:var(--text); font-family:'Outfit',sans-serif; font-size:1rem; }
 input#q::placeholder { color:var(--muted); }
 .search-count { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; color:var(--muted); white-space:nowrap; flex-shrink:0; }
@@ -399,7 +401,8 @@ footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted
   <div class="search-box">
     <div class="search-inner">
       <span class="search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
-      <input id="q" placeholder="Search anything — tools, IDEs, AI, design…" autocomplete="off">
+      <input id="q" placeholder="Search anything — tools, IDEs, AI, design…" autocomplete="off" onkeydown="if(event.key==='Enter')doSearch()">
+      <button class="search-btn" onclick="doSearch()">Search</button>
       <span class="search-count" id="countLabel"></span>
     </div>
   </div>
@@ -678,6 +681,112 @@ const products = [
     {user:"Nour A.",stars:5,text:"Error grouping is smart and the alerts are timely. Business plan is excellent value."},
     {user:"Theo M.",stars:5,text:"We use Sentry across 8 projects. Vareonl made getting the Business plan easy."},
   ]},
+
+  // ── BLOCKCHAIN FORENSICS ──
+  {name:"Chainalysis Reactor",cat:"Blockchain",icon:"⛓️",badge:"hot",desc:"Industry-leading blockchain investigation tool for tracing crypto transactions across multiple chains.",rating:5.0,reviews:[
+    {user:"Marcus L.",stars:5,text:"Reactor is the gold standard for blockchain forensics. License delivered instantly through Vareonl."},
+    {user:"Priya S.",stars:5,text:"Traced a complex multi-hop transaction in minutes. Incredible tool, smooth purchase."},
+    {user:"Jake F.",stars:5,text:"Our compliance team relies on Reactor daily. Vareonl made getting the license easy."},
+  ]},
+  {name:"Elliptic Navigator",cat:"Blockchain",icon:"🔭",badge:null,desc:"Crypto asset risk management and blockchain analytics platform for compliance and investigations.",rating:4.9,reviews:[
+    {user:"Dana K.",stars:5,text:"Navigator's risk scoring is incredibly accurate. License was genuine and instant."},
+    {user:"Ryo T.",stars:5,text:"Best compliance tool for crypto firms. Vareonl delivered quickly."},
+  ]},
+  {name:"CipherTrace Inspector",cat:"Blockchain",icon:"🔍",badge:null,desc:"Advanced cryptocurrency forensics tool for AML compliance and financial crime investigation.",rating:4.9,reviews:[
+    {user:"Amara O.",stars:5,text:"AML reporting is thorough and court-ready. License activated without issues."},
+    {user:"Ben W.",stars:5,text:"Great for crypto crime investigations. Vareonl support helped with setup."},
+    {user:"Lena V.",stars:5,text:"Replaced our old tool entirely. Much more accurate results."},
+  ]},
+  {name:"TRM Labs Suite",cat:"Blockchain",icon:"🛡️",badge:"new",desc:"Blockchain intelligence platform for fraud detection, sanctions screening, and crypto risk monitoring.",rating:5.0,reviews:[
+    {user:"Chris A.",stars:5,text:"TRM's sanctions screening is unmatched. Fast delivery and legit license from Vareonl."},
+    {user:"Fatou D.",stars:5,text:"Our fraud team uses TRM daily. Excellent product, smooth purchase experience."},
+  ]},
+  {name:"Crystal Blockchain",cat:"Blockchain",icon:"💎",badge:null,desc:"Blockchain analytics and crypto transaction monitoring with visual investigation tools.",rating:4.9,reviews:[
+    {user:"Ivan P.",stars:5,text:"Visual transaction graphs make complex cases easy to understand. License instant."},
+    {user:"Mira J.",stars:5,text:"Crystal's monitoring alerts have caught issues early. Vareonl delivered fast."},
+  ]},
+  {name:"CoinPath Forensics",cat:"Blockchain",icon:"🪙",badge:null,desc:"Powerful blockchain data analytics API for tracing fund flows across Bitcoin and Ethereum.",rating:4.9,reviews:[
+    {user:"Seth B.",stars:5,text:"API integration was seamless. CoinPath data is accurate and reliable."},
+    {user:"Yuki N.",stars:5,text:"Fund flow tracing is excellent. License from Vareonl worked perfectly."},
+  ]},
+  {name:"Blockseer Analytics",cat:"Blockchain",icon:"📊",badge:null,desc:"Bitcoin blockchain analytics platform for compliance teams and law enforcement investigations.",rating:4.9,reviews:[
+    {user:"Anika R.",stars:5,text:"Compliance reporting is clean and detailed. Vareonl got me the license fast."},
+    {user:"Tom E.",stars:5,text:"Law enforcement-grade analytics at a great price. Smooth purchase."},
+    {user:"Clara S.",stars:5,text:"Reliable data, well-designed interface. License activated instantly."},
+  ]},
+  {name:"OXT Explorer Pro",cat:"Blockchain",icon:"🔗",badge:null,desc:"Advanced Bitcoin transaction graph explorer for on-chain analysis and forensic investigation.",rating:4.9,reviews:[
+    {user:"Felix M.",stars:5,text:"Transaction graph visualisation is outstanding. License delivered in minutes."},
+    {user:"Hana B.",stars:5,text:"Great for on-chain analysis. Vareonl support was helpful throughout."},
+  ]},
+  {name:"BitScan Explorer",cat:"Blockchain",icon:"🔎",badge:null,desc:"Blockchain exploration and monitoring tool for real-time transaction tracking and address analysis.",rating:4.9,reviews:[
+    {user:"Oscar T.",stars:5,text:"Real-time tracking is fast and accurate. Vareonl delivered a genuine license."},
+    {user:"Nina G.",stars:5,text:"Address clustering works really well. Easy purchase experience."},
+  ]},
+
+  // ── PHISHING & INCIDENT RESPONSE ──
+  {name:"Phishing Simulation Platform",cat:"Security",icon:"🎣",badge:"hot",desc:"Simulate phishing attacks on your own organisation to train staff and measure security awareness.",rating:5.0,reviews:[
+    {user:"Rachel M.",stars:5,text:"Our click rate dropped 80% after 3 months of simulations. Excellent tool."},
+    {user:"Dev S.",stars:5,text:"Easy to set up campaigns and the reporting is detailed. License instant."},
+    {user:"Chloe T.",stars:5,text:"Best investment for our security awareness programme. Vareonl delivered fast."},
+  ]},
+  {name:"Incident Playbook Engine",cat:"Security",icon:"📋",badge:null,desc:"Automate and orchestrate incident response workflows with customisable playbooks and integrations.",rating:4.9,reviews:[
+    {user:"Aaron K.",stars:5,text:"Playbooks cut our response time in half. Genuine license, smooth activation."},
+    {user:"Sia L.",stars:5,text:"The integration library is huge. Vareonl made getting the license simple."},
+  ]},
+
+  // ── NETWORK TOOLS ──
+  {name:"NetFlow Analyzer Pro",cat:"Network",icon:"🌐",badge:null,desc:"Real-time network traffic analysis and bandwidth monitoring with deep packet insights.",rating:4.9,reviews:[
+    {user:"Hugo R.",stars:5,text:"Pinpointed a bandwidth hog within minutes of setup. License from Vareonl was instant."},
+    {user:"Zara P.",stars:5,text:"Traffic analysis is detailed and the UI is clean. Great purchase experience."},
+    {user:"Eli W.",stars:5,text:"Replaced two tools with this one. Vareonl delivered quickly."},
+  ]},
+  {name:"Packet Capture Pro",cat:"Network",icon:"📦",badge:null,desc:"Professional-grade packet capture and protocol analysis tool for network diagnostics and security.",rating:4.9,reviews:[
+    {user:"Noel C.",stars:5,text:"Deep packet inspection works flawlessly. License activated on first try."},
+    {user:"Tara H.",stars:5,text:"Indispensable for our network security team. Fast delivery from Vareonl."},
+  ]},
+  {name:"Certificate Manager",cat:"Network",icon:"📜",badge:null,desc:"Centralised SSL/TLS certificate lifecycle management with automated renewal and alerts.",rating:4.9,reviews:[
+    {user:"Finn B.",stars:5,text:"Never missed a certificate expiry since using this. License instant from Vareonl."},
+    {user:"Leah O.",stars:5,text:"Automated renewals saved our team hours every month. Genuine license."},
+    {user:"Sam D.",stars:5,text:"Clean dashboard, great alerts. Smooth purchase and activation."},
+  ]},
+  {name:"DNS Monitor",cat:"Network",icon:"🔌",badge:null,desc:"Continuous DNS monitoring and alerting platform to detect hijacking, misconfigurations and outages.",rating:4.9,reviews:[
+    {user:"Marco V.",stars:5,text:"Caught a DNS misconfiguration before it caused downtime. Excellent tool."},
+    {user:"Iris F.",stars:5,text:"Alerts are fast and accurate. License from Vareonl was delivered instantly."},
+  ]},
+
+  // ── SECURITY ANALYSIS ──
+  {name:"Vulnerability Scan Suite",cat:"Security",icon:"🔐",badge:"pop",desc:"Comprehensive vulnerability scanning for web apps, networks and infrastructure with detailed reports.",rating:5.0,reviews:[
+    {user:"Kai P.",stars:5,text:"Found critical vulnerabilities in our app within the first scan. Excellent tool."},
+    {user:"Nadia C.",stars:5,text:"Reports are detailed enough for compliance audits. License instant."},
+    {user:"Bryce L.",stars:5,text:"Our security team uses this weekly. Vareonl delivered a genuine license fast."},
+  ]},
+  {name:"Web App Scanner",cat:"Security",icon:"🕸️",badge:null,desc:"Automated web application security scanner detecting OWASP Top 10 and custom vulnerability signatures.",rating:4.9,reviews:[
+    {user:"Tina K.",stars:5,text:"Caught an SQL injection we had missed manually. Impressive accuracy."},
+    {user:"Joel A.",stars:5,text:"OWASP Top 10 coverage is thorough. License from Vareonl activated instantly."},
+  ]},
+  {name:"Malware Scanner Pro",cat:"Security",icon:"🦠",badge:null,desc:"Advanced malware detection and analysis platform for endpoints, files and network traffic.",rating:4.9,reviews:[
+    {user:"Uma S.",stars:5,text:"Detected a zero-day variant our AV missed. Remarkable detection engine."},
+    {user:"Drew N.",stars:5,text:"Fast scans, accurate results. Vareonl delivered the license in minutes."},
+    {user:"Cass M.",stars:5,text:"Our SOC team relies on this daily. Smooth purchase experience."},
+  ]},
+  {name:"Decompiler Tool Pro",cat:"Security",icon:"⚙️",badge:null,desc:"Professional binary decompiler and reverse engineering tool for malware analysis and security research.",rating:4.9,reviews:[
+    {user:"Axel T.",stars:5,text:"Best decompiler I've used for malware analysis. License was instant from Vareonl."},
+    {user:"Rena B.",stars:5,text:"Clean output, great for security research. Genuine license, easy activation."},
+  ]},
+  {name:"Data Encryptor Suite",cat:"Security",icon:"🔒",badge:null,desc:"Enterprise-grade data encryption for files, databases and communications with key management.",rating:5.0,reviews:[
+    {user:"Lars E.",stars:5,text:"AES-256 encryption works flawlessly. License delivered and activated instantly."},
+    {user:"Mona J.",stars:5,text:"Key management features are excellent. Vareonl support was great throughout."},
+    {user:"Pat R.",stars:5,text:"Compliance requirement met easily. Smooth purchase, genuine license."},
+  ]},
+  {name:"Credential Strength Tester",cat:"Security",icon:"🔑",badge:null,desc:"Audit and test password policy strength across your organisation to identify weak credentials.",rating:4.9,reviews:[
+    {user:"Vera C.",stars:5,text:"Found dozens of weak passwords in our audit. Essential security tool."},
+    {user:"Nick O.",stars:5,text:"Policy enforcement reports are clear and actionable. License instant."},
+  ]},
+  {name:"IP Insights Analyser",cat:"Network",icon:"🌍",badge:null,desc:"Deep IP intelligence and geolocation analysis for threat hunting and network investigation.",rating:4.9,reviews:[
+    {user:"Gio B.",stars:5,text:"IP reputation data is accurate and up to date. License from Vareonl was fast."},
+    {user:"Suki W.",stars:5,text:"Threat hunting is much faster with this. Genuine license, smooth activation."},
+    {user:"Ed M.",stars:5,text:"Great for investigating suspicious traffic. Vareonl delivered instantly."},
+  ]},
 ];
 
 // ── SITE REVIEWS ──
@@ -708,6 +817,9 @@ const iconBg = {
   "Productivity":"linear-gradient(135deg,rgba(245,158,11,0.15),rgba(239,68,68,0.1))",
   "Database":"linear-gradient(135deg,rgba(99,102,241,0.18),rgba(139,92,246,0.12))",
   "Testing":"linear-gradient(135deg,rgba(239,68,68,0.15),rgba(245,158,11,0.12))",
+  "Blockchain":"linear-gradient(135deg,rgba(251,191,36,0.18),rgba(245,158,11,0.12))",
+  "Security":"linear-gradient(135deg,rgba(239,68,68,0.18),rgba(139,92,246,0.12))",
+  "Network":"linear-gradient(135deg,rgba(6,182,212,0.18),rgba(34,197,94,0.12))",
 };
 
 function tierDesc(cat) {
@@ -946,18 +1058,33 @@ categories.forEach(c=>{
 // ── SEARCH INPUT ──
 const input = document.getElementById('q');
 const suggEl = document.getElementById('suggestions');
+// Typing: suggestions only — grid does NOT change
 input.addEventListener('input', function(){
-  query=this.value.trim();
-  const q=query.toLowerCase();
-  const matches=q?products.filter(p=>(p.name+' '+p.cat).toLowerCase().includes(q)).slice(0,6):[];
+  const q = this.value.trim().toLowerCase();
+  const matches = q ? products.filter(p=>(p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q)).slice(0,6) : [];
   if(matches.length){
     suggEl.style.display='block';
     suggEl.innerHTML=matches.map(m=>`<div class="sugg-item" onclick="pick('${m.name.replace(/'/g,"\\'")}')">⚡ ${m.name}</div>`).join('');
   } else { suggEl.style.display='none'; }
-  render();
 });
-function pick(name){ input.value=name; query=name; suggEl.style.display='none'; render(); }
-document.addEventListener('click',e=>{ if(!e.target.closest('.search-wrap')) suggEl.style.display='none'; });
+
+// Search button or Enter key: trigger actual search
+function doSearch(){
+  query = input.value.trim();
+  suggEl.style.display='none';
+  render();
+}
+
+// Click a suggestion: fill input + run search immediately
+function pick(name){
+  input.value = name;
+  query = name;
+  suggEl.style.display='none';
+  render();
+}
+
+// Click outside search area: hide suggestions
+document.addEventListener('click', e=>{ if(!e.target.closest('.search-wrap')) suggEl.style.display='none'; });
 
 // ── TOGGLE DETAILS ──
 function toggleDetails(idx) {
