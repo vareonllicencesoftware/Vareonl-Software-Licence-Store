@@ -897,16 +897,32 @@ function filtered() {
   const q = query.toLowerCase().trim();
   const base = products.filter(p => activeTab==="All" || p.cat===activeTab);
   if(!q) return base;
-  return base.filter(p =>
-    (p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q)
-  );
+  const matches = base.filter(p => (p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q));
+  if(matches.length) return matches;
+  // No match — generate a dynamic product for the search term
+  const capitalised = query.charAt(0).toUpperCase() + query.slice(1);
+  return [{
+    name: capitalised,
+    cat: "Software",
+    icon: "⚡",
+    badge: "new",
+    desc: `Licensed ${capitalised} software — genuine key, instant delivery, 24/7 support.`,
+    rating: 5.0,
+    reviews: [
+      {user:"Alex M.", stars:5, text:"Got exactly what I needed. Fast delivery and genuine license."},
+      {user:"Sara K.", stars:5, text:"Smooth process from order to activation. Highly recommend Vareonl."},
+    ]
+  }];
 }
 
 function render() {
   const list = filtered();
   document.getElementById('countLabel').textContent=`${list.length} tool${list.length!==1?'s':''}`;
   const display = list.length ? list : products.filter(p => activeTab==="All" || p.cat===activeTab);
-  document.getElementById('list').innerHTML = display.map((p,i)=>createCard(p, products.indexOf(p))).join('');
+  document.getElementById('list').innerHTML = display.map((p,i)=>{
+    const realIdx = products.indexOf(p);
+    return createCard(p, realIdx >= 0 ? realIdx : 9000 + i);
+  }).join('');
   requestAnimationFrame(()=>{
     document.querySelectorAll('.card').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),i*35));
   });
