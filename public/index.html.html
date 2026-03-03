@@ -711,17 +711,11 @@ const iconBg = {
 };
 
 function tierDesc(cat) {
-  const m = {
-    "IDE":["1 user · 1yr","1 user · 2yr","5 users · 3yr"],
-    "AI Assistant":["Solo · monthly","Pro · annual","Team · annual"],
-    "Design":["Starter","Professional","Organization"],
-    "Project Mgmt":["Free tier+","Business","Enterprise"],
-    "DevOps":["Solo","Team","Business"],
-    "Productivity":["Individual","Team","Business"],
-    "Database":["Personal","Professional","Enterprise"],
-    "Testing":["Starter","Business","Enterprise"],
-  };
-  return m[cat]||["Basic","Standard","Premium"];
+  return [
+    "Essential features · Contact us to order",
+    "Advanced features · Contact us to order",
+    "Full access · Contact us to order"
+  ];
 }
 
 function badgeHTML(b){
