@@ -5,15 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vareonl Software Store — Developer & Productivity Tools</title>
 <meta name="description" content="Vareonl Software Store — premium licenses for developer tools, productivity software, IDEs, AI coding assistants, and more. Fast delivery, genuine licenses.">
-<meta name="robots" content="noindex, nofollow">
-
-<!-- Favicon setup -->
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
 :root {
   --bg: #060a10;
@@ -317,7 +309,63 @@ footer { background:var(--surface); border-top:1px solid var(--border2); padding
 .footer-links a:hover{color:var(--accent);}
 footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); letter-spacing:0.05em; }
 
-/* KEYFRAMES */
+/* FAQ SECTION */
+.faq-section { max-width:1200px; margin:0 auto; padding:0 2rem 5rem; position:relative; z-index:5; }
+.faq-inner { }
+.faq-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(520px,1fr)); gap:0.75rem; margin-bottom:2.5rem; }
+.faq-item { background:var(--card); border:1px solid var(--border2); border-radius:14px; overflow:hidden; transition:border-color 0.2s; }
+.faq-item:hover { border-color:rgba(59,130,246,0.2); }
+.faq-item.open { border-color:rgba(59,130,246,0.25); }
+.faq-q { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.1rem 1.3rem; cursor:pointer; }
+.faq-q-text { font-size:0.92rem; font-weight:600; color:var(--text); }
+.faq-arrow { color:var(--muted); font-size:0.75rem; transition:transform 0.25s; flex-shrink:0; }
+.faq-item.open .faq-arrow { transform:rotate(180deg); color:var(--accent); }
+.faq-a { display:none; padding:0 1.3rem 1.1rem; font-size:0.86rem; color:var(--muted); line-height:1.75; border-top:1px solid var(--border2); padding-top:0.9rem; }
+.faq-item.open .faq-a { display:block; animation:fadeUp 0.25s ease; }
+.faq-contact { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+.faq-contact-title { font-size:1.1rem; font-weight:700; color:#fff; margin-bottom:0.3rem; }
+.faq-contact-sub { font-size:0.88rem; color:var(--muted); }
+.faq-contact-btns { display:flex; gap:0.7rem; flex-wrap:wrap; flex-shrink:0; }
+
+
+/* CHAT BOT */
+.chat-bubble{position:fixed;bottom:2rem;right:2rem;z-index:8000;}
+.chat-toggle{width:58px;height:58px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;box-shadow:0 4px 24px rgba(59,130,246,0.45);display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:all 0.25s;position:relative;}
+.chat-toggle:hover{transform:scale(1.08);}
+.chat-badge{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:var(--green);border-radius:50%;border:2px solid var(--bg);animation:pulse2 2s ease-in-out infinite;}
+.chat-window{position:absolute;bottom:70px;right:0;width:350px;height:490px;background:#0b1120;border:1px solid rgba(59,130,246,0.2);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(0.97);transition:all 0.25s ease;}
+.chat-window.open{opacity:1;visibility:visible;transform:none;}
+.chat-head{background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(6,182,212,0.1));padding:1rem 1.2rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:0.75rem;}
+.chat-head-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.chat-head-name{font-size:0.9rem;font-weight:700;color:#fff;}
+.chat-head-status{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.08em;display:flex;align-items:center;gap:4px;margin-top:1px;}
+.chat-head-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse2 2s ease-in-out infinite;}
+.chat-close{background:transparent;border:none;color:var(--muted);font-size:1rem;cursor:pointer;margin-left:auto;transition:color 0.2s;}
+.chat-close:hover{color:#fff;}
+.chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.7rem;scroll-behavior:smooth;}
+.chat-messages::-webkit-scrollbar{width:3px;}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(59,130,246,0.2);border-radius:10px;}
+.msg{display:flex;gap:0.5rem;align-items:flex-end;max-width:88%;}
+.msg.bot{align-self:flex-start;}
+.msg.user{align-self:flex-end;flex-direction:row-reverse;}
+.msg-avatar{width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;}
+.msg-bubble{padding:0.55rem 0.8rem;border-radius:14px;font-size:0.82rem;line-height:1.6;}
+.msg.bot .msg-bubble{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);color:var(--text);border-bottom-left-radius:4px;}
+.msg.user .msg-bubble{background:var(--accent);color:#fff;border-bottom-right-radius:4px;}
+.typing-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typingBounce 1.2s ease-in-out infinite;display:inline-block;}
+.typing-dot:nth-child(2){animation-delay:0.2s;}
+.typing-dot:nth-child(3){animation-delay:0.4s;}
+.chat-suggestions{padding:0.5rem 0.9rem;display:flex;gap:0.4rem;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.04);}
+.chat-sugg{padding:0.3rem 0.7rem;border-radius:99px;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.18);color:var(--accent);font-size:0.7rem;cursor:pointer;transition:all 0.15s;font-family:'DM Mono',monospace;}
+.chat-sugg:hover{background:rgba(59,130,246,0.18);}
+.chat-input-row{padding:0.75rem 1rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0.6rem;align-items:center;}
+.chat-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.55rem 0.85rem;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.84rem;outline:none;transition:border-color 0.2s;}
+.chat-input:focus{border-color:rgba(59,130,246,0.35);}
+.chat-input::placeholder{color:var(--muted);}
+.chat-send{width:34px;height:34px;border-radius:8px;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:all 0.2s;flex-shrink:0;}
+.chat-send:hover{background:#2563eb;}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse2{0%,100%{opacity:1}50%{opacity:0.3}}
@@ -361,6 +409,7 @@ footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted
     <div class="nav-pills">
       <span class="nav-pill pill-blue">Verified Licenses</span>
       <span class="nav-pill pill-green">● Live</span>
+      <a href="#support" class="nav-pill" style="background:rgba(6,182,212,0.1);color:#06b6d4;border:1px solid rgba(6,182,212,0.25);text-decoration:none">Support</a>
     </div>
   </div>
 </nav>
@@ -472,6 +521,36 @@ footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted
   </div>
 </div>
 
+<!-- CHAT BOT -->
+<div class="chat-bubble" id="chatBubble">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-head">
+      <div class="chat-head-avatar">⚡</div>
+      <div>
+        <div class="chat-head-name">Vareonl Support</div>
+        <div class="chat-head-status"><span class="chat-head-dot"></span> Online · 24/7</div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-suggestions" id="chatSuggs">
+      <span class="chat-sugg" onclick="sendSugg(this)">How do I order?</span>
+      <span class="chat-sugg" onclick="sendSugg(this)">Are licenses genuine?</span>
+      <span class="chat-sugg" onclick="sendSugg(this)">Delivery time?</span>
+      <span class="chat-sugg" onclick="sendSugg(this)">Payment methods?</span>
+      <span class="chat-sugg" onclick="sendSugg(this)">Refund policy?</span>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chatInput" placeholder="Ask anything about Vareonl…" onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+  </div>
+  <button class="chat-toggle" onclick="toggleChat()">
+    💬
+    <span class="chat-badge"></span>
+  </button>
+</div>
+
 <!-- CONTACT MODAL -->
 <div class="modal-overlay" id="contactModal">
   <div class="modal">
@@ -503,6 +582,27 @@ footer p { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted
       </a>
     </div>
     <button class="modal-close" onclick="closeModal()">✕ Cancel</button>
+  </div>
+</div>
+
+<!-- FAQ / SUPPORT -->
+<div class="faq-section" id="support">
+  <div class="faq-inner">
+    <div class="section-header" style="text-align:center;margin-bottom:2.5rem">
+      <div class="section-eyebrow" style="justify-content:center"><span class="eyebrow-dot"></span> Support</div>
+      <div class="section-title">Frequently Asked Questions</div>
+      <div class="section-sub">Everything you need to know before buying</div>
+    </div>
+    <div class="faq-grid" id="faqGrid"></div>
+    <div class="faq-contact">
+      <div class="faq-contact-text">
+        <div class="faq-contact-title">Still have questions?</div>
+        <div class="faq-contact-sub">Our team is available 24/7 — reach out and we'll respond within minutes.</div>
+      </div>
+      <div class="faq-contact-btns">
+        <button class="btn btn-blue" onclick="openModal('General Enquiry','Support request')">💬 Contact Support</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1142,10 +1242,265 @@ document.getElementById('contactModal').addEventListener('click', function(e) {
   if(e.target === this) closeModal();
 });
 
+// ── FAQ ──
+const faqs = [
+  {q:"How do I receive my license?", a:"After your order is confirmed via Telegram or WhatsApp, your license key or account details are delivered directly in the chat — usually within minutes. No waiting, no forms."},
+  {q:"Are the licenses genuine?", a:"Yes, every license sold on Vareonl is 100% genuine and sourced legitimately. We do not sell cracked, shared, or modified software. Your activation will work directly with the official vendor."},
+  {q:"How long does delivery take?", a:"Most orders are delivered instantly or within 5–15 minutes after payment is confirmed. We are available 24/7 so there is no waiting for business hours."},
+  {q:"What payment methods do you accept?", a:"We accept cryptocurrency and other flexible payment methods. Contact us on Telegram or WhatsApp to discuss payment options for your order."},
+  {q:"What if my license doesn't work?", a:"If you have any issue activating your license, contact us immediately and we will resolve it — whether that means a replacement key, step-by-step activation support, or a full refund. Your satisfaction is guaranteed."},
+  {q:"Can I buy licenses for my whole team?", a:"Absolutely. We offer Basic, Pro, and Team tiers for every product. For larger team orders or custom licensing needs, just reach out and we'll find the best option for you."},
+  {q:"Which products do you sell?", a:"We carry 60+ tools across IDEs, AI coding assistants, design software, blockchain forensics, security tools, network monitoring, DevOps platforms, project management, and productivity apps."},
+  {q:"Is my personal information safe?", a:"We only use your name and contact details to process and deliver your order. We do not share, sell, or store sensitive information beyond what is needed to complete your purchase."},
+  {q:"Do you offer refunds?", a:"Yes. If a license fails to activate and we cannot provide a working replacement within a reasonable time, we will issue a full refund. We stand behind every product we sell."},
+  {q:"How do I contact support?", a:"Reach us on Telegram or WhatsApp using the Contact Support button below. We typically respond within minutes and are available around the clock."},
+];
+
+function renderFAQ() {
+  document.getElementById('faqGrid').innerHTML = faqs.map((f,i)=>`
+    <div class="faq-item" id="faq-${i}">
+      <div class="faq-q" onclick="toggleFAQ(${i})">
+        <span class="faq-q-text">${f.q}</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join('');
+}
+
+function toggleFAQ(i) {
+  const item = document.getElementById(`faq-${i}`);
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+// ── CHAT BOT ──
+let chatOpen = false;
+let chatHistory = [];
+let chatGreeted = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatWindow').classList.toggle('open', chatOpen);
+  if(chatOpen && !chatGreeted) {
+    chatGreeted = true;
+    setTimeout(()=>addBotMsg("👋 Hey! Welcome to **Vareonl Software Store**. I'm your 24/7 support assistant.\n\nI can help you with orders, licenses, delivery, payments, and anything else about our store. What would you like to know?"), 300);
+  }
+}
+
+function addBotMsg(text, showContact=false) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  const contactBtns = showContact ? `
+    <div style="display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;">
+      <a href="https://t.me/vareonl?text=Hello%20Vareonl%20Store%2C%20I%20need%20help%20with%20my%20order." target="_blank" style="padding:0.4rem 0.9rem;background:rgba(0,136,204,0.15);border:1px solid rgba(0,136,204,0.3);border-radius:8px;color:#0088cc;font-size:0.75rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;">✈️ Telegram</a>
+      <a href="https://wa.me/18124161451?text=Hello%20Vareonl%20Store%2C%20I%20need%20help%20with%20my%20order." target="_blank" style="padding:0.4rem 0.9rem;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.25);border-radius:8px;color:#25d366;font-size:0.75rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;">💚 WhatsApp</a>
+    </div>` : '';
+  div.innerHTML = `<div class="msg-avatar">⚡</div><div class="msg-bubble">${text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}${contactBtns}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUserMsg(text) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  div.innerHTML = `<div class="msg-bubble">${text}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.id = 'typingIndicator';
+  div.innerHTML = `<div class="msg-avatar">⚡</div><div class="msg-bubble" style="display:flex;gap:4px;align-items:center;padding:0.75rem 1rem"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typingIndicator');
+  if(t) t.remove();
+}
+
+function sendSugg(el) {
+  const text = el.textContent;
+  document.getElementById('chatSuggs').style.display = 'none';
+  sendMessage(text);
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  sendMessage(text);
+}
+
+function sendMessage(text) {
+  addUserMsg(text);
+  showTyping();
+  setTimeout(() => {
+    removeTyping();
+    const {reply, showContact} = getBotReply(text);
+    addBotMsg(reply, showContact);
+  }, 800);
+}
+
+function getBotReply(text) {
+  const q = text.toLowerCase();
+
+  // Payment
+  if(/(pay|payment|how.*pay|accept|method|crypto|bitcoin|usdt|coin)/i.test(q)) {
+    return {reply: "We accept **cryptocurrency** (Bitcoin, USDT, and other major coins). 💰\n\nFor any other payment arrangements, please reach out to us directly and we'll be happy to help!", showContact: true};
+  }
+
+  // How to order
+  if(/(order|buy|purchase|how.*get|how.*order|get.*license|want.*buy)/i.test(q)) {
+    return {reply: "Ordering is simple! 🛒\n\n1. Browse the store and find your product\n2. Click the package you want (Basic, Pro, or Team)\n3. Click **Purchase**\n4. Choose Telegram or WhatsApp\n5. We confirm and deliver your license instantly!", showContact: false};
+  }
+
+  // Delivery / how long
+  if(/(deliver|how long|when|fast|quick|instant|time|receive|get it)/i.test(q)) {
+    return {reply: "⚡ **Super fast!** Most licenses are delivered within **5–15 minutes** after payment is confirmed.\n\nWe're available 24/7 so there's no waiting for business hours.", showContact: false};
+  }
+
+  // Genuine / legit / real
+  if(/(genuine|legit|real|original|fake|crack|trust|safe|valid|authentic)/i.test(q)) {
+    return {reply: "✅ **100% genuine licenses!** Every product we sell is sourced legitimately — no cracks, no shared accounts, no modifications.\n\nYour license activates directly with the official vendor.", showContact: false};
+  }
+
+  // Refund
+  if(/(refund|money back|return|guarantee|doesn.*work|not work)/i.test(q)) {
+    return {reply: "We offer a **full refund** if your license fails to activate and we can't provide a replacement. 🛡️\n\nWe stand behind every product we sell — your satisfaction is guaranteed.", showContact: false};
+  }
+
+  // Products / what do you sell
+  if(/(product|sell|available|what.*have|catalog|list|tool|software|ide|figma|notion|jetbrain|copilot|cursor|blockchain|security)/i.test(q)) {
+    return {reply: "We carry **60+ tools** across many categories:\n\n🧠 IDEs (JetBrains, PyCharm, WebStorm)\n🤖 AI Assistants (Copilot, Cursor Pro)\n🎨 Design (Figma, Adobe CC)\n⛓️ Blockchain Forensics (Chainalysis, TRM Labs)\n🔐 Security & Network tools\n📋 Project Management & Productivity\n\nBrowse the store above to see everything!", showContact: false};
+  }
+
+  // Price / cost / how much
+  if(/(price|cost|how much|fee|cheap|expensive|pricing)/i.test(q)) {
+    return {reply: "We have **Basic, Pro, and Team** tiers for every product. 💼\n\nPrices vary by product — contact us directly for pricing on anything you're interested in!", showContact: true};
+  }
+
+  // Support / contact
+  if(/(support|contact|help|talk|speak|human|agent|reach)/i.test(q)) {
+    return {reply: "Our team is available **24/7** on Telegram and WhatsApp! 🚀\n\nWe typically respond within minutes.", showContact: true};
+  }
+
+  // Tiers / plans
+  if(/(tier|plan|basic|pro|team|difference|which.*plan)/i.test(q)) {
+    return {reply: "Every product has **3 tiers:**\n\n🔹 **Basic** — Essential features\n🔷 **Pro** — Advanced features\n🔶 **Team** — Full access for teams\n\nJust click the tier you want on any product card to select it!", showContact: false};
+  }
+
+  // Hello / hi / hey
+  if(/(^hi$|^hey$|^hello$|^hii|^yo|^sup|good morning|good evening|good afternoon)/i.test(q.trim())) {
+    return {reply: "Hey there! 👋 Welcome to **Vareonl Store**!\n\nI'm here to help you with anything — ordering, products, delivery, payments, or anything else. What do you need?", showContact: false};
+  }
+
+  // Thanks
+  if(/(thank|thanks|thx|appreciate)/i.test(q)) {
+    return {reply: "You're welcome! 😊 Happy to help. Feel free to ask anything else anytime!", showContact: false};
+  }
+
+  // Default fallback
+  return {reply: "Great question! For the best answer on that, reach out to our team directly — we respond within minutes and are available 24/7. 🚀", showContact: true};
+}
+
 // ── INIT ──
 render();
 renderSiteReviews();
+renderFAQ();
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hide'),1800));
 </script>
+
+<!-- ── SUPPORT CHAT BOT ── -->
+<style>
+/* CHAT BUBBLE */
+.chat-bubble { position:fixed; bottom:2rem; right:2rem; width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); border:none; cursor:pointer; z-index:8000; box-shadow:0 4px 24px rgba(59,130,246,0.5); display:flex; align-items:center; justify-content:center; font-size:1.4rem; transition:transform 0.2s,box-shadow 0.2s; }
+.chat-bubble:hover { transform:scale(1.08); box-shadow:0 6px 30px rgba(59,130,246,0.6); }
+.chat-bubble .badge { position:absolute; top:-3px; right:-3px; width:18px; height:18px; background:var(--green); border-radius:50%; border:2px solid var(--bg); display:flex; align-items:center; justify-content:center; font-size:0.5rem; font-weight:700; color:#fff; }
+
+/* CHAT WINDOW */
+.chat-window { position:fixed; bottom:6rem; right:2rem; width:360px; max-height:520px; background:#0b1120; border:1px solid rgba(59,130,246,0.2); border-radius:18px; box-shadow:0 20px 60px rgba(0,0,0,0.6); z-index:8000; display:flex; flex-direction:column; overflow:hidden; opacity:0; visibility:hidden; transform:translateY(16px) scale(0.97); transition:all 0.25s ease; }
+.chat-window.open { opacity:1; visibility:visible; transform:none; }
+
+/* CHAT HEADER */
+.chat-header { background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(6,182,212,0.1)); border-bottom:1px solid rgba(255,255,255,0.06); padding:1rem 1.2rem; display:flex; align-items:center; gap:0.75rem; }
+.chat-avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.chat-header-info { flex:1; }
+.chat-header-name { font-size:0.92rem; font-weight:700; color:#fff; }
+.chat-header-status { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--green); display:flex; align-items:center; gap:0.3rem; margin-top:1px; }
+.status-dot { width:6px; height:6px; border-radius:50%; background:var(--green); animation:pulse2 2s infinite; }
+.chat-close { background:transparent; border:none; color:var(--muted); cursor:pointer; font-size:1.1rem; padding:0.2rem; transition:color 0.2s; }
+.chat-close:hover { color:var(--text); }
+
+/* MESSAGES */
+.chat-messages { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:0.75rem; min-height:200px; max-height:320px; }
+.chat-messages::-webkit-scrollbar { width:3px; }
+.chat-messages::-webkit-scrollbar-thumb { background:rgba(59,130,246,0.2); border-radius:10px; }
+.msg { display:flex; gap:0.5rem; align-items:flex-end; max-width:88%; }
+.msg.bot { align-self:flex-start; }
+.msg.user { align-self:flex-end; flex-direction:row-reverse; }
+.msg-avatar { width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0; }
+.msg-bubble { padding:0.6rem 0.9rem; border-radius:14px; font-size:0.84rem; line-height:1.55; }
+.msg.bot .msg-bubble { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07); color:var(--text); border-bottom-left-radius:4px; }
+.msg.user .msg-bubble { background:var(--accent); color:#fff; border-bottom-right-radius:4px; }
+.typing { display:flex; gap:4px; padding:0.6rem 0.9rem; align-items:center; }
+.typing span { width:6px; height:6px; border-radius:50%; background:var(--muted); animation:typingDot 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay:0.2s; }
+.typing span:nth-child(3) { animation-delay:0.4s; }
+
+/* QUICK REPLIES */
+.quick-replies { padding:0.5rem 1rem; display:flex; gap:0.4rem; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.04); }
+.qr-btn { padding:0.3rem 0.75rem; border-radius:99px; border:1px solid rgba(59,130,246,0.25); background:rgba(59,130,246,0.07); color:var(--accent); font-size:0.75rem; cursor:pointer; transition:all 0.2s; font-family:'Outfit',sans-serif; white-space:nowrap; }
+.qr-btn:hover { background:rgba(59,130,246,0.18); }
+
+/* INPUT */
+.chat-input-area { padding:0.75rem 1rem; border-top:1px solid rgba(255,255,255,0.06); display:flex; gap:0.5rem; align-items:center; }
+.chat-input { flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:0.55rem 0.9rem; color:var(--text); font-family:'Outfit',sans-serif; font-size:0.85rem; outline:none; transition:border-color 0.2s; }
+.chat-input:focus { border-color:rgba(59,130,246,0.35); }
+.chat-input::placeholder { color:var(--muted); }
+.chat-send { width:36px; height:36px; border-radius:9px; background:var(--accent); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.9rem; transition:all 0.2s; flex-shrink:0; }
+.chat-send:hover { background:#2563eb; }
+.chat-send:disabled { opacity:0.4; cursor:not-allowed; }
+
+@keyframes typingDot { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-4px);opacity:1} }
+</style>
+
+<!-- Chat Bubble -->
+<button class="chat-bubble" onclick="toggleChat()" id="chatBubble">
+  💬
+  <span class="badge">●</span>
+</button>
+
+<!-- Chat Window -->
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">⚡</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">Vareonl Support</div>
+      <div class="chat-header-status"><span class="status-dot"></span> Online · 24/7</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="quick-replies" id="quickReplies">
+    <button class="qr-btn" onclick="sendQuick('How do I order?')">How do I order?</button>
+    <button class="qr-btn" onclick="sendQuick('Are licenses genuine?')">Genuine licenses?</button>
+    <button class="qr-btn" onclick="sendQuick('How fast is delivery?')">Delivery time?</button>
+    <button class="qr-btn" onclick="sendQuick('What payment methods?')">Payment?</button>
+  </div>
+  <div class="chat-input-area">
+    <input class="chat-input" id="chatInput" placeholder="Ask anything about the store…" onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="chat-send" id="chatSend" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
 </body>
 </html>
