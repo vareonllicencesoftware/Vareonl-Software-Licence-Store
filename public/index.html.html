@@ -3,1039 +3,931 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vareonl Software Store — Developer & Productivity Tools</title>
-<meta name="description" content="Vareonl Software Store — premium licenses for developer tools, productivity software, IDEs, AI coding assistants, and more. Fast delivery, genuine licenses.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Vareonl Software Store</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
- --bg: #0a0a0a;
- --surface: #111111;
- --card: #141414;
- --card-hover: #1a1a1a;
- --accent: #ffffff;
- --accent2: #a3a3a3;
- --green: #4ade80;
- --amber: #facc15;
- --red: #f87171;
- --text: #f5f5f5;
- --muted: #737373;
- --border: rgba(255,255,255,0.08);
- --border2: rgba(255,255,255,0.06);
+:root{
+  --bg:#0a0a0a;--surface:#111111;--card:#141414;--card2:#1c1c1c;
+  --text:#f0f0f0;--muted:#6b6b6b;--border:rgba(255,255,255,0.09);
+  --green:#4ade80;--amber:#facc15;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
 /* LOADER */
-#loader {
- position: fixed; inset: 0; background: #0a0a0a; z-index: 9999;
- display: flex; flex-direction: column; align-items: center; justify-content: center;
- transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-#loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-.ldr-ring-wrap { position: relative; width: 110px; height: 110px; }
-.ldr-ring-svg { width: 110px; height: 110px; transform: rotate(-90deg); animation: spin 1.4s linear infinite; }
-.ldr-ring-track { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 5; }
-.ldr-ring-arc { fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 55; }
-.ldr-pct { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.04em; font-family: 'Inter', sans-serif; }
+#loader{position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;transition:opacity 0.4s,visibility 0.4s}
+#loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.ldr-wrap{position:relative;width:96px;height:96px}
+.ldr-svg{width:96px;height:96px;transform:rotate(-90deg)}
+.ldr-track{fill:none;stroke:rgba(255,255,255,0.08);stroke-width:5}
+.ldr-arc{fill:none;stroke:#fff;stroke-width:5;stroke-linecap:round;stroke-dasharray:263;stroke-dashoffset:263}
+.ldr-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.03em}
+.ldr-sub{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase}
 
 /* NAV */
-nav {
- position: sticky; top: 0; z-index: 100;
- background: rgba(10,10,10,0.92); backdrop-filter: blur(16px);
- border-bottom: 1px solid var(--border); padding: 0 2rem;
-}
-.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 1rem; }
-.nav-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.04em; color: #fff; text-decoration: none; }
-.nav-logo span { color: var(--muted); }
-.nav-pills { display: flex; gap: 0.5rem; align-items: center; }
-.nav-pill { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; padding: 0.28rem 0.75rem; border-radius: 4px; text-transform: uppercase; border: 1px solid var(--border); color: var(--muted); }
-.pill-live { color: var(--green); border-color: rgba(74,222,128,0.2); display: flex; align-items: center; gap: 5px; }
-.live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse2 2s ease-in-out infinite; }
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px;padding:0 2rem}
+.nav-logo{font-size:1.05rem;font-weight:800;letter-spacing:-0.04em;color:#fff;text-decoration:none}
+.nav-logo span{color:var(--muted)}
+.nav-right{display:flex;gap:0.5rem;align-items:center}
+.npill{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;padding:0.22rem 0.65rem;border-radius:4px;text-transform:uppercase;border:1px solid var(--border);color:var(--muted)}
+.npill-live{color:var(--green);border-color:rgba(74,222,128,0.2);display:flex;align-items:center;gap:4px}
+.ldot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
 
 /* HERO */
-.hero { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.hero-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
-.hero h1 { font-size: clamp(2.5rem,5vw,4rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.05em; color: #fff; margin-bottom: 1.2rem; }
-.hero-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 420px; margin-bottom: 2rem; }
-.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-.btn { padding: 0.7rem 1.4rem; border-radius: 6px; font-family:'Inter',sans-serif; font-weight:600; font-size:0.85rem; cursor:pointer; border:none; text-decoration:none; transition:all 0.15s; display:inline-flex; align-items:center; gap:0.4rem; }
-.btn-white { background: #fff; color: #0a0a0a; }
-.btn-white:hover { background: #e5e5e5; }
-.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-.btn-outline:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
-.hero-stats { display:flex; gap:2.5rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--border); flex-wrap:wrap; }
-.hstat-num { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.04em; }
-.hstat-label { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
-
-/* TERMINAL */
-.hero-right { position:relative; }
-.terminal { background:#0f0f0f; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
-.term-bar { background:#141414; padding:0.75rem 1rem; display:flex; align-items:center; gap:0.4rem; border-bottom:1px solid var(--border); }
-.term-dot { width:9px; height:9px; border-radius:50%; }
-.td-red{background:#ff5f57;} .td-yellow{background:#ffbd2e;} .td-green{background:#28ca42;}
-.term-title { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); margin-left:0.4rem; }
-.term-body { padding:1.2rem; font-family:'DM Mono',monospace; font-size:0.78rem; line-height:2; }
-.t-muted{color:var(--muted);} .t-green{color:var(--green);} .t-white{color:#fff;} .t-amber{color:var(--amber);}
-.cursor { display:inline-block; width:7px; height:13px; background:#fff; animation:blink 1.1s step-end infinite; vertical-align:middle; margin-left:2px; }
+.hero{max-width:1200px;margin:0 auto;padding:5rem 2rem 3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.3rem}
+.hero h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;line-height:1.03;letter-spacing:-0.05em;color:#fff;margin-bottom:1rem}
+.hero-desc{font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:400px;margin-bottom:1.8rem}
+.hero-btns{display:flex;gap:0.65rem;flex-wrap:wrap}
+.btn{padding:0.62rem 1.25rem;border-radius:6px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;border:none;text-decoration:none;transition:all 0.15s;display:inline-flex;align-items:center;gap:0.35rem}
+.btn-w{background:#fff;color:#0a0a0a}.btn-w:hover{background:#e8e8e8}
+.btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-o:hover{border-color:rgba(255,255,255,0.22);background:rgba(255,255,255,0.05)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.2rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.hs-num{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-0.04em}
+.hs-lbl{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.terminal{background:#0f0f0f;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.term-bar{background:#141414;padding:0.65rem 1rem;display:flex;align-items:center;gap:0.38rem;border-bottom:1px solid var(--border)}
+.td{width:8px;height:8px;border-radius:50%}
+.td-r{background:#ff5f57}.td-y{background:#ffbd2e}.td-g{background:#28ca42}
+.term-t{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted);margin-left:0.4rem}
+.term-body{padding:1.1rem;font-family:'DM Mono',monospace;font-size:0.74rem;line-height:1.95}
+.tm{color:var(--muted)}.tg{color:var(--green)}.tw{color:#fff}.ta{color:var(--amber)}
+.cur{display:inline-block;width:6px;height:12px;background:#fff;animation:blink 1.1s step-end infinite;vertical-align:middle;margin-left:2px}
 
 /* SEARCH */
-.search-wrap { max-width:1200px; margin:0 auto 1.5rem; padding:0 2rem; position:relative; z-index:50; }
-.search-box { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1rem 1.2rem; transition:border-color 0.15s; }
-.search-box:focus-within { border-color:rgba(255,255,255,0.2); }
-.search-inner { display:flex; align-items:center; gap:0.75rem; }
-.search-icon { color:var(--muted); flex-shrink:0; }
-.search-btn { padding:0.4rem 1rem; background:#fff; color:#0a0a0a; border:none; border-radius:5px; font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:600; cursor:pointer; flex-shrink:0; transition:all 0.15s; }
-.search-btn:hover { background:#e5e5e5; }
-input#q { flex:1; background:transparent; border:none; outline:none; color:var(--text); font-family:'Inter',sans-serif; font-size:0.95rem; }
-input#q::placeholder { color:var(--muted); }
-.search-count { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.08em; color:var(--muted); white-space:nowrap; flex-shrink:0; }
-.suggestions { position:absolute; top:calc(100% - 0.4rem); left:2rem; right:2rem; background:#141414; border:1px solid var(--border); border-top:none; border-radius:0 0 8px 8px; overflow:hidden; z-index:200; display:none; }
-.sugg-item { padding:0.6rem 1.1rem; font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--muted); cursor:pointer; border-bottom:1px solid var(--border2); transition:all 0.1s; display:flex; align-items:center; gap:0.5rem; }
-.sugg-item:last-child{border-bottom:none;}
-.sugg-item:hover{background:rgba(255,255,255,0.04);color:var(--text);}
+.search-wrap{max-width:1200px;margin:0 auto 1.2rem;padding:0 2rem;position:relative;z-index:50}
+.sbox{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.85rem 1.1rem;transition:border-color 0.15s}
+.sbox:focus-within{border-color:rgba(255,255,255,0.22)}
+.sinner{display:flex;align-items:center;gap:0.65rem}
+.sicon{color:var(--muted);flex-shrink:0}
+#q{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem}
+#q::placeholder{color:var(--muted)}
+.sbtn{padding:0.36rem 0.9rem;background:#fff;color:#0a0a0a;border:none;border-radius:5px;font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;flex-shrink:0}
+.sbtn:hover{background:#e8e8e8}
+.scount{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted);white-space:nowrap;flex-shrink:0}
+.suggs{position:absolute;top:calc(100% - 0.3rem);left:2rem;right:2rem;background:#141414;border:1px solid var(--border);border-top:none;border-radius:0 0 7px 7px;z-index:200;display:none;overflow:hidden}
+.si{padding:0.52rem 1rem;font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.04);transition:all 0.1s}
+.si:last-child{border-bottom:none}
+.si:hover{background:rgba(255,255,255,0.04);color:var(--text)}
 
 /* TABS */
-.tabs-wrap { max-width:1200px; margin:0 auto 1.5rem; padding:0 2rem; display:flex; gap:0.4rem; flex-wrap:wrap; }
-.tab { padding:0.4rem 0.9rem; border-radius:5px; font-size:0.8rem; font-weight:500; cursor:pointer; border:1px solid var(--border2); background:transparent; color:var(--muted); font-family:'Inter',sans-serif; transition:all 0.15s; }
-.tab:hover{border-color:var(--border);color:var(--text);}
-.tab.active{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;}
+.tabs-wrap{max-width:1200px;margin:0 auto 1.2rem;padding:0 2rem;display:flex;gap:0.4rem;flex-wrap:wrap}
+.tab{padding:0.36rem 0.82rem;border-radius:5px;font-size:0.77rem;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,0.07);background:transparent;color:var(--muted);font-family:'Inter',sans-serif;transition:all 0.15s}
+.tab:hover{border-color:var(--border);color:var(--text)}
+.tab.active{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.18);color:#fff}
 
 /* GRID */
-.grid-wrap { max-width:1200px; margin:0 auto; padding:0 2rem 4rem; }
-#list { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1rem; }
-.no-results { background:var(--bg); grid-column:1/-1; text-align:center; padding:4rem 2rem; font-family:'DM Mono',monospace; font-size:0.82rem; color:var(--muted); }
+.grid-wrap{max-width:1200px;margin:0 auto;padding:0 2rem 4rem}
+#list{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 
 /* CARD */
-.card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:0; opacity:0; transform:translateY(10px); transition:opacity 0.35s ease,transform 0.35s ease,background 0.15s,border-color 0.15s; position:relative; overflow:hidden; }
-.card.vis{opacity:1;transform:none;}
-.card:hover{background:var(--card-hover);border-color:rgba(255,255,255,0.14);}
-.card-banner { width:100%; height:120px; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end; padding:1rem 1.1rem 0.85rem; position:relative; overflow:hidden; }
-.card-banner::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.18); }
-.card-banner-icon { font-size:2rem; position:absolute; top:1rem; right:1rem; z-index:1; opacity:0.7; }
-.card-banner-name { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.7); z-index:1; position:relative; }
-.card-banner .card-badge { position:absolute; top:0.7rem; left:0.9rem; z-index:2; }
-.card-body { padding:0 1.1rem 1.2rem; }
-.card-top{display:flex;align-items:flex-start;gap:0.85rem;margin-bottom:0.6rem;padding:0 1.1rem;}
-.card-meta{flex:1;}
-.card-name{font-size:0.9rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:2px;}
-.card-cat{font-family:'DM Mono',monospace;font-size:0.57rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
-.card-badge{font-family:'DM Mono',monospace;font-size:0.57rem;letter-spacing:0.08em;padding:0.18rem 0.55rem;border-radius:3px;flex-shrink:0;}
-.badge-hot{background:rgba(248,113,113,0.15);color:#f87171;border:1px solid rgba(248,113,113,0.25);}
-.badge-new{background:rgba(74,222,128,0.1);color:var(--green);border:1px solid rgba(74,222,128,0.22);}
-.badge-pop{background:rgba(250,204,21,0.1);color:var(--amber);border:1px solid rgba(250,204,21,0.22);}
-.card-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:1rem;font-weight:400;padding:0 1.1rem;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity 0.35s,transform 0.35s,background 0.15s,border-color 0.15s}
+.card.vis{opacity:1;transform:none}
+.card:hover{background:var(--card2);border-color:rgba(255,255,255,0.15)}
 
-/* RATING */
-.card-rating { display:flex; align-items:center; gap:0.4rem; margin-bottom:1rem; }
-.stars-mini { display:flex; gap:1px; }
-.star-mini { font-size:0.7rem; color:var(--amber); }
-.star-mini.empty { opacity:0.2; }
-.rating-text { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); }
+/* BANNER */
+.cbanner{height:110px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0.8rem 1rem}
+.cbanner-cat{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.6);position:relative;z-index:1}
+.cbadge{position:absolute;top:0.6rem;left:0.85rem;z-index:2;font-family:'DM Mono',monospace;font-size:0.54rem;letter-spacing:0.07em;padding:0.14rem 0.48rem;border-radius:3px}
+.bh{background:rgba(0,0,0,0.4);color:#fca5a5;border:1px solid rgba(248,113,113,0.35)}
+.bn{background:rgba(0,0,0,0.4);color:#86efac;border:1px solid rgba(74,222,128,0.35)}
+.bp{background:rgba(0,0,0,0.4);color:#fde68a;border:1px solid rgba(250,204,21,0.35)}
+
+/* CARD BODY */
+.cbody{padding:1rem 1rem 1.1rem}
+.cname{font-size:0.88rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:3px}
+.ccat{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.7rem}
+.cdesc{font-size:0.79rem;color:var(--muted);line-height:1.65;margin-bottom:0.8rem}
+.crating{display:flex;align-items:center;gap:0.38rem;margin-bottom:0.8rem}
+.stars-mini{display:flex;gap:1px}
+.sm{font-size:0.66rem;color:var(--amber)}
+.sm.e{opacity:0.18}
+.rtxt{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted)}
+
+/* DETAILS */
+.det-panel{display:none;margin-bottom:0.8rem}
+.det-row{display:flex;align-items:flex-start;gap:0.42rem;padding:0.2rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.det-row:last-child{border-bottom:none}
+.det-txt{font-size:0.74rem;color:var(--muted);line-height:1.45}
 
 /* TIERS */
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:0.4rem;margin-bottom:1rem;}
-.tier{background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:6px;padding:0.65rem 0.4rem;text-align:center;transition:border-color 0.15s,background 0.15s;cursor:pointer;}
-.tier:hover{border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);}
-.tier.selected{border-color:rgba(255,255,255,0.4)!important;background:rgba(255,255,255,0.08)!important;}
-.tier-label{font-family:'DM Mono',monospace;font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;display:inline-block;padding:0.12rem 0.45rem;border-radius:3px;}
-.tl-basic{background:rgba(255,255,255,0.06);color:#a3a3a3;border:1px solid rgba(255,255,255,0.1);}
-.tl-pro{background:rgba(255,255,255,0.08);color:#e5e5e5;border:1px solid rgba(255,255,255,0.15);}
-.tl-team{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);}
-.tier p{font-size:0.65rem;color:var(--muted);line-height:1.4;margin-top:0.25rem;}
-.tier-select-hint{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted);text-align:center;margin-bottom:0.5rem;letter-spacing:0.04em;}
+.tier-hint{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--muted);text-align:center;margin-bottom:0.42rem}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:0.38rem;margin-bottom:0.8rem}
+.tier{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:0.55rem 0.38rem;text-align:center;cursor:pointer;transition:border-color 0.15s,background 0.15s}
+.tier:hover{border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.05)}
+.tier.selected{border-color:rgba(255,255,255,0.45)!important;background:rgba(255,255,255,0.1)!important}
+.tlbl{font-family:'DM Mono',monospace;font-size:0.53rem;letter-spacing:0.1em;text-transform:uppercase;display:inline-block;padding:0.1rem 0.38rem;border-radius:3px;margin-bottom:0.22rem}
+.tl-b{background:rgba(255,255,255,0.05);color:#9a9a9a;border:1px solid rgba(255,255,255,0.1)}
+.tl-p{background:rgba(255,255,255,0.08);color:#d4d4d4;border:1px solid rgba(255,255,255,0.16)}
+.tl-t{background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.22)}
+.tier p{font-size:0.6rem;color:var(--muted);line-height:1.35;margin-top:0.18rem}
 
-/* PRODUCT DETAILS */
-.product-details{margin-bottom:0.9rem;}
-.detail-row{display:flex;align-items:flex-start;gap:0.5rem;padding:0.25rem 0;border-bottom:1px solid var(--border2);}
-.detail-row:last-child{border-bottom:none;}
-.detail-icon{font-size:0.7rem;flex-shrink:0;margin-top:1px;}
-.detail-text{font-size:0.76rem;color:var(--muted);line-height:1.45;}
+/* BUY BTN */
+.buybtn{background:#fff;color:#0a0a0a;width:100%;padding:0.6rem;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:700;border:none;cursor:pointer;transition:all 0.15s;margin-bottom:0.65rem}
+.buybtn:hover{background:#e8e8e8}
+.buybtn:disabled{opacity:0.25;cursor:not-allowed}
 
-/* BUY BUTTON */
-.cbtn-buy{background:#fff;color:#0a0a0a;width:100%;padding:0.65rem;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:700;border:none;cursor:pointer;transition:all 0.15s;margin-bottom:0.75rem;display:flex;align-items:center;justify-content:center;gap:0.4rem;}
-.cbtn-buy:hover{background:#e5e5e5;}
-.cbtn-buy:disabled{opacity:0.3;cursor:not-allowed;}
-
-/* REVIEW TOGGLE */
-.review-toggle{width:100%;padding:0.45rem;background:transparent;border:1px solid var(--border2);border-radius:5px;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;color:var(--muted);cursor:pointer;transition:all 0.15s;text-align:center;}
-.review-toggle:hover{border-color:rgba(255,255,255,0.15);color:var(--text);}
+/* TOGGLE BTN */
+.togbtn{width:100%;padding:0.4rem;background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:5px;font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.06em;color:var(--muted);cursor:pointer;transition:all 0.15s;text-align:center}
+.togbtn:hover{border-color:rgba(255,255,255,0.18);color:var(--text)}
 
 /* REVIEW PANEL */
-.review-panel{display:none;margin-top:0.75rem;border-top:1px solid var(--border2);padding-top:0.75rem;}
-.review-panel.open{display:block;animation:fadeUp 0.25s ease;}
-.review-list{display:flex;flex-direction:column;gap:0.55rem;margin-bottom:0.75rem;}
-.review-item{background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:6px;padding:0.65rem 0.8rem;}
-.review-header{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;flex-wrap:wrap;}
-.reviewer-name{font-size:0.78rem;font-weight:600;color:#fff;}
-.reviewer-date{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted);margin-left:auto;}
-.review-stars{display:flex;gap:1px;}
-.review-star{font-size:0.65rem;color:var(--amber);}
-.review-star.empty{opacity:0.2;}
-.review-text{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+.revpanel{display:none;margin-top:0.65rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:0.65rem}
+.revpanel.open{display:block;animation:fadeUp 0.2s ease}
+.revlist{display:flex;flex-direction:column;gap:0.48rem;margin-bottom:0.65rem}
+.revitem{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:6px;padding:0.55rem 0.72rem}
+.revhead{display:flex;align-items:center;gap:0.42rem;margin-bottom:0.25rem;flex-wrap:wrap}
+.revname{font-size:0.74rem;font-weight:600;color:#fff}
+.revdate{font-family:'DM Mono',monospace;font-size:0.56rem;color:var(--muted);margin-left:auto}
+.revstars{display:flex;gap:1px}
+.rs2{font-size:0.62rem;color:var(--amber)}
+.rs2.e{opacity:0.18}
+.revtxt{font-size:0.76rem;color:var(--muted);line-height:1.6}
+.wr-h{font-size:0.74rem;font-weight:600;color:var(--text);margin-bottom:0.42rem}
+.spick{display:flex;gap:4px;margin-bottom:0.42rem;cursor:pointer}
+.sps{font-size:1rem;color:rgba(250,204,21,0.18);transition:color 0.1s}
+.sps.lit{color:var(--amber)}
+.rev-inputs{display:flex;flex-direction:column;gap:0.35rem}
+.rev-inputs input,.rev-inputs textarea{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:0.48rem 0.65rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.76rem;outline:none;transition:border-color 0.15s;resize:none}
+.rev-inputs input:focus,.rev-inputs textarea:focus{border-color:rgba(255,255,255,0.22)}
+.rev-inputs input::placeholder,.rev-inputs textarea::placeholder{color:var(--muted)}
+.subrev{margin-top:0.35rem;width:100%;padding:0.48rem;border-radius:5px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:var(--text);font-family:'Inter',sans-serif;font-size:0.76rem;font-weight:600;cursor:pointer;transition:all 0.15s}
+.subrev:hover{background:rgba(255,255,255,0.12)}
+.revsuccess{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--green);text-align:center;padding:0.35rem;display:none}
 
-/* WRITE REVIEW */
-.write-review h5{font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:0.5rem;}
-.star-picker{display:flex;gap:4px;margin-bottom:0.5rem;cursor:pointer;}
-.sp-star{font-size:1.1rem;color:rgba(250,204,21,0.2);transition:color 0.1s;}
-.sp-star.lit{color:var(--amber);}
-.review-inputs{display:flex;flex-direction:column;gap:0.4rem;}
-.review-inputs input,.review-inputs textarea{background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:5px;padding:0.55rem 0.75rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.8rem;outline:none;transition:border-color 0.15s;resize:none;}
-.review-inputs input:focus,.review-inputs textarea:focus{border-color:rgba(255,255,255,0.2);}
-.review-inputs input::placeholder,.review-inputs textarea::placeholder{color:var(--muted);}
-.submit-review{margin-top:0.4rem;width:100%;padding:0.55rem;border-radius:5px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text);font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.15s;}
-.submit-review:hover{background:rgba(255,255,255,0.1);}
-.review-success{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--green);text-align:center;padding:0.4rem;display:none;}
-
-/* SITE REVIEWS */
-.reviews-section{max-width:1200px;margin:0 auto;padding:0 2rem 5rem;}
-.section-tag{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;}
-.section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-0.04em;color:#fff;margin-bottom:0.4rem;}
-.section-sub{font-size:0.9rem;color:var(--muted);}
-.section-header{margin-bottom:2rem;}
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem;margin-bottom:2rem;}
-.site-review{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.3rem;}
-.sr-top{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.75rem;}
-.sr-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;border:1px solid var(--border);font-weight:700;color:#fff;}
-.sr-name{font-size:0.85rem;font-weight:700;color:#fff;}
-.sr-role{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.05em;}
-.sr-stars{display:flex;gap:2px;margin-bottom:0.5rem;}
-.sr-star{font-size:0.75rem;color:var(--amber);}
-.sr-text{font-size:0.85rem;color:var(--muted);line-height:1.65;}
-.sr-product{margin-top:0.5rem;font-family:'DM Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.25);letter-spacing:0.06em;}
-.reviews-summary{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.8rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;}
-.rs-num{font-size:3rem;font-weight:800;color:#fff;letter-spacing:-0.05em;line-height:1;}
-.rs-stars{display:flex;gap:3px;margin:0.4rem 0;}
-.rs-star{font-size:0.9rem;color:var(--amber);}
-.rs-count{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;}
-.rs-bars{flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.45rem;}
-.rs-bar-row{display:flex;align-items:center;gap:0.75rem;}
-.rs-bar-label{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted);width:28px;text-align:right;}
-.rs-bar-track{flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
-.rs-bar-fill{height:100%;background:#fff;border-radius:99px;}
-.rs-bar-pct{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted);width:28px;}
-.write-site-review{margin-top:2rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.6rem;}
-.wsr-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:1.1rem;}
-.wsr-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;}
-.wsr-grid input{background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:6px;padding:0.7rem 0.9rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.15s;}
-.wsr-grid input:focus{border-color:rgba(255,255,255,0.2);}
-.wsr-grid input::placeholder{color:var(--muted);}
-.wsr-star-row{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap;}
-.wsr-star-label{font-size:0.82rem;color:var(--muted);}
-.wsr-stars{display:flex;gap:5px;cursor:pointer;}
-.wsr-star{font-size:1.4rem;color:rgba(250,204,21,0.15);transition:color 0.1s;}
-.wsr-star.lit{color:var(--amber);}
-.wsr-textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:6px;padding:0.7rem 0.9rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.88rem;outline:none;resize:none;transition:border-color 0.15s;margin-bottom:0.75rem;}
-.wsr-textarea:focus{border-color:rgba(255,255,255,0.2);}
-.wsr-textarea::placeholder{color:var(--muted);}
-.wsr-submit{padding:0.7rem 1.8rem;background:#fff;color:#0a0a0a;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.15s;}
-.wsr-submit:hover{background:#e5e5e5;}
-#wsr-success{display:none;color:var(--green);font-family:'DM Mono',monospace;font-size:0.75rem;margin-top:0.75rem;text-align:center;}
+/* REVIEWS SECTION */
+.rev-section{max-width:1200px;margin:0 auto;padding:0 2rem 5rem}
+.sec-tag{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.48rem}
+.sec-title{font-size:clamp(1.4rem,2.8vw,1.9rem);font-weight:800;letter-spacing:-0.04em;color:#fff;margin-bottom:0.32rem}
+.sec-sub{font-size:0.86rem;color:var(--muted);margin-bottom:1.8rem}
+.rev-summary{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.6rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.rs-num{font-size:2.8rem;font-weight:800;color:#fff;letter-spacing:-0.05em;line-height:1}
+.rs-stars{display:flex;gap:3px;margin:0.32rem 0}
+.rss{font-size:0.82rem;color:var(--amber)}
+.rs-count{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--muted)}
+.rs-bars{flex:1;min-width:180px;display:flex;flex-direction:column;gap:0.4rem}
+.rs-row{display:flex;align-items:center;gap:0.65rem}
+.rs-lbl{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--muted);width:24px;text-align:right}
+.rs-track{flex:1;height:3px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden}
+.rs-fill{height:100%;background:#fff;border-radius:99px}
+.rs-pct{font-family:'DM Mono',monospace;font-size:0.56rem;color:var(--muted);width:24px}
+.srev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.srev{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem}
+.srev-top{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.65rem}
+.srev-av{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:#fff;flex-shrink:0}
+.srev-name{font-size:0.8rem;font-weight:700;color:#fff}
+.srev-role{font-family:'DM Mono',monospace;font-size:0.56rem;color:var(--muted)}
+.srev-stars{display:flex;gap:2px;margin-bottom:0.48rem}
+.srs{font-size:0.7rem;color:var(--amber)}
+.srev-txt{font-size:0.8rem;color:var(--muted);line-height:1.65}
+.srev-prod{margin-top:0.42rem;font-family:'DM Mono',monospace;font-size:0.56rem;color:rgba(255,255,255,0.2)}
+.wsr-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.wsr-title{font-size:0.92rem;font-weight:700;color:#fff;margin-bottom:0.95rem}
+.wsr-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;margin-bottom:0.65rem}
+.wsr-grid input{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:0.62rem 0.82rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.82rem;outline:none;transition:border-color 0.15s}
+.wsr-grid input:focus{border-color:rgba(255,255,255,0.22)}
+.wsr-grid input::placeholder{color:var(--muted)}
+.wsr-star-row{display:flex;align-items:center;gap:1rem;margin-bottom:0.65rem;flex-wrap:wrap}
+.wsr-lbl{font-size:0.78rem;color:var(--muted)}
+.wsr-stars{display:flex;gap:5px;cursor:pointer}
+.wsr-s{font-size:1.25rem;color:rgba(250,204,21,0.15);transition:color 0.1s}
+.wsr-s.lit{color:var(--amber)}
+.wsr-ta{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:0.62rem 0.82rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.82rem;outline:none;resize:none;transition:border-color 0.15s;margin-bottom:0.65rem}
+.wsr-ta:focus{border-color:rgba(255,255,255,0.22)}
+.wsr-ta::placeholder{color:var(--muted)}
+.wsr-sub{padding:0.62rem 1.5rem;background:#fff;color:#0a0a0a;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.15s}
+.wsr-sub:hover{background:#e8e8e8}
+#wsr-ok{display:none;color:var(--green);font-family:'DM Mono',monospace;font-size:0.7rem;margin-top:0.65rem;text-align:center}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:all 0.2s;}
-.modal-overlay.open{opacity:1;visibility:visible;}
-.modal{background:#111;border:1px solid var(--border);border-radius:12px;padding:2rem;max-width:380px;width:100%;transform:translateY(16px) scale(0.97);transition:transform 0.2s ease;}
-.modal-overlay.open .modal{transform:none;}
-.modal-header{text-align:center;margin-bottom:1.4rem;}
-.modal-icon{font-size:1.8rem;margin-bottom:0.5rem;}
-.modal-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:0.25rem;letter-spacing:-0.02em;}
-.modal-sub{font-size:0.8rem;color:var(--muted);}
-.modal-product{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:0.7rem 0.9rem;margin-bottom:1.1rem;}
-.modal-product-name{font-size:0.85rem;font-weight:700;color:#fff;}
-.modal-product-tier{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted);margin-top:3px;letter-spacing:0.06em;}
-.modal-btns{display:flex;flex-direction:column;gap:0.55rem;}
-.modal-btn{display:flex;align-items:center;gap:0.85rem;padding:0.9rem 1rem;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.15s;text-decoration:none;}
-.modal-btn:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);}
-.modal-btn-icon{width:36px;height:36px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border:1px solid var(--border);}
-.modal-btn-title{font-size:0.88rem;font-weight:700;color:#fff;}
-.modal-btn-sub{font-size:0.7rem;color:var(--muted);margin-top:1px;}
-.modal-close{margin-top:0.75rem;width:100%;padding:0.55rem;background:transparent;border:1px solid var(--border2);border-radius:6px;color:var(--muted);font-family:'Inter',sans-serif;font-size:0.8rem;cursor:pointer;transition:all 0.15s;}
-.modal-close:hover{border-color:rgba(255,255,255,0.15);color:var(--text);}
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(6px);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:all 0.2s}
+.moverlay.open{opacity:1;visibility:visible}
+.modal{background:#111;border:1px solid var(--border);border-radius:12px;padding:1.8rem;max-width:360px;width:100%;transform:translateY(14px) scale(0.97);transition:transform 0.2s}
+.moverlay.open .modal{transform:none}
+.mhead{text-align:center;margin-bottom:1.2rem}
+.micon{font-size:1.6rem;margin-bottom:0.42rem}
+.mtitle{font-size:0.92rem;font-weight:800;color:#fff;margin-bottom:0.2rem;letter-spacing:-0.02em}
+.msub{font-size:0.76rem;color:var(--muted)}
+.mprod{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:0.62rem 0.82rem;margin-bottom:0.95rem}
+.mpname{font-size:0.8rem;font-weight:700;color:#fff}
+.mptier{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--muted);margin-top:2px}
+.mbtns{display:flex;flex-direction:column;gap:0.48rem}
+.mbtn{display:flex;align-items:center;gap:0.75rem;padding:0.82rem 0.92rem;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.15s;text-decoration:none}
+.mbtn:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.18)}
+.mbico{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;border:1px solid var(--border);background:rgba(255,255,255,0.05);flex-shrink:0}
+.mbtitle{font-size:0.83rem;font-weight:700;color:#fff}
+.mbsub{font-size:0.65rem;color:var(--muted);margin-top:1px}
+.mclose{margin-top:0.65rem;width:100%;padding:0.5rem;background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:var(--muted);font-family:'Inter',sans-serif;font-size:0.76rem;cursor:pointer;transition:all 0.15s}
+.mclose:hover{border-color:rgba(255,255,255,0.18);color:var(--text)}
 
 /* FOOTER */
-footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 2rem;}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.footer-logo{font-size:0.95rem;font-weight:800;color:#fff;letter-spacing:-0.03em;}
-.footer-logo span{color:var(--muted);}
-.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
-.footer-links a{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color 0.15s;}
-.footer-links a:hover{color:#fff;}
-footer p{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.04em;}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:1.8rem 2rem}
+.foot-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.foot-logo{font-size:0.9rem;font-weight:800;color:#fff;letter-spacing:-0.03em}
+.foot-logo span{color:var(--muted)}
+.foot-links{display:flex;gap:1.8rem;flex-wrap:wrap}
+.foot-links a{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color 0.15s}
+.foot-links a:hover{color:#fff}
+footer p{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--muted)}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@keyframes pulse2{0%,100%{opacity:1}50%{opacity:0.3}}
-@keyframes scan{0%{margin-left:-40%}100%{margin-left:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:10px}
 
-@media(max-width:768px){.hero{grid-template-columns:1fr;padding:3rem 1.5rem 2rem}.hero-right{display:none}}
-@media(max-width:600px){#list{grid-template-columns:1fr}.tiers{grid-template-columns:1fr}.wsr-grid{grid-template-columns:1fr}}
+@media(max-width:1024px){#list{grid-template-columns:repeat(2,1fr)}.srev-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.hero{grid-template-columns:1fr;padding:3rem 1.5rem 2rem}.hero-right{display:none}#list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){#list{grid-template-columns:1fr}.srev-grid{grid-template-columns:1fr}.tiers{grid-template-columns:1fr}.wsr-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div id="loader">
- <div class="ldr-ring-wrap">
- <svg class="ldr-ring-svg" viewBox="0 0 100 100">
- <circle class="ldr-ring-track" cx="50" cy="50" r="42"/>
- <circle class="ldr-ring-arc" cx="50" cy="50" r="42"/>
- </svg>
- <div class="ldr-pct" id="ldrPct">0%</div>
- </div>
+  <div class="ldr-wrap">
+    <svg class="ldr-svg" viewBox="0 0 96 96">
+      <circle class="ldr-track" cx="48" cy="48" r="42"/>
+      <circle class="ldr-arc" cx="48" cy="48" r="42"/>
+    </svg>
+    <div class="ldr-num" id="ldrNum">0%</div>
+  </div>
+  <div class="ldr-sub">Loading store</div>
 </div>
 
 <nav>
- <div class="nav-inner">
- <a class="nav-logo" href="#">Vareonl<span>.</span></a>
- <div class="nav-pills">
- <span class="nav-pill">Verified Licenses</span>
- <span class="nav-pill pill-live"><span class="live-dot"></span> Live</span>
- </div>
- </div>
+  <div class="nav-in">
+    <a class="nav-logo" href="#">Vareonl<span>.</span></a>
+    <div class="nav-right">
+      <span class="npill">Verified Licenses</span>
+      <span class="npill npill-live"><span class="ldot"></span>Live</span>
+    </div>
+  </div>
 </nav>
 
 <div class="hero">
- <div class="hero-left">
- <div class="hero-tag">— Vareonl Software Store</div>
- <h1>The Dev Tools<br>You Actually Need</h1>
- <p class="hero-desc">Genuine licenses for IDEs, AI coding assistants, project management, design tools, and everything in between. Instant delivery, 24/7 support.</p>
- <div class="hero-actions">
- <a href="#products" class="btn btn-white">Browse Tools ↓</a>
- <button onclick="openModal('General Enquiry','We\'re here to help you find the right tool')" class="btn btn-outline"> Contact Us</button>
- </div>
- <div class="hero-stats">
- <div><div class="hstat-num">60+</div><div class="hstat-label">Tools</div></div>
- <div><div class="hstat-num">3</div><div class="hstat-label">License Tiers</div></div>
- <div><div class="hstat-num">24/7</div><div class="hstat-label">Support</div></div>
- <div><div class="hstat-num"></div><div class="hstat-label">Fast Delivery</div></div>
- </div>
- </div>
- <div class="hero-right">
- <div class="terminal">
- <div class="term-bar">
- <div class="term-dot td-red"></div><div class="term-dot td-yellow"></div><div class="term-dot td-green"></div>
- <span class="term-title">vareonl ~ license-manager</span>
- </div>
- <div class="term-body">
- <div><span class="t-muted">$</span> vareonl license --check</div>
- <div><span class="t-green"></span> <span class="t-white">JetBrains All Products Pack</span></div>
- <div><span class="t-green"></span> <span class="t-white">GitHub Copilot Business</span></div>
- <div><span class="t-green"></span> <span class="t-white">Figma Professional</span></div>
- <div><span class="t-amber">⟳</span> <span class="t-white">Linear Team Plan</span></div>
- <div>&nbsp;</div>
- <div><span class="t-muted">$</span> vareonl buy notion-business</div>
- <div><span class="t-green"></span> <span class="t-white">License delivered instantly</span></div>
- <div>&nbsp;</div>
- <div><span class="t-muted">$</span> <span class="cursor"></span></div>
- </div>
- </div>
- </div>
+  <div>
+    <div class="hero-tag">Vareonl Software Store</div>
+    <h1>The Dev Tools<br>You Actually Need</h1>
+    <p class="hero-desc">Genuine licenses for IDEs, AI assistants, design tools, blockchain forensics, security tools and more. Instant delivery, 24/7 support.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn btn-w">Browse Tools</a>
+      <button onclick="openModal('General Enquiry','We are here to help')" class="btn btn-o">Contact Us</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-num">60+</div><div class="hs-lbl">Tools</div></div>
+      <div><div class="hs-num">3</div><div class="hs-lbl">Tiers</div></div>
+      <div><div class="hs-num">24/7</div><div class="hs-lbl">Support</div></div>
+      <div><div class="hs-num">Fast</div><div class="hs-lbl">Delivery</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="td td-r"></div><div class="td td-y"></div><div class="td td-g"></div>
+        <span class="term-t">vareonl ~ license-manager</span>
+      </div>
+      <div class="term-body">
+        <div><span class="tm">$</span> vareonl license --check</div>
+        <div><span class="tg">✓</span> <span class="tw">JetBrains All Products Pack</span></div>
+        <div><span class="tg">✓</span> <span class="tw">GitHub Copilot Business</span></div>
+        <div><span class="tg">✓</span> <span class="tw">Figma Professional</span></div>
+        <div><span class="ta">⟳</span> <span class="tw">Chainalysis Reactor</span></div>
+        <div>&nbsp;</div>
+        <div><span class="tm">$</span> vareonl buy cursor-pro</div>
+        <div><span class="tg">✓</span> <span class="tw">License delivered instantly</span></div>
+        <div><span class="tm">$</span> <span class="cur"></span></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="products" class="search-wrap">
- <div class="search-box">
- <div class="search-inner">
- <span class="search-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
- <input id="q" placeholder="Search tools, IDEs, AI, blockchain, security…" autocomplete="off" onkeydown="if(event.key==='Enter')doSearch()">
- <button class="search-btn" onclick="doSearch()">Search</button>
- <span class="search-count" id="countLabel"></span>
- </div>
- </div>
- <div id="suggestions" class="suggestions"></div>
+  <div class="sbox">
+    <div class="sinner">
+      <span class="sicon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input id="q" placeholder="Search tools, IDEs, blockchain, security..." autocomplete="off" onkeydown="if(event.key==='Enter')doSearch()">
+      <button class="sbtn" onclick="doSearch()">Search</button>
+      <span class="scount" id="scount"></span>
+    </div>
+  </div>
+  <div id="suggs" class="suggs"></div>
 </div>
 
 <div class="tabs-wrap" id="tabs"></div>
 <div class="grid-wrap"><div id="list"></div></div>
 
-<div class="reviews-section" id="reviews">
- <div class="section-header">
- <div class="section-tag">Customer Reviews</div>
- <div class="section-title">What Our Customers Say</div>
- <div class="section-sub">Trusted by developers and teams around the world</div>
- </div>
- <div class="reviews-summary">
- <div>
- <div class="rs-num">4.9</div>
- <div class="rs-stars"><span class="rs-star">★</span><span class="rs-star">★</span><span class="rs-star">★</span><span class="rs-star">★</span><span class="rs-star">★</span></div>
- <div class="rs-count" id="totalReviewCount">Based on 12 reviews</div>
- </div>
- <div class="rs-bars">
- <div class="rs-bar-row"><span class="rs-bar-label">5★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:85%"></div></div><span class="rs-bar-pct">85%</span></div>
- <div class="rs-bar-row"><span class="rs-bar-label">4★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:10%"></div></div><span class="rs-bar-pct">10%</span></div>
- <div class="rs-bar-row"><span class="rs-bar-label">3★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:5%"></div></div><span class="rs-bar-pct">5%</span></div>
- <div class="rs-bar-row"><span class="rs-bar-label">2★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:0%"></div></div><span class="rs-bar-pct">0%</span></div>
- <div class="rs-bar-row"><span class="rs-bar-label">1★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:0%"></div></div><span class="rs-bar-pct">0%</span></div>
- </div>
- </div>
- <div class="reviews-grid" id="siteReviewsGrid" style="margin-top:1.5rem"></div>
- <div class="write-site-review">
- <div class="wsr-title"> Leave a Review</div>
- <div class="wsr-grid">
- <input id="wsr-name" placeholder="Your name" maxlength="40">
- <input id="wsr-role" placeholder="Your role (e.g. Full-Stack Dev)" maxlength="50">
- </div>
- <div class="wsr-star-row">
- <span class="wsr-star-label">Your rating:</span>
- <div class="wsr-stars" id="wsrStars">
- <span class="wsr-star" data-v="1">★</span><span class="wsr-star" data-v="2">★</span>
- <span class="wsr-star" data-v="3">★</span><span class="wsr-star" data-v="4">★</span>
- <span class="wsr-star" data-v="5">★</span>
- </div>
- </div>
- <textarea id="wsr-text" class="wsr-textarea" rows="3" placeholder="Share your experience with Vareonl Software Store…" maxlength="300"></textarea>
- <button class="wsr-submit" onclick="submitSiteReview()">Submit Review</button>
- <div id="wsr-success"> Thank you! Your review has been added.</div>
- </div>
+<div class="rev-section" id="reviews">
+  <div class="sec-tag">Customer Reviews</div>
+  <div class="sec-title">What Our Customers Say</div>
+  <div class="sec-sub">Trusted by developers and teams worldwide</div>
+  <div class="rev-summary">
+    <div>
+      <div class="rs-num">4.9</div>
+      <div class="rs-stars"><span class="rss">★</span><span class="rss">★</span><span class="rss">★</span><span class="rss">★</span><span class="rss">★</span></div>
+      <div class="rs-count" id="revCount">Based on 6 reviews</div>
+    </div>
+    <div class="rs-bars">
+      <div class="rs-row"><span class="rs-lbl">5★</span><div class="rs-track"><div class="rs-fill" style="width:85%"></div></div><span class="rs-pct">85%</span></div>
+      <div class="rs-row"><span class="rs-lbl">4★</span><div class="rs-track"><div class="rs-fill" style="width:10%"></div></div><span class="rs-pct">10%</span></div>
+      <div class="rs-row"><span class="rs-lbl">3★</span><div class="rs-track"><div class="rs-fill" style="width:5%"></div></div><span class="rs-pct">5%</span></div>
+      <div class="rs-row"><span class="rs-lbl">2★</span><div class="rs-track"><div class="rs-fill" style="width:0%"></div></div><span class="rs-pct">0%</span></div>
+      <div class="rs-row"><span class="rs-lbl">1★</span><div class="rs-track"><div class="rs-fill" style="width:0%"></div></div><span class="rs-pct">0%</span></div>
+    </div>
+  </div>
+  <div class="srev-grid" id="srevGrid"></div>
+  <div class="wsr-box">
+    <div class="wsr-title">Leave a Review</div>
+    <div class="wsr-grid">
+      <input id="wsr-name" placeholder="Your name" maxlength="40">
+      <input id="wsr-role" placeholder="Your role (e.g. Developer)" maxlength="50">
+    </div>
+    <div class="wsr-star-row">
+      <span class="wsr-lbl">Rating:</span>
+      <div class="wsr-stars" id="wsrStars">
+        <span class="wsr-s" data-v="1">★</span><span class="wsr-s" data-v="2">★</span>
+        <span class="wsr-s" data-v="3">★</span><span class="wsr-s" data-v="4">★</span>
+        <span class="wsr-s" data-v="5">★</span>
+      </div>
+    </div>
+    <textarea id="wsr-text" class="wsr-ta" rows="3" placeholder="Share your experience..." maxlength="300"></textarea>
+    <button class="wsr-sub" onclick="submitSiteReview()">Submit Review</button>
+    <div id="wsr-ok">Review submitted!</div>
+  </div>
 </div>
 
-<div class="modal-overlay" id="contactModal">
- <div class="modal">
- <div class="modal-header">
- <div class="modal-icon"></div>
- <div class="modal-title">Contact Vareonl Store</div>
- <div class="modal-sub">Choose how you'd like to reach us</div>
- </div>
- <div class="modal-product">
- <div class="modal-product-name" id="modalProductName">General Enquiry</div>
- <div class="modal-product-tier" id="modalProductTier">Ready to help you</div>
- </div>
- <div class="modal-btns">
- <a id="modalTgBtn" href="#" target="_blank" class="modal-btn">
- <div class="modal-btn-icon"></div>
- <div><div class="modal-btn-title">Telegram</div><div class="modal-btn-sub">Usually replies in minutes</div></div>
- <span style="color:var(--muted);font-size:0.8rem;margin-left:auto">→</span>
- </a>
- <a id="modalWaBtn" href="#" target="_blank" class="modal-btn">
- <div class="modal-btn-icon"></div>
- <div><div class="modal-btn-title">WhatsApp</div><div class="modal-btn-sub">Available 24/7</div></div>
- <span style="color:var(--muted);font-size:0.8rem;margin-left:auto">→</span>
- </a>
- </div>
- <button class="modal-close" onclick="closeModal()"> Cancel</button>
- </div>
+<div class="moverlay" id="modal">
+  <div class="modal">
+    <div class="mhead">
+      <div class="micon">&#x1F4AC;</div>
+      <div class="mtitle">Contact Vareonl Store</div>
+      <div class="msub">Choose how you'd like to reach us</div>
+    </div>
+    <div class="mprod">
+      <div class="mpname" id="mpname">General Enquiry</div>
+      <div class="mptier" id="mptier">Ready to help you</div>
+    </div>
+    <div class="mbtns">
+      <a id="mtg" href="#" target="_blank" class="mbtn">
+        <div class="mbico">TG</div>
+        <div><div class="mbtitle">Telegram</div><div class="mbsub">Usually replies in minutes</div></div>
+        <span style="color:var(--muted);margin-left:auto;font-size:0.8rem">→</span>
+      </a>
+      <a id="mwa" href="#" target="_blank" class="mbtn">
+        <div class="mbico">WA</div>
+        <div><div class="mbtitle">WhatsApp</div><div class="mbsub">Available 24/7</div></div>
+        <span style="color:var(--muted);margin-left:auto;font-size:0.8rem">→</span>
+      </a>
+    </div>
+    <button class="mclose" onclick="closeModal()">Cancel</button>
+  </div>
 </div>
 
 <footer>
- <div class="footer-inner">
- <div class="footer-logo">Vareonl<span>.</span></div>
- <div class="footer-links">
- <a href="#" onclick="openModal('General Enquiry','We are here to help');return false;">Telegram</a>
- <a href="#" onclick="openModal('General Enquiry','We are here to help');return false;">WhatsApp</a>
- <a href="#reviews">Reviews</a>
- <a href="#products">Store</a>
- </div>
- <p>© 2026 Vareonl Software Store · All licenses are genuine</p>
- </div>
+  <div class="foot-in">
+    <div class="foot-logo">Vareonl<span>.</span></div>
+    <div class="foot-links">
+      <a href="#" onclick="openModal('General Enquiry','We are here to help');return false">Telegram</a>
+      <a href="#" onclick="openModal('General Enquiry','We are here to help');return false">WhatsApp</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#products">Store</a>
+    </div>
+    <p>© 2026 Vareonl Software Store · All licenses are genuine</p>
+  </div>
 </footer>
 
 <script>
+// ── CARD COLORS ──
+const CC = {
+  "IDE":["#1d4ed8","#7c3aed"],
+  "AI Assistant":["#7c3aed","#be185d"],
+  "Design":["#be185d","#ea580c"],
+  "Project Mgmt":["#0369a1","#0891b2"],
+  "DevOps":["#15803d","#16a34a"],
+  "Productivity":["#b45309","#d97706"],
+  "Database":["#4338ca","#6d28d9"],
+  "Testing":["#b91c1c","#ea580c"],
+  "Blockchain":["#92400e","#ca8a04"],
+  "Security":["#991b1b","#7f1d1d"],
+  "Network":["#0c4a6e","#0369a1"],
+  "Software":["#374151","#4b5563"]
+};
+
+// ── PRODUCTS ──
 const products = [
- {name:"JetBrains All Products Pack",cat:"IDE",icon:"",badge:"hot",desc:"Full suite: IntelliJ, WebStorm, PyCharm, DataGrip & more.",rating:5.0,reviews:[
- {user:"Alex M.",stars:5,text:"Saved hours every single day. License arrived in minutes — totally worth it."},
- {user:"Sara K.",stars:5,text:"Legit license, super fast delivery. This is my third purchase from Vareonl and still flawless."},
- {user:"Dev O.",stars:5,text:"Got the full pack for my team. All 6 seats activated instantly. Excellent service."},
- ]},
- {name:"Visual Studio Code Extensions Bundle",cat:"IDE",icon:"",badge:"pop",desc:"Premium extension pack + Copilot integration for supercharged VS Code.",rating:4.9,reviews:[
- {user:"James T.",stars:5,text:"Extensions all installed perfectly. The Copilot integration alone makes this worth it."},
- {user:"Priya N.",stars:5,text:"Huge productivity boost. Every extension in the bundle worked on first try."},
- ]},
- {name:"JetBrains IntelliJ IDEA Ultimate",cat:"IDE",icon:"",badge:null,desc:"The most intelligent Java & Kotlin IDE with profiler and database tools.",rating:5.0,reviews:[
- {user:"Mia R.",stars:5,text:"Best Java IDE on the market, full stop. License was genuine and activated instantly."},
- {user:"Carlos B.",stars:5,text:"I've been using IntelliJ for years. Getting it through Vareonl saved me a lot compared to buying direct."},
- {user:"Kenji A.",stars:5,text:"Verified license, smooth activation. No issues whatsoever."},
- ]},
- {name:"WebStorm License",cat:"IDE",icon:"",badge:null,desc:"Smart JavaScript IDE with deep support for React, Vue, Angular, Node.js.",rating:4.9,reviews:[
- {user:"Ola F.",stars:5,text:"WebStorm is incredible for React development. License came through Telegram in under 5 minutes."},
- {user:"Nina P.",stars:5,text:"Great price and legit key. Support was helpful when I had an activation question."},
- ]},
- {name:"PyCharm Professional",cat:"IDE",icon:"",badge:"new",desc:"Full-featured Python IDE with data science tools and Django support.",rating:5.0,reviews:[
- {user:"Dev K.",stars:5,text:"Perfect for my Django projects. Activated without a hitch, and the data science tools are fantastic."},
- {user:"Amara S.",stars:5,text:"The debugger alone makes it worth every penny. Vareonl delivered fast."},
- {user:"Raj M.",stars:5,text:"Much cheaper than JetBrains direct. License is 100% genuine."},
- ]},
- {name:"Rider .NET IDE",cat:"IDE",icon:"",badge:null,desc:"Fast cross-platform .NET IDE with ReSharper built-in.",rating:4.9,reviews:[
- {user:"Tom W.",stars:5,text:"Finally a proper .NET IDE on macOS. License was instant and genuine."},
- {user:"Lena G.",stars:5,text:"Replaced Visual Studio for me. Runs faster and the license from Vareonl worked perfectly."},
- ]},
- {name:"GitHub Copilot Business",cat:"AI Assistant",icon:"",badge:"hot",desc:"AI pair programmer suggesting whole lines and functions in your editor.",rating:5.0,reviews:[
- {user:"Liam P.",stars:5,text:"Game changer. I write code at least 3x faster now. Best purchase of the year."},
- {user:"Zoe A.",stars:5,text:"Worth every penny. Suggestions are accurate and it learns your style quickly."},
- {user:"Marcus E.",stars:5,text:"Entire team is using it now. License setup was painless through Vareonl."},
- {user:"Fatima H.",stars:5,text:"I was skeptical but this genuinely changes how you code. Can't go back."},
- ]},
- {name:"Tabnine Pro",cat:"AI Assistant",icon:"",badge:null,desc:"Privacy-first AI completion that learns your codebase.",rating:4.9,reviews:[
- {user:"Owen R.",stars:5,text:"Love that it works locally. Great for teams that can't send code to the cloud."},
- {user:"Sonia L.",stars:5,text:"Fast completions, privacy-focused, and the license from Vareonl was legitimate."},
- ]},
- {name:"Cursor Pro",cat:"AI Assistant",icon:"",badge:"new",desc:"AI-first code editor — edit entire files with natural language.",rating:5.0,reviews:[
- {user:"Noah B.",stars:5,text:"Cursor is genuinely the future of coding. I refactored an entire module in 10 minutes."},
- {user:"Isabel C.",stars:5,text:"The natural language edits are mind-blowing. Vareonl got me the Pro license quickly."},
- {user:"Yusuf D.",stars:5,text:"Switched from VS Code and never looked back. The AI chat understands context perfectly."},
- ]},
- {name:"Codeium Enterprise",cat:"AI Assistant",icon:"",badge:null,desc:"Unlimited AI completions with no data retention.",rating:4.9,reviews:[
- {user:"Grace T.",stars:5,text:"Our company needed something with no data retention. Codeium Enterprise ticks every box."},
- {user:"Arjun V.",stars:5,text:"Unlimited completions and it's fast. Great value, license delivered quickly."},
- ]},
- {name:"Figma Professional",cat:"Design",icon:"",badge:"pop",desc:"Collaborative UI/UX design with unlimited projects and prototyping.",rating:5.0,reviews:[
- {user:"Ella S.",stars:5,text:"My entire design team uses Figma daily. Vareonl made getting licenses for everyone easy."},
- {user:"Diana K.",stars:5,text:"Unlimited projects is the feature that sold me. License was genuine and activated instantly."},
- {user:"Felix J.",stars:5,text:"Smooth purchase, smooth activation. Figma Pro is essential for any designer."},
- ]},
- {name:"Sketch for Teams",cat:"Design",icon:"",badge:null,desc:"Mac-native design with shared libraries and developer handoff.",rating:4.9,reviews:[
- {user:"Hana M.",stars:5,text:"Shared libraries transformed our design workflow. License from Vareonl was instant."},
- {user:"Leo B.",stars:5,text:"Best Mac design tool and the team plan is great value through Vareonl."},
- ]},
- {name:"Adobe Creative Cloud All Apps",cat:"Design",icon:"",badge:"hot",desc:"Full Adobe suite: Photoshop, Illustrator, XD, Premiere, After Effects & more.",rating:5.0,reviews:[
- {user:"Chris N.",stars:5,text:"All apps in one license and it's genuine. Saved a huge amount vs buying from Adobe directly."},
- {user:"Sofia R.",stars:5,text:"Premiere, Photoshop, Illustrator — all activated. Support helped me through setup."},
- {user:"Ben A.",stars:5,text:"Best deal I've found for Creative Cloud. Vareonl delivered and it all works."},
- {user:"Mei L.",stars:5,text:"Third time buying here. Always reliable, always fast."},
- ]},
- {name:"Framer Pro",cat:"Design",icon:"",badge:"new",desc:"Design and publish production websites with animations and CMS.",rating:4.9,reviews:[
- {user:"Kai S.",stars:5,text:"Built my portfolio in Framer in a weekend. The Pro features are absolutely worth it."},
- {user:"Nora F.",stars:5,text:"CMS and animations in one tool is incredible. License from Vareonl activated perfectly."},
- ]},
- {name:"Linear Team Plan",cat:"Project Mgmt",icon:"",badge:"pop",desc:"Beautifully fast issue tracker with cycles, roadmaps, and git sync.",rating:5.0,reviews:[
- {user:"Tom H.",stars:5,text:"Best PM tool we've ever tried as a team. Cycles and git sync are game-changing."},
- {user:"Rachel D.",stars:5,text:"Switched from Jira and never looked back. License was set up and working same day."},
- {user:"Sam O.",stars:5,text:"The speed of Linear alone is worth it. Everything feels instant."},
- ]},
- {name:"Notion Business",cat:"Project Mgmt",icon:"",badge:null,desc:"All-in-one workspace with notes, wikis, databases, and AI.",rating:4.9,reviews:[
- {user:"Ivy C.",stars:5,text:"Replaced 5 tools with Notion. The AI features in Business plan are excellent."},
- {user:"Marcus P.",stars:5,text:"Our whole company runs on Notion now. License was smooth and fast through Vareonl."},
- ]},
- {name:"Jira Software Premium",cat:"Project Mgmt",icon:"",badge:null,desc:"Advanced Scrum/Kanban boards, roadmaps, and capacity planning.",rating:4.9,reviews:[
- {user:"Olga T.",stars:5,text:"Advanced roadmaps alone justify the Premium plan. License worked on first activation."},
- {user:"Derek S.",stars:5,text:"Our enterprise team needed Jira Premium. Vareonl delivered quickly and it's legitimate."},
- {user:"Aisha B.",stars:5,text:"Capacity planning features are excellent. Smooth purchase experience."},
- ]},
- {name:"Asana Business",cat:"Project Mgmt",icon:"",badge:null,desc:"Work management with timelines, portfolios, and reporting.",rating:4.9,reviews:[
- {user:"Paul N.",stars:5,text:"Portfolios and timelines make it easy to manage multiple projects. License was instant."},
- {user:"Chloe M.",stars:5,text:"Our marketing team lives in Asana. Business plan features are exactly what we needed."},
- ]},
- {name:"ClickUp Business Plus",cat:"Project Mgmt",icon:"",badge:null,desc:"One app for tasks, docs, goals, chat, whiteboards and time tracking.",rating:4.9,reviews:[
- {user:"Ethan R.",stars:5,text:"Replaced Notion, Jira, and Slack for us. The Business Plus plan has everything."},
- {user:"Luna V.",stars:5,text:"Time tracking and goals in one place is amazing. License from Vareonl was legitimate."},
- {user:"Joel K.",stars:5,text:"Great value through Vareonl. Setup was quick and everything activated correctly."},
- ]},
- {name:"GitHub Teams",cat:"DevOps",icon:"",badge:null,desc:"Unlimited private repos, Actions minutes, and code review tools.",rating:5.0,reviews:[
- {user:"Anna W.",stars:5,text:"Essential for any dev team. The Actions minutes and code review tools are top-tier."},
- {user:"Riku T.",stars:5,text:"Every project starts with GitHub Teams now. License setup was effortless."},
- {user:"Elena P.",stars:5,text:"Reliable, fast delivery of a genuine license. Couldn't ask for more."},
- ]},
- {name:"GitLab Premium",cat:"DevOps",icon:"",badge:null,desc:"Complete DevSecOps platform with CI/CD and security scanning.",rating:4.9,reviews:[
- {user:"Henrik B.",stars:5,text:"We moved from GitHub to GitLab for the CI/CD. Premium tier is brilliant."},
- {user:"Amina D.",stars:5,text:"Security scanning and merge controls are exactly what our team needed. License instant."},
- ]},
- {name:"Vercel Pro",cat:"DevOps",icon:"▲",badge:"pop",desc:"Frontend cloud with instant deploys, edge functions, and analytics.",rating:5.0,reviews:[
- {user:"Jake L.",stars:5,text:"Deploy in seconds. Edge functions are blazing fast. Best frontend platform by far."},
- {user:"Talia S.",stars:5,text:"My entire Next.js stack lives on Vercel. Pro features are essential. Vareonl delivered fast."},
- {user:"Mateo G.",stars:5,text:"Analytics and instant rollbacks make deployments stress-free. Worth every cent."},
- ]},
- {name:"Railway Pro",cat:"DevOps",icon:"",badge:"new",desc:"Deploy any app instantly with Postgres, Redis, and auto-scaling.",rating:4.9,reviews:[
- {user:"Hina Y.",stars:5,text:"Spun up a full-stack app with Postgres in under 10 minutes. Railway Pro is incredible."},
- {user:"Ben C.",stars:5,text:"Auto-scaling just works. License activated same day, no issues."},
- ]},
- {name:"DataDog Pro",cat:"DevOps",icon:"",badge:null,desc:"Full-stack monitoring: APM, logs, metrics, alerts, 450+ integrations.",rating:4.9,reviews:[
- {user:"Vera M.",stars:5,text:"450+ integrations and our entire stack is monitored perfectly. License was genuine."},
- {user:"Oscar J.",stars:5,text:"APM caught a performance bottleneck within hours of setup. Vareonl delivered quickly."},
- {user:"Nadia R.",stars:5,text:"Best observability platform we've used. Smooth purchase experience."},
- ]},
- {name:"1Password Teams",cat:"Productivity",icon:"",badge:null,desc:"Secure password management with shared vaults and admin controls.",rating:5.0,reviews:[
- {user:"Maya C.",stars:5,text:"Security essential for every team. Shared vaults and admin controls are excellent."},
- {user:"James O.",stars:5,text:"Travel Mode is a genius feature. License activated instantly and everything works."},
- {user:"Petra L.",stars:5,text:"Our whole company switched to 1Password. Getting licenses through Vareonl was easy."},
- ]},
- {name:"Grammarly Business",cat:"Productivity",icon:"",badge:null,desc:"AI writing assistant with tone suggestions and clarity improvements.",rating:4.9,reviews:[
- {user:"Sandra K.",stars:5,text:"Tone suggestions changed how I write emails. Business plan for the whole team is great."},
- {user:"Ali H.",stars:5,text:"Catches things spell-check never would. License from Vareonl was fast and legit."},
- ]},
- {name:"Loom Business",cat:"Productivity",icon:"",badge:"new",desc:"Async video messages with AI transcripts and summaries.",rating:5.0,reviews:[
- {user:"Rita A.",stars:5,text:"Cut our meetings in half. AI summaries are surprisingly accurate."},
- {user:"Chris V.",stars:5,text:"Async-first workflow is the future. Loom Business makes it effortless. License instant."},
- {user:"Mei W.",stars:5,text:"Transcripts save so much time when reviewing recordings. Excellent product."},
- ]},
- {name:"Slack Pro",cat:"Productivity",icon:"",badge:null,desc:"Full message history, unlimited integrations, and group calls.",rating:4.9,reviews:[
- {user:"Dani F.",stars:5,text:"Full message history is crucial for us. License activated perfectly."},
- {user:"Lucas T.",stars:5,text:"Unlimited integrations let us connect everything to Slack. Vareonl delivered fast."},
- ]},
- {name:"Zoom Pro",cat:"Productivity",icon:"",badge:null,desc:"HD meetings up to 30 hours, cloud recording, and transcripts.",rating:4.9,reviews:[
- {user:"Penny S.",stars:5,text:"30-hour limit is more than enough. Cloud recordings with transcripts are very useful."},
- {user:"Victor N.",stars:5,text:"Reliable, HD quality every call. License from Vareonl was smooth and legitimate."},
- {user:"Kira J.",stars:5,text:"Our client calls use Zoom Pro exclusively. Great product, fast delivery."},
- ]},
- {name:"Raycast Pro",cat:"Productivity",icon:"",badge:"pop",desc:"Supercharged Mac launcher with AI, snippets, and 1000+ extensions.",rating:5.0,reviews:[
- {user:"Finn O.",stars:5,text:"Replaced 4 apps with Raycast Pro. The AI commands are genuinely useful, not gimmicky."},
- {user:"Cora B.",stars:5,text:"Window management alone is worth it. 1000+ extensions means there's something for everything."},
- {user:"Haruto S.",stars:5,text:"The fastest launcher I've ever used. License from Vareonl activated first time."},
- ]},
- {name:"DataGrip License",cat:"Database",icon:"",badge:null,desc:"Multi-engine database IDE for PostgreSQL, MySQL, MongoDB, Redis.",rating:4.9,reviews:[
- {user:"Niko B.",stars:5,text:"Query console is incredibly smart. Works with every database we use. License instant."},
- {user:"Astra L.",stars:5,text:"Replaced 3 separate DB tools with DataGrip. Vareonl delivered a genuine license."},
- ]},
- {name:"TablePlus Pro",cat:"Database",icon:"",badge:null,desc:"Modern native client for relational databases with clean UI.",rating:4.9,reviews:[
- {user:"Will F.",stars:5,text:"Cleanest database UI I've used. Filters and export tools save hours every week."},
- {user:"Tae K.",stars:5,text:"Switched from Sequel Pro and it's so much better. License from Vareonl worked perfectly."},
- {user:"Mara E.",stars:5,text:"Native performance makes it feel snappy. Great purchase experience."},
- ]},
- {name:"MongoDB Atlas Pro",cat:"Database",icon:"",badge:null,desc:"Fully managed cloud database with global clusters and Atlas Search.",rating:5.0,reviews:[
- {user:"Sol G.",stars:5,text:"Global clusters scaled without any effort from our side. Atlas Search is powerful."},
- {user:"Bea C.",stars:5,text:"Fully managed means I never think about the DB. Pro plan features are excellent."},
- ]},
- {name:"Postman Professional",cat:"Testing",icon:"",badge:null,desc:"API platform for design, testing, docs, and monitoring with mock servers.",rating:5.0,reviews:[
- {user:"Rita J.",stars:5,text:"Perfect for API testing. Mock servers saved our team weeks of backend waiting time."},
- {user:"Enzo P.",stars:5,text:"Documentation generation is brilliant. License from Vareonl was instant."},
- {user:"Laila K.",stars:5,text:"Our whole API lifecycle lives in Postman now. Professional plan is worth it."},
- ]},
- {name:"BrowserStack Automate",cat:"Testing",icon:"",badge:null,desc:"Cloud testing with Selenium, Cypress, and Playwright on 3000+ devices.",rating:4.9,reviews:[
- {user:"Finn A.",stars:5,text:"3000+ real devices is no joke. Our cross-browser coverage went from 20% to 100%."},
- {user:"Demi T.",stars:5,text:"Playwright integration was seamless. License delivered quickly, everything worked."},
- ]},
- {name:"Sentry Business",cat:"Testing",icon:"",badge:"pop",desc:"Error tracking, performance monitoring, and session replay.",rating:5.0,reviews:[
- {user:"Igor S.",stars:5,text:"Session replay caught a UX bug in 10 minutes that had been reported for months."},
- {user:"Nour A.",stars:5,text:"Error grouping is smart and the alerts are timely. Business plan is excellent value."},
- {user:"Theo M.",stars:5,text:"We use Sentry across 8 projects. Vareonl made getting the Business plan easy."},
- ]},
- {name:"Chainalysis Reactor",cat:"Blockchain",icon:"",badge:"hot",desc:"Industry-leading blockchain investigation tool for tracing crypto transactions across multiple chains.",rating:5.0,reviews:[
- {user:"Marcus L.",stars:5,text:"Reactor is the gold standard for blockchain forensics. License delivered instantly through Vareonl."},
- {user:"Priya S.",stars:5,text:"Traced a complex multi-hop transaction in minutes. Incredible tool, smooth purchase."},
- {user:"Jake F.",stars:5,text:"Our compliance team relies on Reactor daily. Vareonl made getting the license easy."},
- ]},
- {name:"Elliptic Navigator",cat:"Blockchain",icon:"",badge:null,desc:"Crypto asset risk management and blockchain analytics platform for compliance and investigations.",rating:4.9,reviews:[
- {user:"Dana K.",stars:5,text:"Navigator's risk scoring is incredibly accurate. License was genuine and instant."},
- {user:"Ryo T.",stars:5,text:"Best compliance tool for crypto firms. Vareonl delivered quickly."},
- ]},
- {name:"CipherTrace Inspector",cat:"Blockchain",icon:"",badge:null,desc:"Advanced cryptocurrency forensics tool for AML compliance and financial crime investigation.",rating:4.9,reviews:[
- {user:"Amara O.",stars:5,text:"AML reporting is thorough and court-ready. License activated without issues."},
- {user:"Ben W.",stars:5,text:"Great for crypto crime investigations. Vareonl support helped with setup."},
- {user:"Lena V.",stars:5,text:"Replaced our old tool entirely. Much more accurate results."},
- ]},
- {name:"TRM Labs Suite",cat:"Blockchain",icon:"",badge:"new",desc:"Blockchain intelligence platform for fraud detection, sanctions screening, and crypto risk monitoring.",rating:5.0,reviews:[
- {user:"Chris A.",stars:5,text:"TRM's sanctions screening is unmatched. Fast delivery and legit license from Vareonl."},
- {user:"Fatou D.",stars:5,text:"Our fraud team uses TRM daily. Excellent product, smooth purchase experience."},
- ]},
- {name:"Crystal Blockchain",cat:"Blockchain",icon:"",badge:null,desc:"Blockchain analytics and crypto transaction monitoring with visual investigation tools.",rating:4.9,reviews:[
- {user:"Ivan P.",stars:5,text:"Visual transaction graphs make complex cases easy to understand. License instant."},
- {user:"Mira J.",stars:5,text:"Crystal's monitoring alerts have caught issues early. Vareonl delivered fast."},
- ]},
- {name:"CoinPath Forensics",cat:"Blockchain",icon:"",badge:null,desc:"Powerful blockchain data analytics API for tracing fund flows across Bitcoin and Ethereum.",rating:4.9,reviews:[
- {user:"Seth B.",stars:5,text:"API integration was seamless. CoinPath data is accurate and reliable."},
- {user:"Yuki N.",stars:5,text:"Fund flow tracing is excellent. License from Vareonl worked perfectly."},
- ]},
- {name:"Blockseer Analytics",cat:"Blockchain",icon:"",badge:null,desc:"Bitcoin blockchain analytics platform for compliance teams and law enforcement investigations.",rating:4.9,reviews:[
- {user:"Anika R.",stars:5,text:"Compliance reporting is clean and detailed. Vareonl got me the license fast."},
- {user:"Tom E.",stars:5,text:"Law enforcement-grade analytics at a great price. Smooth purchase."},
- {user:"Clara S.",stars:5,text:"Reliable data, well-designed interface. License activated instantly."},
- ]},
- {name:"OXT Explorer Pro",cat:"Blockchain",icon:"",badge:null,desc:"Advanced Bitcoin transaction graph explorer for on-chain analysis and forensic investigation.",rating:4.9,reviews:[
- {user:"Felix M.",stars:5,text:"Transaction graph visualisation is outstanding. License delivered in minutes."},
- {user:"Hana B.",stars:5,text:"Great for on-chain analysis. Vareonl support was helpful throughout."},
- ]},
- {name:"BitScan Explorer",cat:"Blockchain",icon:"",badge:null,desc:"Blockchain exploration and monitoring tool for real-time transaction tracking and address analysis.",rating:4.9,reviews:[
- {user:"Oscar T.",stars:5,text:"Real-time tracking is fast and accurate. Vareonl delivered a genuine license."},
- {user:"Nina G.",stars:5,text:"Address clustering works really well. Easy purchase experience."},
- ]},
- {name:"Phishing Simulation Platform",cat:"Security",icon:"",badge:"hot",desc:"Simulate phishing attacks on your own organisation to train staff and measure security awareness.",rating:5.0,reviews:[
- {user:"Rachel M.",stars:5,text:"Our click rate dropped 80% after 3 months of simulations. Excellent tool."},
- {user:"Dev S.",stars:5,text:"Easy to set up campaigns and the reporting is detailed. License instant."},
- {user:"Chloe T.",stars:5,text:"Best investment for our security awareness programme. Vareonl delivered fast."},
- ]},
- {name:"Incident Playbook Engine",cat:"Security",icon:"",badge:null,desc:"Automate and orchestrate incident response workflows with customisable playbooks and integrations.",rating:4.9,reviews:[
- {user:"Aaron K.",stars:5,text:"Playbooks cut our response time in half. Genuine license, smooth activation."},
- {user:"Sia L.",stars:5,text:"The integration library is huge. Vareonl made getting the license simple."},
- ]},
- {name:"NetFlow Analyzer Pro",cat:"Network",icon:"",badge:null,desc:"Real-time network traffic analysis and bandwidth monitoring with deep packet insights.",rating:4.9,reviews:[
- {user:"Hugo R.",stars:5,text:"Pinpointed a bandwidth hog within minutes of setup. License from Vareonl was instant."},
- {user:"Zara P.",stars:5,text:"Traffic analysis is detailed and the UI is clean. Great purchase experience."},
- {user:"Eli W.",stars:5,text:"Replaced two tools with this one. Vareonl delivered quickly."},
- ]},
- {name:"Packet Capture Pro",cat:"Network",icon:"",badge:null,desc:"Professional-grade packet capture and protocol analysis tool for network diagnostics and security.",rating:4.9,reviews:[
- {user:"Noel C.",stars:5,text:"Deep packet inspection works flawlessly. License activated on first try."},
- {user:"Tara H.",stars:5,text:"Indispensable for our network security team. Fast delivery from Vareonl."},
- ]},
- {name:"Certificate Manager",cat:"Network",icon:"",badge:null,desc:"Centralised SSL/TLS certificate lifecycle management with automated renewal and alerts.",rating:4.9,reviews:[
- {user:"Finn B.",stars:5,text:"Never missed a certificate expiry since using this. License instant from Vareonl."},
- {user:"Leah O.",stars:5,text:"Automated renewals saved our team hours every month. Genuine license."},
- {user:"Sam D.",stars:5,text:"Clean dashboard, great alerts. Smooth purchase and activation."},
- ]},
- {name:"DNS Monitor",cat:"Network",icon:"",badge:null,desc:"Continuous DNS monitoring and alerting platform to detect hijacking, misconfigurations and outages.",rating:4.9,reviews:[
- {user:"Marco V.",stars:5,text:"Caught a DNS misconfiguration before it caused downtime. Excellent tool."},
- {user:"Iris F.",stars:5,text:"Alerts are fast and accurate. License from Vareonl was delivered instantly."},
- ]},
- {name:"Vulnerability Scan Suite",cat:"Security",icon:"",badge:"pop",desc:"Comprehensive vulnerability scanning for web apps, networks and infrastructure with detailed reports.",rating:5.0,reviews:[
- {user:"Kai P.",stars:5,text:"Found critical vulnerabilities in our app within the first scan. Excellent tool."},
- {user:"Nadia C.",stars:5,text:"Reports are detailed enough for compliance audits. License instant."},
- {user:"Bryce L.",stars:5,text:"Our security team uses this weekly. Vareonl delivered a genuine license fast."},
- ]},
- {name:"Web App Scanner",cat:"Security",icon:"",badge:null,desc:"Automated web application security scanner detecting OWASP Top 10 and custom vulnerability signatures.",rating:4.9,reviews:[
- {user:"Tina K.",stars:5,text:"Caught an SQL injection we had missed manually. Impressive accuracy."},
- {user:"Joel A.",stars:5,text:"OWASP Top 10 coverage is thorough. License from Vareonl activated instantly."},
- ]},
- {name:"Malware Scanner Pro",cat:"Security",icon:"",badge:null,desc:"Advanced malware detection and analysis platform for endpoints, files and network traffic.",rating:4.9,reviews:[
- {user:"Uma S.",stars:5,text:"Detected a zero-day variant our AV missed. Remarkable detection engine."},
- {user:"Drew N.",stars:5,text:"Fast scans, accurate results. Vareonl delivered the license in minutes."},
- {user:"Cass M.",stars:5,text:"Our SOC team relies on this daily. Smooth purchase experience."},
- ]},
- {name:"Decompiler Tool Pro",cat:"Security",icon:"",badge:null,desc:"Professional binary decompiler and reverse engineering tool for malware analysis and security research.",rating:4.9,reviews:[
- {user:"Axel T.",stars:5,text:"Best decompiler I've used for malware analysis. License was instant from Vareonl."},
- {user:"Rena B.",stars:5,text:"Clean output, great for security research. Genuine license, easy activation."},
- ]},
- {name:"Data Encryptor Suite",cat:"Security",icon:"",badge:null,desc:"Enterprise-grade data encryption for files, databases and communications with key management.",rating:5.0,reviews:[
- {user:"Lars E.",stars:5,text:"AES-256 encryption works flawlessly. License delivered and activated instantly."},
- {user:"Mona J.",stars:5,text:"Key management features are excellent. Vareonl support was great throughout."},
- {user:"Pat R.",stars:5,text:"Compliance requirement met easily. Smooth purchase, genuine license."},
- ]},
- {name:"Credential Strength Tester",cat:"Security",icon:"",badge:null,desc:"Audit and test password policy strength across your organisation to identify weak credentials.",rating:4.9,reviews:[
- {user:"Vera C.",stars:5,text:"Found dozens of weak passwords in our audit. Essential security tool."},
- {user:"Nick O.",stars:5,text:"Policy enforcement reports are clear and actionable. License instant."},
- ]},
- {name:"IP Insights Analyser",cat:"Network",icon:"",badge:null,desc:"Deep IP intelligence and geolocation analysis for threat hunting and network investigation.",rating:4.9,reviews:[
- {user:"Gio B.",stars:5,text:"IP reputation data is accurate and up to date. License from Vareonl was fast."},
- {user:"Suki W.",stars:5,text:"Threat hunting is much faster with this. Genuine license, smooth activation."},
- {user:"Ed M.",stars:5,text:"Great for investigating suspicious traffic. Vareonl delivered instantly."},
- ]},
+  {name:"JetBrains All Products Pack",cat:"IDE",badge:"hot",desc:"Full suite: IntelliJ, WebStorm, PyCharm, DataGrip & more.",rating:5.0,reviews:[
+    {user:"Alex M.",stars:5,text:"Saved hours every day. License arrived in minutes — totally worth it."},
+    {user:"Sara K.",stars:5,text:"Legit license, super fast delivery. Third purchase and still flawless."},
+    {user:"Dev O.",stars:5,text:"Got the full pack for my team. All 6 seats activated instantly."}]},
+  {name:"Visual Studio Code Extensions Bundle",cat:"IDE",badge:"pop",desc:"Premium extension pack + Copilot integration for supercharged VS Code.",rating:4.9,reviews:[
+    {user:"James T.",stars:5,text:"Extensions installed perfectly. The Copilot integration alone makes this worth it."},
+    {user:"Priya N.",stars:5,text:"Huge productivity boost. Every extension worked on first try."}]},
+  {name:"JetBrains IntelliJ IDEA Ultimate",cat:"IDE",badge:null,desc:"The most intelligent Java & Kotlin IDE with profiler and database tools.",rating:5.0,reviews:[
+    {user:"Mia R.",stars:5,text:"Best Java IDE on the market. License was genuine and activated instantly."},
+    {user:"Carlos B.",stars:5,text:"Getting it through Vareonl saved me a lot compared to buying direct."},
+    {user:"Kenji A.",stars:5,text:"Verified license, smooth activation. No issues whatsoever."}]},
+  {name:"WebStorm License",cat:"IDE",badge:null,desc:"Smart JavaScript IDE with deep support for React, Vue, Angular, Node.js.",rating:4.9,reviews:[
+    {user:"Ola F.",stars:5,text:"Incredible for React development. License came through in under 5 minutes."},
+    {user:"Nina P.",stars:5,text:"Great price and legit key. Support was helpful."}]},
+  {name:"PyCharm Professional",cat:"IDE",badge:"new",desc:"Full-featured Python IDE with data science tools and Django support.",rating:5.0,reviews:[
+    {user:"Dev K.",stars:5,text:"Perfect for Django projects. Activated without a hitch."},
+    {user:"Amara S.",stars:5,text:"The debugger alone makes it worth every penny."},
+    {user:"Raj M.",stars:5,text:"Much cheaper than JetBrains direct. License is 100% genuine."}]},
+  {name:"Rider .NET IDE",cat:"IDE",badge:null,desc:"Fast cross-platform .NET IDE with ReSharper built-in.",rating:4.9,reviews:[
+    {user:"Tom W.",stars:5,text:"Finally a proper .NET IDE on macOS. Instant and genuine."},
+    {user:"Lena G.",stars:5,text:"Replaced Visual Studio for me. Runs faster."}]},
+  {name:"GitHub Copilot Business",cat:"AI Assistant",badge:"hot",desc:"AI pair programmer suggesting whole lines and functions in your editor.",rating:5.0,reviews:[
+    {user:"Liam P.",stars:5,text:"Game changer. I write code at least 3x faster now."},
+    {user:"Zoe A.",stars:5,text:"Worth every penny. Suggestions are accurate."},
+    {user:"Marcus E.",stars:5,text:"Entire team is using it now. License setup was painless."},
+    {user:"Fatima H.",stars:5,text:"This genuinely changes how you code. Can't go back."}]},
+  {name:"Tabnine Pro",cat:"AI Assistant",badge:null,desc:"Privacy-first AI completion that learns your codebase.",rating:4.9,reviews:[
+    {user:"Owen R.",stars:5,text:"Love that it works locally. Great for privacy-conscious teams."},
+    {user:"Sonia L.",stars:5,text:"Fast completions, privacy-focused, legitimate license."}]},
+  {name:"Cursor Pro",cat:"AI Assistant",badge:"new",desc:"AI-first code editor — edit entire files with natural language.",rating:5.0,reviews:[
+    {user:"Noah B.",stars:5,text:"Cursor is genuinely the future of coding."},
+    {user:"Isabel C.",stars:5,text:"The natural language edits are mind-blowing."},
+    {user:"Yusuf D.",stars:5,text:"Switched from VS Code and never looked back."}]},
+  {name:"Codeium Enterprise",cat:"AI Assistant",badge:null,desc:"Unlimited AI completions with no data retention.",rating:4.9,reviews:[
+    {user:"Grace T.",stars:5,text:"No data retention — ticks every box for our company."},
+    {user:"Arjun V.",stars:5,text:"Unlimited completions and fast. Great value."}]},
+  {name:"Figma Professional",cat:"Design",badge:"pop",desc:"Collaborative UI/UX design with unlimited projects and prototyping.",rating:5.0,reviews:[
+    {user:"Ella S.",stars:5,text:"My entire design team uses Figma daily."},
+    {user:"Diana K.",stars:5,text:"Unlimited projects is the feature that sold me."},
+    {user:"Felix J.",stars:5,text:"Smooth purchase, smooth activation."}]},
+  {name:"Sketch for Teams",cat:"Design",badge:null,desc:"Mac-native design with shared libraries and developer handoff.",rating:4.9,reviews:[
+    {user:"Hana M.",stars:5,text:"Shared libraries transformed our design workflow."},
+    {user:"Leo B.",stars:5,text:"Best Mac design tool."}]},
+  {name:"Adobe Creative Cloud All Apps",cat:"Design",badge:"hot",desc:"Full Adobe suite: Photoshop, Illustrator, XD, Premiere, After Effects & more.",rating:5.0,reviews:[
+    {user:"Chris N.",stars:5,text:"All apps in one license and it's genuine."},
+    {user:"Sofia R.",stars:5,text:"Premiere, Photoshop, Illustrator — all activated."},
+    {user:"Ben A.",stars:5,text:"Best deal I've found for Creative Cloud."},
+    {user:"Mei L.",stars:5,text:"Third time buying here. Always reliable."}]},
+  {name:"Framer Pro",cat:"Design",badge:"new",desc:"Design and publish production websites with animations and CMS.",rating:4.9,reviews:[
+    {user:"Kai S.",stars:5,text:"Built my portfolio in a weekend. Pro features are worth it."},
+    {user:"Nora F.",stars:5,text:"CMS and animations in one tool is incredible."}]},
+  {name:"Linear Team Plan",cat:"Project Mgmt",badge:"pop",desc:"Beautifully fast issue tracker with cycles, roadmaps, and git sync.",rating:5.0,reviews:[
+    {user:"Tom H.",stars:5,text:"Best PM tool we've tried. Cycles and git sync are game-changing."},
+    {user:"Rachel D.",stars:5,text:"Switched from Jira and never looked back."},
+    {user:"Sam O.",stars:5,text:"The speed of Linear alone is worth it."}]},
+  {name:"Notion Business",cat:"Project Mgmt",badge:null,desc:"All-in-one workspace with notes, wikis, databases, and AI.",rating:4.9,reviews:[
+    {user:"Ivy C.",stars:5,text:"Replaced 5 tools with Notion. AI features are excellent."},
+    {user:"Marcus P.",stars:5,text:"Our whole company runs on Notion now."}]},
+  {name:"Jira Software Premium",cat:"Project Mgmt",badge:null,desc:"Advanced Scrum/Kanban boards, roadmaps, and capacity planning.",rating:4.9,reviews:[
+    {user:"Olga T.",stars:5,text:"Advanced roadmaps alone justify the Premium plan."},
+    {user:"Derek S.",stars:5,text:"Our enterprise team needed Jira Premium. Vareonl delivered."},
+    {user:"Aisha B.",stars:5,text:"Capacity planning features are excellent."}]},
+  {name:"Asana Business",cat:"Project Mgmt",badge:null,desc:"Work management with timelines, portfolios, and reporting.",rating:4.9,reviews:[
+    {user:"Paul N.",stars:5,text:"Portfolios and timelines make it easy to manage projects."},
+    {user:"Chloe M.",stars:5,text:"Our marketing team lives in Asana."}]},
+  {name:"ClickUp Business Plus",cat:"Project Mgmt",badge:null,desc:"One app for tasks, docs, goals, chat, whiteboards and time tracking.",rating:4.9,reviews:[
+    {user:"Ethan R.",stars:5,text:"Replaced Notion, Jira, and Slack for us."},
+    {user:"Luna V.",stars:5,text:"Time tracking and goals in one place is amazing."},
+    {user:"Joel K.",stars:5,text:"Great value through Vareonl."}]},
+  {name:"GitHub Teams",cat:"DevOps",badge:null,desc:"Unlimited private repos, Actions minutes, and code review tools.",rating:5.0,reviews:[
+    {user:"Anna W.",stars:5,text:"Essential for any dev team."},
+    {user:"Riku T.",stars:5,text:"Every project starts with GitHub Teams now."},
+    {user:"Elena P.",stars:5,text:"Reliable, fast delivery of a genuine license."}]},
+  {name:"GitLab Premium",cat:"DevOps",badge:null,desc:"Complete DevSecOps platform with CI/CD and security scanning.",rating:4.9,reviews:[
+    {user:"Henrik B.",stars:5,text:"We moved from GitHub to GitLab for the CI/CD."},
+    {user:"Amina D.",stars:5,text:"Security scanning and merge controls are exactly what we needed."}]},
+  {name:"Vercel Pro",cat:"DevOps",badge:"pop",desc:"Frontend cloud with instant deploys, edge functions, and analytics.",rating:5.0,reviews:[
+    {user:"Jake L.",stars:5,text:"Deploy in seconds. Edge functions are blazing fast."},
+    {user:"Talia S.",stars:5,text:"My entire Next.js stack lives on Vercel."},
+    {user:"Mateo G.",stars:5,text:"Analytics and instant rollbacks make deployments stress-free."}]},
+  {name:"Railway Pro",cat:"DevOps",badge:"new",desc:"Deploy any app instantly with Postgres, Redis, and auto-scaling.",rating:4.9,reviews:[
+    {user:"Hina Y.",stars:5,text:"Spun up a full-stack app with Postgres in under 10 minutes."},
+    {user:"Ben C.",stars:5,text:"Auto-scaling just works."}]},
+  {name:"DataDog Pro",cat:"DevOps",badge:null,desc:"Full-stack monitoring: APM, logs, metrics, alerts, 450+ integrations.",rating:4.9,reviews:[
+    {user:"Vera M.",stars:5,text:"450+ integrations and our entire stack is monitored perfectly."},
+    {user:"Oscar J.",stars:5,text:"APM caught a performance bottleneck within hours of setup."},
+    {user:"Nadia R.",stars:5,text:"Best observability platform we've used."}]},
+  {name:"1Password Teams",cat:"Productivity",badge:null,desc:"Secure password management with shared vaults and admin controls.",rating:5.0,reviews:[
+    {user:"Maya C.",stars:5,text:"Security essential for every team."},
+    {user:"James O.",stars:5,text:"Travel Mode is a genius feature."},
+    {user:"Petra L.",stars:5,text:"Our whole company switched to 1Password."}]},
+  {name:"Grammarly Business",cat:"Productivity",badge:null,desc:"AI writing assistant with tone suggestions and clarity improvements.",rating:4.9,reviews:[
+    {user:"Sandra K.",stars:5,text:"Tone suggestions changed how I write emails."},
+    {user:"Ali H.",stars:5,text:"Catches things spell-check never would."}]},
+  {name:"Loom Business",cat:"Productivity",badge:"new",desc:"Async video messages with AI transcripts and summaries.",rating:5.0,reviews:[
+    {user:"Rita A.",stars:5,text:"Cut our meetings in half. AI summaries are accurate."},
+    {user:"Chris V.",stars:5,text:"Async-first workflow is the future."},
+    {user:"Mei W.",stars:5,text:"Transcripts save so much time."}]},
+  {name:"Slack Pro",cat:"Productivity",badge:null,desc:"Full message history, unlimited integrations, and group calls.",rating:4.9,reviews:[
+    {user:"Dani F.",stars:5,text:"Full message history is crucial for us."},
+    {user:"Lucas T.",stars:5,text:"Unlimited integrations let us connect everything."}]},
+  {name:"Zoom Pro",cat:"Productivity",badge:null,desc:"HD meetings up to 30 hours, cloud recording, and transcripts.",rating:4.9,reviews:[
+    {user:"Penny S.",stars:5,text:"Cloud recordings with transcripts are very useful."},
+    {user:"Victor N.",stars:5,text:"Reliable HD quality every call."},
+    {user:"Kira J.",stars:5,text:"Our client calls use Zoom Pro exclusively."}]},
+  {name:"Raycast Pro",cat:"Productivity",badge:"pop",desc:"Supercharged Mac launcher with AI, snippets, and 1000+ extensions.",rating:5.0,reviews:[
+    {user:"Finn O.",stars:5,text:"Replaced 4 apps with Raycast Pro."},
+    {user:"Cora B.",stars:5,text:"Window management alone is worth it."},
+    {user:"Haruto S.",stars:5,text:"The fastest launcher I've ever used."}]},
+  {name:"DataGrip License",cat:"Database",badge:null,desc:"Multi-engine database IDE for PostgreSQL, MySQL, MongoDB, Redis.",rating:4.9,reviews:[
+    {user:"Niko B.",stars:5,text:"Query console is incredibly smart."},
+    {user:"Astra L.",stars:5,text:"Replaced 3 separate DB tools with DataGrip."}]},
+  {name:"TablePlus Pro",cat:"Database",badge:null,desc:"Modern native client for relational databases with clean UI.",rating:4.9,reviews:[
+    {user:"Will F.",stars:5,text:"Cleanest database UI I've used."},
+    {user:"Tae K.",stars:5,text:"Switched from Sequel Pro and it's so much better."},
+    {user:"Mara E.",stars:5,text:"Native performance makes it feel snappy."}]},
+  {name:"MongoDB Atlas Pro",cat:"Database",badge:null,desc:"Fully managed cloud database with global clusters and Atlas Search.",rating:5.0,reviews:[
+    {user:"Sol G.",stars:5,text:"Global clusters scaled without any effort."},
+    {user:"Bea C.",stars:5,text:"Fully managed means I never think about the DB."}]},
+  {name:"Postman Professional",cat:"Testing",badge:null,desc:"API platform for design, testing, docs, and monitoring with mock servers.",rating:5.0,reviews:[
+    {user:"Rita J.",stars:5,text:"Mock servers saved our team weeks of backend waiting."},
+    {user:"Enzo P.",stars:5,text:"Documentation generation is brilliant."},
+    {user:"Laila K.",stars:5,text:"Our whole API lifecycle lives in Postman now."}]},
+  {name:"BrowserStack Automate",cat:"Testing",badge:null,desc:"Cloud testing with Selenium, Cypress, and Playwright on 3000+ devices.",rating:4.9,reviews:[
+    {user:"Finn A.",stars:5,text:"3000+ real devices. Cross-browser coverage went to 100%."},
+    {user:"Demi T.",stars:5,text:"Playwright integration was seamless."}]},
+  {name:"Sentry Business",cat:"Testing",badge:"pop",desc:"Error tracking, performance monitoring, and session replay.",rating:5.0,reviews:[
+    {user:"Igor S.",stars:5,text:"Session replay caught a UX bug in 10 minutes."},
+    {user:"Nour A.",stars:5,text:"Error grouping is smart and alerts are timely."},
+    {user:"Theo M.",stars:5,text:"We use Sentry across 8 projects."}]},
+  {name:"Chainalysis Reactor",cat:"Blockchain",badge:"hot",desc:"Industry-leading blockchain investigation tool for tracing crypto transactions across multiple chains.",rating:5.0,reviews:[
+    {user:"Marcus L.",stars:5,text:"The gold standard for blockchain forensics."},
+    {user:"Priya S.",stars:5,text:"Traced a complex multi-hop transaction in minutes."},
+    {user:"Jake F.",stars:5,text:"Our compliance team relies on Reactor daily."}]},
+  {name:"Elliptic Navigator",cat:"Blockchain",badge:null,desc:"Crypto asset risk management and blockchain analytics for compliance and investigations.",rating:4.9,reviews:[
+    {user:"Dana K.",stars:5,text:"Risk scoring is incredibly accurate."},
+    {user:"Ryo T.",stars:5,text:"Best compliance tool for crypto firms."}]},
+  {name:"CipherTrace Inspector",cat:"Blockchain",badge:null,desc:"Advanced cryptocurrency forensics for AML compliance and financial crime investigation.",rating:4.9,reviews:[
+    {user:"Amara O.",stars:5,text:"AML reporting is thorough and court-ready."},
+    {user:"Ben W.",stars:5,text:"Great for crypto crime investigations."},
+    {user:"Lena V.",stars:5,text:"Much more accurate than our old tool."}]},
+  {name:"TRM Labs Suite",cat:"Blockchain",badge:"new",desc:"Blockchain intelligence for fraud detection, sanctions screening, and crypto risk monitoring.",rating:5.0,reviews:[
+    {user:"Chris A.",stars:5,text:"Sanctions screening is unmatched."},
+    {user:"Fatou D.",stars:5,text:"Our fraud team uses TRM daily."}]},
+  {name:"Crystal Blockchain",cat:"Blockchain",badge:null,desc:"Blockchain analytics and crypto transaction monitoring with visual investigation tools.",rating:4.9,reviews:[
+    {user:"Ivan P.",stars:5,text:"Visual transaction graphs make complex cases easy."},
+    {user:"Mira J.",stars:5,text:"Monitoring alerts have caught issues early."}]},
+  {name:"CoinPath Forensics",cat:"Blockchain",badge:null,desc:"Blockchain data analytics API for tracing fund flows across Bitcoin and Ethereum.",rating:4.9,reviews:[
+    {user:"Seth B.",stars:5,text:"API integration was seamless. Data is accurate."},
+    {user:"Yuki N.",stars:5,text:"Fund flow tracing is excellent."}]},
+  {name:"Blockseer Analytics",cat:"Blockchain",badge:null,desc:"Bitcoin blockchain analytics for compliance teams and law enforcement investigations.",rating:4.9,reviews:[
+    {user:"Anika R.",stars:5,text:"Compliance reporting is clean and detailed."},
+    {user:"Tom E.",stars:5,text:"Law enforcement-grade analytics at a great price."},
+    {user:"Clara S.",stars:5,text:"Reliable data, well-designed interface."}]},
+  {name:"OXT Explorer Pro",cat:"Blockchain",badge:null,desc:"Advanced Bitcoin transaction graph explorer for on-chain analysis and forensic investigation.",rating:4.9,reviews:[
+    {user:"Felix M.",stars:5,text:"Transaction graph visualisation is outstanding."},
+    {user:"Hana B.",stars:5,text:"Great for on-chain analysis."}]},
+  {name:"BitScan Explorer",cat:"Blockchain",badge:null,desc:"Blockchain exploration and monitoring for real-time transaction tracking and address analysis.",rating:4.9,reviews:[
+    {user:"Oscar T.",stars:5,text:"Real-time tracking is fast and accurate."},
+    {user:"Nina G.",stars:5,text:"Address clustering works really well."}]},
+  {name:"Phishing Simulation Platform",cat:"Security",badge:"hot",desc:"Simulate phishing attacks on your organisation to train staff and measure security awareness.",rating:5.0,reviews:[
+    {user:"Rachel M.",stars:5,text:"Our click rate dropped 80% after 3 months of simulations."},
+    {user:"Dev S.",stars:5,text:"Easy to set up campaigns and reporting is detailed."},
+    {user:"Chloe T.",stars:5,text:"Best investment for our security awareness programme."}]},
+  {name:"Incident Playbook Engine",cat:"Security",badge:null,desc:"Automate and orchestrate incident response workflows with customisable playbooks.",rating:4.9,reviews:[
+    {user:"Aaron K.",stars:5,text:"Playbooks cut our response time in half."},
+    {user:"Sia L.",stars:5,text:"The integration library is huge."}]},
+  {name:"Vulnerability Scan Suite",cat:"Security",badge:"pop",desc:"Comprehensive vulnerability scanning for web apps, networks and infrastructure.",rating:5.0,reviews:[
+    {user:"Kai P.",stars:5,text:"Found critical vulnerabilities in our app within the first scan."},
+    {user:"Nadia C.",stars:5,text:"Reports are detailed enough for compliance audits."},
+    {user:"Bryce L.",stars:5,text:"Our security team uses this weekly."}]},
+  {name:"Web App Scanner",cat:"Security",badge:null,desc:"Automated web application security scanner detecting OWASP Top 10 and custom signatures.",rating:4.9,reviews:[
+    {user:"Tina K.",stars:5,text:"Caught an SQL injection we had missed manually."},
+    {user:"Joel A.",stars:5,text:"OWASP Top 10 coverage is thorough."}]},
+  {name:"Malware Scanner Pro",cat:"Security",badge:null,desc:"Advanced malware detection and analysis for endpoints, files and network traffic.",rating:4.9,reviews:[
+    {user:"Uma S.",stars:5,text:"Detected a zero-day variant our AV missed."},
+    {user:"Drew N.",stars:5,text:"Fast scans, accurate results."},
+    {user:"Cass M.",stars:5,text:"Our SOC team relies on this daily."}]},
+  {name:"Decompiler Tool Pro",cat:"Security",badge:null,desc:"Professional binary decompiler and reverse engineering tool for malware analysis.",rating:4.9,reviews:[
+    {user:"Axel T.",stars:5,text:"Best decompiler I've used for malware analysis."},
+    {user:"Rena B.",stars:5,text:"Clean output, great for security research."}]},
+  {name:"Data Encryptor Suite",cat:"Security",badge:null,desc:"Enterprise-grade data encryption for files, databases and communications.",rating:5.0,reviews:[
+    {user:"Lars E.",stars:5,text:"AES-256 encryption works flawlessly."},
+    {user:"Mona J.",stars:5,text:"Key management features are excellent."},
+    {user:"Pat R.",stars:5,text:"Compliance requirement met easily."}]},
+  {name:"Credential Strength Tester",cat:"Security",badge:null,desc:"Audit and test password policy strength across your organisation.",rating:4.9,reviews:[
+    {user:"Vera C.",stars:5,text:"Found dozens of weak passwords in our audit."},
+    {user:"Nick O.",stars:5,text:"Policy enforcement reports are clear and actionable."}]},
+  {name:"NetFlow Analyzer Pro",cat:"Network",badge:null,desc:"Real-time network traffic analysis and bandwidth monitoring with deep packet insights.",rating:4.9,reviews:[
+    {user:"Hugo R.",stars:5,text:"Pinpointed a bandwidth hog within minutes of setup."},
+    {user:"Zara P.",stars:5,text:"Traffic analysis is detailed and the UI is clean."},
+    {user:"Eli W.",stars:5,text:"Replaced two tools with this one."}]},
+  {name:"Packet Capture Pro",cat:"Network",badge:null,desc:"Professional-grade packet capture and protocol analysis for network diagnostics.",rating:4.9,reviews:[
+    {user:"Noel C.",stars:5,text:"Deep packet inspection works flawlessly."},
+    {user:"Tara H.",stars:5,text:"Indispensable for our network security team."}]},
+  {name:"Certificate Manager",cat:"Network",badge:null,desc:"Centralised SSL/TLS certificate lifecycle management with automated renewal and alerts.",rating:4.9,reviews:[
+    {user:"Finn B.",stars:5,text:"Never missed a certificate expiry since using this."},
+    {user:"Leah O.",stars:5,text:"Automated renewals saved our team hours every month."},
+    {user:"Sam D.",stars:5,text:"Clean dashboard, great alerts."}]},
+  {name:"DNS Monitor",cat:"Network",badge:null,desc:"Continuous DNS monitoring and alerting to detect hijacking, misconfigurations and outages.",rating:4.9,reviews:[
+    {user:"Marco V.",stars:5,text:"Caught a DNS misconfiguration before it caused downtime."},
+    {user:"Iris F.",stars:5,text:"Alerts are fast and accurate."}]},
+  {name:"IP Insights Analyser",cat:"Network",badge:null,desc:"Deep IP intelligence and geolocation analysis for threat hunting and investigation.",rating:4.9,reviews:[
+    {user:"Gio B.",stars:5,text:"IP reputation data is accurate and up to date."},
+    {user:"Suki W.",stars:5,text:"Threat hunting is much faster with this."},
+    {user:"Ed M.",stars:5,text:"Great for investigating suspicious traffic."}]},
 ];
 
+// ── SITE REVIEWS ──
 let siteReviews = [
- {name:"Alex M.",role:"Senior Backend Dev",stars:5,text:"Vareonl is my go-to for software licenses. Fast delivery, legit keys, and the support team responds in minutes.",product:"JetBrains All Products Pack",avatar:"A",color:"#fff"},
- {name:"Sara K.",role:"UI/UX Designer",stars:5,text:"Bought Figma Pro and Adobe CC here. Both licenses worked instantly. Couldn't be happier with the service.",product:"Figma Professional",avatar:"S",color:"#fff"},
- {name:"James T.",role:"Full-Stack Developer",stars:5,text:"Was skeptical at first but everything checked out. Prices are great and the process is super smooth.",product:"GitHub Copilot Business",avatar:"J",color:"#fff"},
- {name:"Mia R.",role:"Python Developer",stars:5,text:"Third purchase here. Never had an issue. The team on Telegram is incredibly responsive.",product:"PyCharm Professional",avatar:"M",color:"#fff"},
- {name:"Liam P.",role:"DevOps Engineer",stars:5,text:"Got Vercel Pro and Railway. Both working great. Will definitely be back for more.",product:"Vercel Pro",avatar:"L",color:"#fff"},
- {name:"Zoe A.",role:"Indie Developer",stars:4,text:"Great experience overall. Delivery was quick and prices beat everything I found elsewhere.",product:"Cursor Pro",avatar:"Z",color:"#fff"},
+  {name:"Alex M.",role:"Senior Backend Dev",stars:5,text:"Vareonl is my go-to for software licenses. Fast delivery, legit keys, support responds in minutes.",product:"JetBrains All Products Pack",av:"A"},
+  {name:"Sara K.",role:"UI/UX Designer",stars:5,text:"Bought Figma Pro and Adobe CC here. Both licenses worked instantly. Couldn't be happier.",product:"Figma Professional",av:"S"},
+  {name:"James T.",role:"Full-Stack Developer",stars:5,text:"Was skeptical at first but everything checked out. Prices are great and the process is smooth.",product:"GitHub Copilot Business",av:"J"},
+  {name:"Mia R.",role:"Python Developer",stars:5,text:"Third purchase here. Never had an issue. The team on Telegram is incredibly responsive.",product:"PyCharm Professional",av:"M"},
+  {name:"Liam P.",role:"DevOps Engineer",stars:5,text:"Got Vercel Pro and Railway. Both working great. Will definitely be back for more.",product:"Vercel Pro",av:"L"},
+  {name:"Zoe A.",role:"Indie Developer",stars:4,text:"Great experience overall. Delivery was quick and prices beat everything I found elsewhere.",product:"Cursor Pro",av:"Z"},
 ];
 
 let wsrRating = 0;
 
-function starsHTML(r, cls='star-mini', emptyCls='empty') {
- let h = '';
- for(let i=1;i<=5;i++) h += `<span class="${cls}${i<=Math.round(r)?'':' '+emptyCls}">★</span>`;
- return h;
-}
-
-// Vibrant card banner colors per category (OkeyMeta style)
-const cardColors = {
- "IDE": ["#1a1aff","#6600ff"],
- "AI Assistant": ["#7c3aed","#db2777"],
- "Design": ["#db2777","#f97316"],
- "Project Mgmt": ["#0891b2","#0ea5e9"],
- "DevOps": ["#16a34a","#4ade80"],
- "Productivity": ["#d97706","#f59e0b"],
- "Database": ["#7c3aed","#6366f1"],
- "Testing": ["#dc2626","#f97316"],
- "Blockchain": ["#ca8a04","#eab308"],
- "Security": ["#dc2626","#9f1239"],
- "Network": ["#0891b2","#06b6d4"],
- "Software": ["#374151","#6b7280"],
-};
-const iconBg = {};
-
-function tierDesc() {
- return ["Essential features · Contact us to order","Advanced features · Contact us to order","Full access · Contact us to order"];
+// ── HELPERS ──
+function starsHTML(r,cls,ecls){
+  let h='';
+  for(let i=1;i<=5;i++) h+=`<span class="${cls}${i<=Math.round(r)?'':' '+ecls}">★</span>`;
+  return h;
 }
 
 function badgeHTML(b){
- if(!b) return '';
- const map={hot:'badge-hot',new:'badge-new',pop:'badge-pop'};
- const txt=b==='pop'?'Popular':b.charAt(0).toUpperCase()+b.slice(1);
- return `<span class="card-badge ${map[b]}">${txt}</span>`;
+  if(!b) return '';
+  const m={hot:'bh',new:'bn',pop:'bp'};
+  const t={hot:'Hot',new:'New',pop:'Popular'};
+  return `<span class="cbadge ${m[b]}">${t[b]}</span>`;
 }
 
-function productDetails(p) {
- const details = {
- "IDE":[" Genuine activation key included"," Instant delivery via Telegram or WhatsApp"," 1-click activation, no setup required"," Works on Windows, macOS & Linux"," 24/7 support if activation fails"],
- "AI Assistant":[" Full AI-powered code completion"," Instant license delivery"," Works in VS Code, JetBrains & more"," Genuine account or key — no sharing"," Support included if issues arise"],
- "Design":[" Full professional features unlocked"," License delivered instantly"," Activate on your own account"," Genuine, not cracked or shared"," Setup support available 24/7"],
- "Project Mgmt":[" Full plan features activated"," Instant delivery after order"," Easy account upgrade process"," Legitimate license — your account"," 24/7 support via Telegram or WhatsApp"],
- "DevOps":[" Full plan features unlocked"," Fast delivery, no waiting"," Activate on your existing account"," Genuine license, fully supported"," Help with setup included"],
- "Productivity":[" All premium features included"," License or account delivered fast"," Simple activation process"," Genuine — not shared or cracked"," 24/7 support on Telegram & WhatsApp"],
- "Database":[" Full professional license"," Instant delivery guaranteed"," Activate in seconds"," Genuine JetBrains or vendor key"," Support if activation fails"],
- "Testing":[" Full plan features unlocked"," License delivered instantly"," Easy team or personal setup"," Genuine license from vendor"," 24/7 after-sale support"],
- };
- return (details[p.cat]||[" Full license included"," Instant delivery"," Genuine & verified"," 24/7 support"]).map(d=>`
- <div class="detail-row"><span class="detail-icon">${d.split(' ')[0]}</span><span class="detail-text">${d.substring(d.indexOf(' ')+1)}</span></div>`).join('');
+function detailsHTML(cat){
+  const d={
+    "IDE":["Genuine activation key included","Instant delivery via Telegram or WhatsApp","1-click activation, no setup required","Works on Windows, macOS & Linux","24/7 support if activation fails"],
+    "AI Assistant":["Full AI-powered code completion","Instant license delivery","Works in VS Code, JetBrains & more","Genuine account or key — no sharing","Support included if issues arise"],
+    "Design":["Full professional features unlocked","License delivered instantly","Activate on your own account","Genuine, not cracked or shared","Setup support available 24/7"],
+    "Project Mgmt":["Full plan features activated","Instant delivery after order","Easy account upgrade process","Legitimate license — your account","24/7 support via Telegram or WhatsApp"],
+    "DevOps":["Full plan features unlocked","Fast delivery, no waiting","Activate on your existing account","Genuine license, fully supported","Help with setup included"],
+    "Productivity":["All premium features included","License or account delivered fast","Simple activation process","Genuine — not shared or cracked","24/7 support on Telegram & WhatsApp"],
+    "Database":["Full professional license","Instant delivery guaranteed","Activate in seconds","Genuine vendor key","Support if activation fails"],
+    "Testing":["Full plan features unlocked","License delivered instantly","Easy team or personal setup","Genuine license from vendor","24/7 after-sale support"],
+  };
+  const rows = (d[cat]||["Full license included","Instant delivery","Genuine & verified","24/7 support"]);
+  return rows.map(r=>`<div class="det-row"><span class="det-txt">${r}</span></div>`).join('');
 }
 
-function createCard(p, idx) {
- const colors = cardColors[p.cat]||cardColors["Software"];
- const tiers = tierDesc();
- const tierNames = ['Basic','Pro','Team'];
- const revCount = p.reviews.length;
- const reviewsHTML = p.reviews.map(r=>`
- <div class="review-item">
- <div class="review-header">
- <span class="reviewer-name">${r.user}</span>
- <div class="review-stars">${starsHTML(r.stars,'review-star','empty')}</div>
- <span class="reviewer-date">Verified</span>
- </div>
- <div class="review-text">${r.text}</div>
- </div>`).join('');
- return `
- <div class="card" id="card-${idx}">
- <div class="card-banner" style="background:linear-gradient(135deg,${colors[0]},${colors[1]})">
- <span class="card-banner-icon">${p.icon}</span>
- <span class="card-banner-name">${p.name}</span>
- ${badgeHTML(p.badge)}
- </div>
- <div class="card-top" style="margin-top:0.9rem">
- <div class="card-meta">
- <div class="card-name">${p.name}</div>
- <div class="card-cat">${p.cat}</div>
- </div>
- </div>
- <p class="card-desc">${p.desc}</p>
- <div style="padding:0 1.1rem 1.1rem">
- <div class="card-rating">
- <div class="stars-mini">${starsHTML(p.rating)}</div>
- <span class="rating-text">${p.rating} · ${revCount} review${revCount!==1?'s':''}</span>
- </div>
- <div class="product-details" id="pd-${idx}" style="display:none">${productDetails(p)}</div>
- <button class="review-toggle" style="margin-bottom:0.6rem" onclick="toggleDetails(${idx})">▾ View product details</button>
- <div class="tier-select-hint">Select a package to buy</div>
- <div class="tiers" id="tiers-${idx}">
- <div class="tier" onclick="selectTier(${idx},0,'${tiers[0]}','${tierNames[0]}')" id="tier-${idx}-0"><span class="tier-label tl-basic">Basic</span><p>${tiers[0]}</p></div>
- <div class="tier" onclick="selectTier(${idx},1,'${tiers[1]}','${tierNames[1]}')" id="tier-${idx}-1"><span class="tier-label tl-pro">Pro</span><p>${tiers[1]}</p></div>
- <div class="tier" onclick="selectTier(${idx},2,'${tiers[2]}','${tierNames[2]}')" id="tier-${idx}-2"><span class="tier-label tl-team">Team</span><p>${tiers[2]}</p></div>
- </div>
- <button class="cbtn-buy" id="buybtn-${idx}" disabled onclick="buyProduct(${idx})">Select a package above</button>
- <button class="review-toggle" onclick="toggleReviews(${idx})">▾ Reviews (${revCount})</button>
- <div class="review-panel" id="rp-${idx}">
- <div class="review-list" id="rl-${idx}">${reviewsHTML}</div>
- <div class="write-review">
- <h5>Write a Review</h5>
- <div class="star-picker" id="sp-${idx}" data-val="0">
- <span class="sp-star" data-i="1">★</span><span class="sp-star" data-i="2">★</span>
- <span class="sp-star" data-i="3">★</span><span class="sp-star" data-i="4">★</span>
- <span class="sp-star" data-i="5">★</span>
- </div>
- <div class="review-inputs">
- <input placeholder="Your name" id="rn-${idx}" maxlength="30">
- <textarea rows="2" placeholder="Share your experience…" id="rt-${idx}" maxlength="200"></textarea>
- </div>
- <button class="submit-review" onclick="submitReview(${idx})">Submit</button>
- <div class="review-success" id="rs-${idx}"> Review added!</div>
- </div>
- </div>
- </div>`;
+// ── CREATE CARD ──
+function createCard(p, idx){
+  const c = CC[p.cat]||CC["Software"];
+  const tiers = ["Essential features · Contact us to order","Advanced features · Contact us to order","Full access · Contact us to order"];
+  const tnames = ['Basic','Pro','Team'];
+  const rc = p.reviews.length;
+  const revHTML = p.reviews.map(r=>`
+    <div class="revitem">
+      <div class="revhead">
+        <span class="revname">${r.user}</span>
+        <div class="revstars">${starsHTML(r.stars,'rs2','e')}</div>
+        <span class="revdate">Verified</span>
+      </div>
+      <div class="revtxt">${r.text}</div>
+    </div>`).join('');
+  return `
+<div class="card" id="card-${idx}">
+  <div class="cbanner" style="background:linear-gradient(135deg,${c[0]},${c[1]})">
+    ${badgeHTML(p.badge)}
+    <span class="cbanner-cat">${p.cat}</span>
+  </div>
+  <div class="cbody">
+    <div class="cname">${p.name}</div>
+    <div class="ccat">${p.cat}</div>
+    <div class="cdesc">${p.desc}</div>
+    <div class="crating">
+      <div class="stars-mini">${starsHTML(p.rating,'sm','e')}</div>
+      <span class="rtxt">${p.rating} · ${rc} review${rc!==1?'s':''}</span>
+    </div>
+    <div class="det-panel" id="dp-${idx}">${detailsHTML(p.cat)}</div>
+    <button class="togbtn" style="margin-bottom:0.6rem" onclick="toggleDet(${idx})">View product details</button>
+    <div class="tier-hint">Select a package to buy</div>
+    <div class="tiers" id="ti-${idx}">
+      <div class="tier" onclick="selTier(${idx},0)" id="t-${idx}-0"><span class="tlbl tl-b">Basic</span><p>${tiers[0]}</p></div>
+      <div class="tier" onclick="selTier(${idx},1)" id="t-${idx}-1"><span class="tlbl tl-p">Pro</span><p>${tiers[1]}</p></div>
+      <div class="tier" onclick="selTier(${idx},2)" id="t-${idx}-2"><span class="tlbl tl-t">Team</span><p>${tiers[2]}</p></div>
+    </div>
+    <button class="buybtn" id="bb-${idx}" disabled onclick="doBuy(${idx})">Select a package above</button>
+    <button class="togbtn" onclick="toggleRev(${idx})">Reviews (${rc})</button>
+    <div class="revpanel" id="rp-${idx}">
+      <div class="revlist" id="rl-${idx}">${revHTML}</div>
+      <div class="wr-h">Write a Review</div>
+      <div class="spick" id="sp-${idx}" data-v="0">
+        <span class="sps" data-i="1">★</span><span class="sps" data-i="2">★</span>
+        <span class="sps" data-i="3">★</span><span class="sps" data-i="4">★</span>
+        <span class="sps" data-i="5">★</span>
+      </div>
+      <div class="rev-inputs">
+        <input placeholder="Your name" id="rn-${idx}" maxlength="30">
+        <textarea rows="2" placeholder="Your experience..." id="rt-${idx}" maxlength="200"></textarea>
+      </div>
+      <button class="subrev" onclick="submitRev(${idx})">Submit</button>
+      <div class="revsuccess" id="rs-${idx}">Review added!</div>
+    </div>
+  </div>
+</div>`;
 }
 
-function toggleReviews(idx) {
- const panel = document.getElementById(`rp-${idx}`);
- panel.classList.toggle('open');
- const btn = panel.previousElementSibling;
- btn.textContent = panel.classList.contains('open') ? '▴ Hide Reviews' : `▾ Reviews (${products[idx] ? products[idx].reviews.length : 0})`;
+// ── TOGGLE DETAILS ──
+function toggleDet(idx){
+  const p=document.getElementById(`dp-${idx}`);
+  const b=p.nextElementSibling;
+  const open=p.style.display==='block';
+  p.style.display=open?'none':'block';
+  b.textContent=open?'View product details':'Hide product details';
 }
 
-function toggleDetails(idx) {
- const panel = document.getElementById(`pd-${idx}`);
- const btn = panel.nextElementSibling;
- const open = panel.style.display === 'block';
- panel.style.display = open ? 'none' : 'block';
- btn.textContent = open ? '▾ View product details' : '▴ Hide product details';
+// ── TOGGLE REVIEWS ──
+function toggleRev(idx){
+  const p=document.getElementById(`rp-${idx}`);
+  const open=p.classList.contains('open');
+  p.classList.toggle('open');
+  const rc=products[idx]?products[idx].reviews.length:0;
+  p.previousElementSibling.textContent=open?`Reviews (${rc})`:'Hide Reviews';
 }
 
-document.addEventListener('click', e => {
- const star = e.target.closest('.sp-star');
- if(!star) return;
- const picker = star.closest('.star-picker');
- const val = parseInt(star.dataset.i);
- picker.dataset.val = val;
- picker.querySelectorAll('.sp-star').forEach((s,i) => s.classList.toggle('lit', i<val));
+// ── STAR PICKER ──
+document.addEventListener('click',e=>{
+  const s=e.target.closest('.sps');
+  if(!s)return;
+  const pk=s.closest('.spick');
+  const v=parseInt(s.dataset.i);
+  pk.dataset.v=v;
+  pk.querySelectorAll('.sps').forEach((x,i)=>x.classList.toggle('lit',i<v));
 });
 
-function submitReview(idx) {
- const picker = document.getElementById(`sp-${idx}`);
- const name = document.getElementById(`rn-${idx}`).value.trim();
- const text = document.getElementById(`rt-${idx}`).value.trim();
- const stars = parseInt(picker.dataset.val)||0;
- if(!name||!text||!stars) return;
- if(products[idx]) products[idx].reviews.push({user:name,text,stars});
- const rl = document.getElementById(`rl-${idx}`);
- rl.insertAdjacentHTML('beforeend',`
- <div class="review-item" style="animation:fadeUp 0.25s ease">
- <div class="review-header">
- <span class="reviewer-name">${name}</span>
- <div class="review-stars">${starsHTML(stars,'review-star','empty')}</div>
- <span class="reviewer-date">Just now</span>
- </div>
- <div class="review-text">${text}</div>
- </div>`);
- document.getElementById(`rs-${idx}`).style.display='block';
- document.getElementById(`rn-${idx}`).value='';
- document.getElementById(`rt-${idx}`).value='';
- picker.querySelectorAll('.sp-star').forEach(s=>s.classList.remove('lit'));
- picker.dataset.val=0;
+// ── SUBMIT REVIEW ──
+function submitRev(idx){
+  const pk=document.getElementById(`sp-${idx}`);
+  const name=document.getElementById(`rn-${idx}`).value.trim();
+  const text=document.getElementById(`rt-${idx}`).value.trim();
+  const stars=parseInt(pk.dataset.v)||0;
+  if(!name||!text||!stars)return;
+  if(products[idx])products[idx].reviews.push({user:name,text,stars});
+  const rl=document.getElementById(`rl-${idx}`);
+  rl.insertAdjacentHTML('beforeend',`
+    <div class="revitem" style="animation:fadeUp 0.2s ease">
+      <div class="revhead"><span class="revname">${name}</span><div class="revstars">${starsHTML(stars,'rs2','e')}</div><span class="revdate">Just now</span></div>
+      <div class="revtxt">${text}</div>
+    </div>`);
+  document.getElementById(`rs-${idx}`).style.display='block';
+  document.getElementById(`rn-${idx}`).value='';
+  document.getElementById(`rt-${idx}`).value='';
+  pk.querySelectorAll('.sps').forEach(x=>x.classList.remove('lit'));
+  pk.dataset.v=0;
 }
 
-function renderSiteReviews() {
- const grid = document.getElementById('siteReviewsGrid');
- grid.innerHTML = siteReviews.map(r=>`
- <div class="site-review">
- <div class="sr-top">
- <div class="sr-avatar" style="background:rgba(255,255,255,0.06)">${r.avatar}</div>
- <div><div class="sr-name">${r.name}</div><div class="sr-role">${r.role}</div></div>
- </div>
- <div class="sr-stars">${starsHTML(r.stars,'sr-star','')}</div>
- <div class="sr-text">${r.text}</div>
- <div class="sr-product">// ${r.product}</div>
- </div>`).join('');
- document.getElementById('totalReviewCount').textContent = `Based on ${siteReviews.length} reviews`;
+// ── TIER SELECT ──
+const selTiers={};
+function selTier(idx,ti){
+  [0,1,2].forEach(i=>{const e=document.getElementById(`t-${idx}-${i}`);if(e)e.classList.remove('selected')});
+  document.getElementById(`t-${idx}-${ti}`).classList.add('selected');
+  const tnames=['Basic','Pro','Team'];
+  selTiers[idx]=tnames[ti];
+  const bb=document.getElementById(`bb-${idx}`);
+  bb.disabled=false;
+  bb.textContent=`Purchase ${tnames[ti]}`;
 }
 
-const wsrStars = document.querySelectorAll('.wsr-star');
-wsrStars.forEach(s => {
- s.addEventListener('mouseenter', () => wsrStars.forEach((x,i) => x.classList.toggle('lit', i<=parseInt(s.dataset.v)-1)));
- s.addEventListener('mouseleave', () => wsrStars.forEach((x,i) => x.classList.toggle('lit', i<wsrRating)));
- s.addEventListener('click', () => { wsrRating=parseInt(s.dataset.v); wsrStars.forEach((x,i)=>x.classList.toggle('lit',i<wsrRating)); });
+// ── BUY ──
+function doBuy(idx){
+  const tier=selTiers[idx];
+  if(!tier)return;
+  const name=idx>=9000?`Product`:products[idx].name;
+  openModal(name,`${tier} Plan`);
+}
+
+// ── MODAL ──
+function openModal(name,tier){
+  const msg=encodeURIComponent(`Hello Vareonl Store, I want to purchase ${name}${tier?' — '+tier:''}. Please assist me.`);
+  document.getElementById('mpname').textContent=name;
+  document.getElementById('mptier').textContent=tier||'Ready to assist you';
+  document.getElementById('mtg').href=`https://t.me/vareonl?text=${msg}`;
+  document.getElementById('mwa').href=`https://wa.me/18124161451?text=${msg}`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+// ── SITE REVIEWS ──
+function renderSiteRevs(){
+  const g=document.getElementById('srevGrid');
+  g.innerHTML=siteReviews.map(r=>`
+    <div class="srev">
+      <div class="srev-top">
+        <div class="srev-av">${r.av}</div>
+        <div><div class="srev-name">${r.name}</div><div class="srev-role">${r.role}</div></div>
+      </div>
+      <div class="srev-stars">${starsHTML(r.stars,'srs','')}</div>
+      <div class="srev-txt">${r.text}</div>
+      <div class="srev-prod">// ${r.product}</div>
+    </div>`).join('');
+  document.getElementById('revCount').textContent=`Based on ${siteReviews.length} reviews`;
+}
+
+const wsrStars=document.querySelectorAll('.wsr-s');
+wsrStars.forEach(s=>{
+  s.addEventListener('mouseenter',()=>wsrStars.forEach((x,i)=>x.classList.toggle('lit',i<=parseInt(s.dataset.v)-1)));
+  s.addEventListener('mouseleave',()=>wsrStars.forEach((x,i)=>x.classList.toggle('lit',i<wsrRating)));
+  s.addEventListener('click',()=>{wsrRating=parseInt(s.dataset.v);wsrStars.forEach((x,i)=>x.classList.toggle('lit',i<wsrRating))});
 });
 
-function submitSiteReview() {
- const name = document.getElementById('wsr-name').value.trim();
- const role = document.getElementById('wsr-role').value.trim();
- const text = document.getElementById('wsr-text').value.trim();
- if(!name||!text||!wsrRating) return;
- siteReviews.unshift({name, role:role||'Customer', stars:wsrRating, text, product:'Vareonl Store', avatar:name[0].toUpperCase(), color:'#fff'});
- renderSiteReviews();
- document.getElementById('wsr-name').value='';
- document.getElementById('wsr-role').value='';
- document.getElementById('wsr-text').value='';
- wsrRating=0;
- wsrStars.forEach(s=>s.classList.remove('lit'));
- const succ = document.getElementById('wsr-success');
- succ.style.display='block';
- setTimeout(()=>succ.style.display='none',3000);
+function submitSiteReview(){
+  const name=document.getElementById('wsr-name').value.trim();
+  const role=document.getElementById('wsr-role').value.trim();
+  const text=document.getElementById('wsr-text').value.trim();
+  if(!name||!text||!wsrRating)return;
+  siteReviews.unshift({name,role:role||'Customer',stars:wsrRating,text,product:'Vareonl Store',av:name[0].toUpperCase()});
+  renderSiteRevs();
+  document.getElementById('wsr-name').value='';
+  document.getElementById('wsr-role').value='';
+  document.getElementById('wsr-text').value='';
+  wsrRating=0;
+  wsrStars.forEach(s=>s.classList.remove('lit'));
+  const ok=document.getElementById('wsr-ok');
+  ok.style.display='block';
+  setTimeout(()=>ok.style.display='none',3000);
 }
 
-const categories = ["All", ...new Set(products.map(p=>p.cat))];
-let activeTab="All", query="";
+// ── SEARCH & FILTER ──
+const cats=["All",...new Set(products.map(p=>p.cat))];
+let activeTab="All",query="";
 
-function filtered() {
- const q = query.toLowerCase().trim();
- const base = products.filter(p => activeTab==="All" || p.cat===activeTab);
- if(!q) return base;
- const matches = base.filter(p => (p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q));
- if(matches.length) return matches;
- const cap = query.charAt(0).toUpperCase()+query.slice(1);
- return [{name:cap,cat:"Software",icon:"",badge:"new",desc:`Licensed ${cap} software — genuine key, instant delivery, 24/7 support.`,rating:5.0,reviews:[
- {user:"Alex M.",stars:5,text:"Got exactly what I needed. Fast delivery and genuine license."},
- {user:"Sara K.",stars:5,text:"Smooth process from order to activation. Highly recommend Vareonl."},
- ]}];
+function filtered(){
+  const q=query.toLowerCase().trim();
+  const base=products.filter(p=>activeTab==="All"||p.cat===activeTab);
+  if(!q)return base;
+  const m=base.filter(p=>(p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q));
+  if(m.length)return m;
+  const cap=query.charAt(0).toUpperCase()+query.slice(1);
+  return [{name:cap,cat:"Software",badge:"new",desc:`Licensed ${cap} — genuine key, instant delivery, 24/7 support.`,rating:5.0,reviews:[
+    {user:"Alex M.",stars:5,text:"Got exactly what I needed. Fast delivery and genuine license."},
+    {user:"Sara K.",stars:5,text:"Smooth process from order to activation. Highly recommend Vareonl."}
+  ]}];
 }
 
-function render() {
- const list = filtered();
- document.getElementById('countLabel').textContent=`${list.length} tool${list.length!==1?'s':''}`;
- document.getElementById('list').innerHTML = list.map((p,i)=>{
- const realIdx = products.indexOf(p);
- return createCard(p, realIdx >= 0 ? realIdx : 9000+i);
- }).join('');
- requestAnimationFrame(()=>{
- document.querySelectorAll('.card').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),i*30));
- });
+function render(){
+  const list=filtered();
+  document.getElementById('scount').textContent=`${list.length} tool${list.length!==1?'s':''}`;
+  document.getElementById('list').innerHTML=list.map((p,i)=>{
+    const ri=products.indexOf(p);
+    return createCard(p,ri>=0?ri:9000+i);
+  }).join('');
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.card').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),i*30));
+  });
 }
 
-const tabsEl = document.getElementById('tabs');
-categories.forEach(c=>{
- const b=document.createElement('button');
- b.className='tab'+(c==="All"?' active':'');
- b.textContent=c;
- b.onclick=()=>{
- activeTab=c;
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- b.classList.add('active');
- render();
- };
- tabsEl.appendChild(b);
+// ── TABS ──
+const tabsEl=document.getElementById('tabs');
+cats.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='tab'+(c==="All"?' active':'');
+  b.textContent=c;
+  b.onclick=()=>{
+    activeTab=c;
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    b.classList.add('active');
+    render();
+  };
+  tabsEl.appendChild(b);
 });
 
-const input = document.getElementById('q');
-const suggEl = document.getElementById('suggestions');
-input.addEventListener('input', function(){
- const q = this.value.trim().toLowerCase();
- const matches = q ? products.filter(p=>(p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q)).slice(0,6) : [];
- if(matches.length){
- suggEl.style.display='block';
- suggEl.innerHTML=matches.map(m=>`<div class="sugg-item" onclick="pick('${m.name.replace(/'/g,"\\'")}')">→ ${m.name}</div>`).join('');
- } else { suggEl.style.display='none'; }
+// ── SEARCH INPUT ──
+const inp=document.getElementById('q');
+const sg=document.getElementById('suggs');
+inp.addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  const m=q?products.filter(p=>(p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q)).slice(0,6):[];
+  if(m.length){
+    sg.style.display='block';
+    sg.innerHTML=m.map(x=>`<div class="si" onclick="pick('${x.name.replace(/'/g,"\\'")}')">→ ${x.name}</div>`).join('');
+  } else sg.style.display='none';
 });
+function doSearch(){query=inp.value.trim();sg.style.display='none';render()}
+function pick(n){inp.value=n;query=n;sg.style.display='none';render()}
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))sg.style.display='none'});
 
-function doSearch(){
- query=input.value.trim();
- suggEl.style.display='none';
- render();
-}
-
-function pick(name){
- input.value=name; query=name;
- suggEl.style.display='none';
- render();
-}
-
-document.addEventListener('click',e=>{ if(!e.target.closest('.search-wrap')) suggEl.style.display='none'; });
-
-const selectedTiers = {};
-function selectTier(idx, tierIdx, tierDescText, tierName) {
- [0,1,2].forEach(i=>{
- const el=document.getElementById(`tier-${idx}-${i}`);
- if(el) el.classList.remove('selected');
- });
- document.getElementById(`tier-${idx}-${tierIdx}`).classList.add('selected');
- selectedTiers[idx]={tierName,tierDesc:tierDescText};
- const btn=document.getElementById(`buybtn-${idx}`);
- btn.disabled=false;
- btn.textContent=`Purchase ${tierName}`;
-}
-
-function buyProduct(idx) {
- const tier=selectedTiers[idx];
- if(!tier) return;
- const p = idx >= 9000 ? {name: document.getElementById(`buybtn-${idx}`).textContent.replace('Purchase ','').trim()} : products[idx];
- openModal(p.name, `${tier.tierName} Plan · ${tier.tierDesc}`);
-}
-
-function openModal(productName, tierInfo) {
- const msg=encodeURIComponent(`Hello Vareonl Store, I want to purchase ${productName}${tierInfo&&tierInfo!=="We're here to help you find the right tool"&&tierInfo!=="We are here to help"?' — '+tierInfo:''}. Please assist me.`);
- document.getElementById('modalProductName').textContent=productName;
- document.getElementById('modalProductTier').textContent=tierInfo||'Ready to assist you';
- document.getElementById('modalTgBtn').href=`https://t.me/vareonl?text=${msg}`;
- document.getElementById('modalWaBtn').href=`https://wa.me/18124161451?text=${msg}`;
- document.getElementById('contactModal').classList.add('open');
-}
-
-function closeModal() {
- document.getElementById('contactModal').classList.remove('open');
-}
-
-document.getElementById('contactModal').addEventListener('click', function(e){
- if(e.target===this) closeModal();
-});
-
-render();
-renderSiteReviews();
-// Loader: count 0-100 in ~5s, white ring
+// ── LOADER ──
 (function(){
- const pct = document.getElementById('ldrPct');
- const arc = document.querySelector('.ldr-ring-arc');
- const circumference = 251.2;
- let n = 0;
- const iv = setInterval(()=>{
- n += 2;
- if(n >= 100){
- n = 100;
- clearInterval(iv);
- pct.textContent = '100%';
- arc.style.strokeDashoffset = '0';
- setTimeout(()=>document.getElementById('loader').classList.add('hide'), 250);
- return;
- }
- pct.textContent = n + '%';
- arc.style.strokeDashoffset = circumference - (circumference * n / 100);
- }, 50);
+  const num=document.getElementById('ldrNum');
+  const arc=document.querySelector('.ldr-arc');
+  const circ=263;
+  let n=0;
+  const iv=setInterval(()=>{
+    n+=2;
+    if(n>=100){
+      n=100;
+      num.textContent='100%';
+      arc.style.strokeDashoffset='0';
+      clearInterval(iv);
+      setTimeout(()=>document.getElementById('loader').classList.add('hide'),200);
+      return;
+    }
+    num.textContent=n+'%';
+    arc.style.strokeDashoffset=circ-(circ*n/100);
+  },50);
 })();
+
+// ── INIT ──
+render();
+renderSiteRevs();
 </script>
 </body>
 </html>
