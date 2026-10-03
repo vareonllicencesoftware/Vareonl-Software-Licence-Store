@@ -851,15 +851,18 @@ let activeTab="All",query="";
 
 function filtered(){
   const q=query.toLowerCase().trim();
-  const base=products.filter(p=>activeTab==="All"||p.cat===activeTab);
+
+  const base=products.filter(
+    p=>activeTab==="All"||p.cat===activeTab
+  );
+
   if(!q)return base;
-  const m=base.filter(p=>(p.name+' '+p.cat+' '+p.desc).toLowerCase().includes(q));
-  if(m.length)return m;
-  const cap=query.charAt(0).toUpperCase()+query.slice(1);
-  return [{name:cap,cat:"Software",badge:"new",desc:`Licensed ${cap} — genuine key, instant delivery, 24/7 support.`,rating:5.0,reviews:[
-    {user:"Alex M.",stars:5,text:"Got exactly what I needed. Fast delivery and genuine license."},
-    {user:"Sara K.",stars:5,text:"Smooth process from order to activation. Highly recommend Vareonl."}
-  ]}];
+
+  return base.filter(
+    p=>(p.name+' '+p.cat+' '+p.desc)
+      .toLowerCase()
+      .includes(q)
+  );
 }
 
 function render(){
